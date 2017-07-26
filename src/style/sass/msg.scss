@@ -1,0 +1,73 @@
+@import 'common/common';
+@import 'common/mixin';
+
+#app {
+    padding: 10px;
+    position: relative;
+}
+
+.m-header {
+    @include m-header;
+    background-color: #1e82d0;
+    .u-back {
+        @include u-back;
+    }
+    .u-title {
+        @include u-title;
+        width: 89vw;
+        text-indent: -11vw;
+    }
+}
+
+.u-list {
+    list-style: none;
+    padding-top: 50px;
+    width: 100%;
+    li {
+        height: 50px;
+        width: 100%;
+        border-bottom: 1px solid #e2e2e2;
+        a {
+            display: block;
+            height: 50px;
+            width: 100%;
+        }
+    }
+    .left {
+        width: 50%;
+        height: 100%;
+        float: left;
+        .title {
+            font-size: 1.6rem;
+            color: #1f1f1f;
+            line-height: 50px;
+        }
+    }
+    .right {
+        width: 50%;
+        height: 100%;
+        float: right;
+        .info {
+            line-height: 25px;
+            display: block;
+            font-size: 1.4rem;
+            width: 100%;
+            text-align: right;
+            color: #7f7f7f;
+        }
+    }
+}
+
+.message {
+    padding-top: 50px;
+    .title {
+        font-size: 1.6rem;
+        text-align: center;
+        padding: 5px 0;
+    }
+    .detail {
+        font-size: 1.2rem;
+        text-indent: 2rem;
+        line-height: 1.8rem;
+    }
+}

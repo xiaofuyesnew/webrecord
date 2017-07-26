@@ -1,0 +1,94 @@
+@import 'common/common';
+@import 'common/mixin';
+
+#app {
+    padding: 10px;
+    position: relative;
+    @include login-bg;
+}
+
+.m-login {
+    padding-top: 20vw;
+    .u-avatar {
+        width: 90px;
+        height: 90px;
+        background: url("../image/login-logo.png") no-repeat;
+        background-size: 100%;
+        margin: 0 auto;
+    }
+    .u-title {
+        font-size: 2.4rem;
+        color: #fff;
+        padding: 4vw 0;
+        text-align: center;
+    }
+    .u-login ::-webkit-input-placeholder {
+        color: #fff;
+    }
+    .u-login input[type="text"],
+    .u-login input[type="password"]{
+        @include login-input;
+    }
+    .u-rmbpw {
+        position: relative;
+        .remember {
+            position: absolute;
+            right: 17vw;
+            top: 3.8vw;
+            label {
+                font-size: 1.4rem;
+                color: #fff;
+            }
+        }
+    }
+    button {
+        @include login-btn;
+        letter-spacing: 6vw;
+        text-indent: 6vw;
+    }
+    @include u-check;
+}
+
+//自定义复选框样式
+.u-rmbpw input[type="checkbox"] {
+  visibility: hidden;
+}
+.u-rmbpw input[type="checkbox"]+label::before {
+  content: '\a0';
+  border: 1px solid #fff;
+  display: inline-block;
+  vertical-align: .2em;
+  width: .8em;
+  height: .8em;
+  margin-right: .2em;
+  text-indent: .15em;
+  line-height: .65;
+}
+.u-rmbpw input[type="checkbox"]:checked+label::before {
+  content: '\a0';
+  border: 1px solid #fff;
+  background: url("../image/check.png") no-repeat;
+  background-size: 100%;
+  display: inline-block;
+  vertical-align: .2em;
+  width: .8em;
+  height: .8em;
+  margin-right: .2em;
+  text-indent: .15em;
+  line-height: .65;
+}
+
+.m-bottom {
+    width: calc(100vw - 20px);
+    position:absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    a {
+        font-size: 1.6rem;
+        color: #fff;
+        text-decoration: none;
+        line-height: 10vw;
+        padding: 5vw;
+    }
+}

@@ -1,0 +1,259 @@
+//登录页面背景
+@mixin login-bg {
+    background: url("../image/login-bg.png") no-repeat;
+    background-size: cover;
+}
+
+//宏观成果展示首页背景
+@mixin mar-bg {
+    background: url("../image/mar-bg.png") no-repeat;
+    background-size: cover;
+}
+
+//微观成果展示首页背景
+@mixin main-bg {
+    background: url("../image/main-bg.png") no-repeat;
+    background-size: 100% 25%;
+}
+
+//扶贫对象查看首页背景
+@mixin obj-bg {
+    background: url("../image/obj-bg.png") no-repeat;
+    background-size: 100% auto;
+}
+
+//政策扶贫动态首页背景
+@mixin act-bg {
+    background: url("../image/act-bg.png") no-repeat;
+    background-size: cover;
+}
+
+//登录页面输入框
+@mixin login-input {
+    border-radius: 0;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    color: #fff;
+    margin: 0 auto;
+    font-size: 1.4rem;
+    border-bottom: 1px solid rgba(255, 255, 255, .4);
+    height: 10vw;
+    width: 62vw;
+    padding: 1vw 2vw;
+}
+
+//登录页面验证码
+@mixin u-check {
+    .u-check {
+        width: 66vw;
+        margin: 0 auto;
+        padding-bottom: 15vw;
+        input[type="text"] {
+            height: 10vw;
+            width: 30vw;
+            padding: 1vw 2vw;
+            float: left;
+        }
+        img {
+            height: 10vw;
+            width: 20vw;
+            float: right;
+            padding-top: 2vw;
+        }
+        button {
+            margin: 4vw 0 0;
+            height: 8vw;
+            width: 30vw;
+            float: right;
+            background-color: #ff9a38;
+        }
+    }
+}
+
+//登录页面按钮
+@mixin login-btn {
+    display: block;
+    margin: 16vw auto 0;
+    outline: none;
+    border: none;
+    background: rgba(30, 130, 208, .8);
+    height: 10vw;
+    color: #fff;
+    border-radius: 10vw;
+    width: 66vw;
+    font-size: 1.4rem;
+}
+
+//共用头部
+@mixin m-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    z-index: 1;
+}
+
+@mixin u-back {
+    background: url("../image/back.png") no-repeat;
+    background-size: 100%;
+    background-position: left center;
+    height: 60px;
+    width: 6vw;
+    margin-left: 5vw;
+    float: left;
+}
+
+@mixin u-title {
+        float: left;
+        height: 60px;
+        line-height: 60px;
+        text-align: center;
+        font-size: 2rem;
+        color: #fff;
+}
+
+@mixin u-notice {
+        display: block;
+        height: 60px;
+        width: 11vw;
+        float: left;
+        position: relative;
+}
+
+@mixin ntc-num {
+    display: block;
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    color: #fff;
+    font-size: 1rem;
+}
+
+@mixin m-navbar {
+    .m-navbar {
+        background: #fff;
+        list-style: none;
+        position: fixed;
+        border-top: 1px solid #1e82d0;
+        padding-top: 10px;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+        li {
+            width: 20%;
+            float: left;
+            text-align: center;
+            a {
+                display: block;
+                width: 100%;
+                height: 100%;
+                img {
+                    width: 40%;
+                    height: 40%;
+                }
+                span {
+                    display: block;
+                    width: 100%;
+                    text-align: center;
+                    color: #7f7f7f;
+                }
+                .blue {
+                    color: #1e82d0;
+                }
+            }
+        }
+    }
+}
+
+@mixin cards {
+    display: block;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@mixin m-cards {
+    .m-cards {
+        padding: 40px 10px 0;
+        position: absolute;
+        height: calc(75% - 111px);
+        top: 25%;
+        left: 0;
+        width: calc(100% - 20px);
+        .cds-left {
+            @include cards;
+            float: left;
+            width: calc(50% - 5px);
+            margin-top: 40%;
+        }
+        .cds-right {
+            @include cards;
+            float: right;
+            width: calc(50% - 5px);
+        }
+        .cds-first-right {
+            margin-top: 40%;
+        }
+        .cds-center {
+            @include cards;
+            width: 60%;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+//主要内容
+@mixin m-main {
+    .m-main {
+        padding-top: 50px;
+        padding-bottom: 71px;
+        width: 100%;
+        .u-num {
+            width: 100vw;
+            margin-left: -10px;
+            background: url("../image/accurate/num-bg.png") no-repeat;
+            background-size: 100vw auto;
+            height: 110px;
+            padding-bottom: 10px;
+            .unit {
+                width: 50vw;
+                height: 95px;
+                text-align: center;
+                padding-top: 15px;
+                .title {
+                    color: #fff;
+                    font-size: 1.6rem;
+                    line-height: 3.6rem;
+                }
+                .num {
+                    color: #00d2ff;
+                    font-size: 2.4rem;
+                }
+            }
+            .left {
+                float: left;
+            }
+            .right {
+                float: right;
+            }
+        }
+    }
+}
+
+@mixin u-index {
+    .u-index {
+        display: block;
+        float: right;
+        background: url(../image/index.png) no-repeat;
+        background-size: 65%;
+        background-position: left 50%; 
+        width: 14vw;
+        height: 100%;
+    }
+}

@@ -1,0 +1,34 @@
+@import 'common/common';
+@import 'common/mixin';
+
+#app {
+    padding: 10px;
+    position: relative;
+    @include login-bg;
+}
+
+.m-reset {
+    padding-top: 50vw;
+    .u-reset ::-webkit-input-placeholder {
+        color: #fff;
+    }
+    .u-reset input {
+        @include login-input;
+    }
+    button {
+        @include login-btn;
+    }
+    @include u-check;
+}
+
+.m-header {
+    @include m-header;
+    .u-back {
+        @include u-back;
+    }
+    .u-title {
+        @include u-title;
+        width: 89vw;
+        text-indent: -11vw;
+    }
+}

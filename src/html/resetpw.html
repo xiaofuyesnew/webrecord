@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>重置密码</title>
+    <link rel="stylesheet" href="../css/resetpw.css">
+    <!-- build:js -->
+    <script src="../lib/jquery-3.2.1.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+    <div id="app">
+        <div class="m-header">
+            <a class="u-back" href="../index.html"></a>
+            <div class="u-title">重置密码</div>
+        </div>
+        <div class="m-reset">
+            <form class="u-reset">
+                <input id="username" type="text" placeholder="账号">
+                <input id="oldPassword" type="password" placeholder="原密码">
+                <input id="newPassword" type="password" placeholder="新密码">
+                <input id="conPassword" type="password" placeholder="确认密码">
+                <div class="u-check">
+                    <input id="code" type="text" placeholder="验证码">
+                    <img src="http://test.360guanggu.com/fupingv1/api.php/Login/get_codes?PHPSESSID=code">
+                </div>
+                <button type="button">确认重置</button>
+            </form>
+        </div>
+    </div>
+    <div class="sp-wraper">
+        <div class="spinner">
+            <div class="spinner-container container1">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+            <div class="spinner-container container2">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+            <div class="spinner-container container3">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+        </div>
+    </div>
+    <div class="msg"></div>
+    <!-- build:cordova -->
+    <!-- endbuild -->
+    <script src="../js/resetpw.js"></script>
+</body>
+</html>
