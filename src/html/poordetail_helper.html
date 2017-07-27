@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>帮扶责任人</title>
+    <link rel="stylesheet" href="../css/poordetail_helper.css">
+    <!-- build:css -->
+    <!-- endbuild -->
+    <!-- build:js -->
+    <script src="../lib/jquery-3.2.1.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+    <div id="app">
+        <div class="m-header">
+            <a class="u-back" href="poorlist.html"></a>
+            <div class="u-title">帮扶责任人</div>
+            <a class="u-index" href="main.html"></a>
+        </div>
+        <div class="m-dropdown">
+            <div class="u-show">
+                <img src="../image/dropright.png">
+                <span>点击展开列表</span>
+            </div>
+        </div>
+        <div class="cont">
+            <div class="lists">
+                <div class="list">
+                    <div class="unit">户主姓名：<span id="name"></span></div>
+                    <div class="unit">行政区划：<span id="area"></span></div>
+                </div>
+                <div class="list listfix">
+                    <div class="unit header left">帮扶责任人</div>
+                    <div class="unit arrow up right"></div>
+                </div>
+                <div class="wrap">
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">姓名</span>
+                            <span id="dutyname" class="data right"></span>
+                        </div>
+                    </div>
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">性别</span>
+                            <span id="sex" class="data right"></span>
+                        </div>
+                    </div>
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">电话</span>
+                            <span id="telephone" class="data right"></span>
+                        </div>
+                    </div>
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">工作单位</span>
+                            <span id="company" class="data right"></span>
+                        </div>
+                    </div>
+                </div>
+                <a id="record" class="list listfix" href="#">
+                    <div class="unit header left color">帮扶记录</div>
+                    <div class="unit a-arrow right"></div>
+                </a>
+                <div class="list listfix">
+                    <div class="unit header left">个人照片</div>
+                    <div class="unit arrow up right"></div>
+                </div>
+                <div class="wrap">
+                    <div class="list listcont photo">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="u-mask"></div>
+        <div class="u-hide">
+            <div class="header">列表</div>
+            <a id="basic" class="select" href="#">
+                <div class="name">基本情况</div>
+                <div class="triger"></div>
+            </a>
+            <a id="condition" class="select" href="#">
+                <div class="name">生产生活条件</div>
+                <div class="triger"></div>
+            </a>
+            <a id="helper" class="select" href="#">
+                <div class="name">帮扶责任人</div>
+                <div class="triger"></div>
+            </a>
+            <a id="result" class="select" href="#">
+                <div class="name">帮扶措施及成效</div>
+                <div class="triger"></div>
+            </a>
+        </div>
+    </div>
+    <div class="msg"></div>
+    <!-- build:cordova -->
+    <!-- endbuild -->
+    <script src="../js/poordetail_helper.js"></script>
+</body>
+</html>

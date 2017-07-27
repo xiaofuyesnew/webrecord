@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>贫困户帮扶清单</title>
+    <link rel="stylesheet" href="../css/poorlist.css">
+    <!-- build:css -->
+    <link rel="stylesheet" href="../lib/mobileSelect.css">
+    <link rel="stylesheet" href="../lib/dropload.css">
+    <!-- endbuild -->
+    <!-- build:js -->
+    <script src="../lib/jquery-3.2.1.js"></script>
+    <script src="../lib/dropload.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+    <div id="app">
+        <div class="m-header">
+            <a class="u-back" href="javascript:history.go(-1);"></a>
+            <div class="u-title">贫困户帮扶清单</div>
+            <a class="u-notice" href="msg.html" style="background: url(&quot;../image/noticebell-spot.png&quot;) left center / 28px no-repeat;">
+                <span class="ntc-num">6</span>
+            </a>
+        </div>
+        <div class="cont">
+            <div class="lists">
+                <div class="bar"></div>
+                <div class="list">
+                    <div class="unit-h">
+                        <div class="hidden">
+                        <span class="title">姓名：</span>
+                        <span class="text">张三</span>
+                        </div>
+                        <a class="more" href="poordetail_basic.html?table_id=30"></a>
+                    </div>
+                    <div class="unit left">
+                        <span class="title">村镇：</span>
+                        <span class="text">河口乡 万泉河村</span>
+                    </div>
+                    <div class="unit over right">
+                        <span class="title">贫困属性：</span>
+                        <span class="text">红卡</span>
+                    </div>
+                    <div class="unitbtn">
+                        <a class="btn addrecord" href="">新增帮扶记录</a>
+                        <a class="btn punchok">已签到</a>
+                    </div>
+                </div>
+                <div class="bar"></div>
+                <div class="list">
+                    <div class="unit-h">
+                        <div class="hidden">
+                        <span class="title">姓名：</span>
+                        <span class="text">张三</span>
+                        </div>
+                        <a class="more" href="poordetail_basic.html?table_id=30"></a>
+                    </div>
+                    <div class="unit  over left">
+                        <span class="title">村镇：</span>
+                        <span class="text">河口乡 万泉河村</span>
+                    </div>
+                    <div class="unit right">
+                        <span class="title">贫困属性：</span>
+                        <span class="text">红卡</span>
+                    </div>
+                    <div class="unitbtn">
+                        <a class="btn addrecord" href="">新增帮扶记录</a>
+                        <a class="btn punch" href="">签到</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ul class="m-navbar">
+            <li>
+                <a href="#">
+                    <img src="../image/list-a.png">
+                    <span class="blue">扶贫清单</span>
+                </a>
+            </li>
+            <li>
+                <a href="projectchart_in.html">
+                    <img src="../image/record.png">
+                    <span>扶贫记录</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="msg"></div>
+    <!-- build:cordova -->
+    <!-- endbuild -->
+    <script src="../js/poorlist.js"></script>
+</body>
+</html>

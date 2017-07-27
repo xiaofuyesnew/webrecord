@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>家庭成员详情</title>
+    <link rel="stylesheet" href="../css/poordetail_family.css">
+    <!-- build:css -->
+    <!-- endbuild -->
+    <!-- build:js -->
+    <script src="../lib/jquery-3.2.1.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+    <div id="app">
+        <div class="m-header">
+            <a class="u-back" href="javascript:history.go(-1);"></a>
+            <div class="u-title">家庭成员详情</div>
+            <a class="u-index" href="main.html"></a>
+        </div>
+        <div class="cont">
+            <div class="lists">
+                <div class="list">
+                    <div class="unit">户主姓名：<span id="name"></span></div>
+                    <div class="unit">行政区划：<span id="area"></span></div>
+                </div>
+                <div class="list listfix">
+                    <div class="unit header left">家庭成员详情</div>
+                </div>
+                <div class="wrap">
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">姓名</span>
+                            <span id="familyname" class="data right"></span>
+                        </div>
+                    </div>
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">性别</span>
+                            <span id="sex" class="data right"></span>
+                        </div>
+                    </div>
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">出生日期</span>
+                            <span id="birthday" class="data right"></span>
+                        </div>
+                    </div>
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">与户主关系</span>
+                            <span id="relation" class="data right"></span>
+                        </div>
+                    </div>
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">文化程度</span>
+                            <span id="education" class="data long right"></span>
+                        </div>
+                    </div>
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">在校生状况</span>
+                            <span id="school" class="data right"></span>
+                        </div>
+                    </div>
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">劳动技能</span>
+                            <span id="skill" class="data right"></span>
+                        </div>
+                    </div>
+                    <div class="list listcont">
+                        <div class="unit">
+                            <span class="title">健康状况</span>
+                            <span id="health" class="data right"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="list listfix">
+                    <div class="unit header left">个人照片</div>
+                </div>
+                <div class="wrap">
+                    <div class="list listcont photo">
+                        <div class="unit"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="u-mask"></div>
+    </div>
+    <div class="msg"></div>
+    <!-- build:cordova -->
+    <!-- endbuild -->
+    <script src="../js/poordetail_family.js"></script>
+</body>
+</html>
