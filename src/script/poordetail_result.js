@@ -34,10 +34,8 @@ $(() => {
     //生成列表链接
     $('#condition').attr('href', `poordetail_condition.html?table_id=${app.getUrlPrama('table_id')}`)
     $('#basic').attr('href', `poordetail_basic.html?table_id=${app.getUrlPrama('table_id')}`)
-    $('#result').attr('href', `poordetail_result.html?table_id=${app.getUrlPrama('table_id')}`)
-    $('#record').attr('href', `poordetail_record.html?table_id=${app.getUrlPrama('table_id')}`)
+    $('#helper').attr('href', `poordetail_helper.html?table_id=${app.getUrlPrama('table_id')}`)
     $('#punchlist').attr('href', `punchlist.html?table_id=${app.getUrlPrama('table_id')}`)
-
 
     //侧边搜索框弹出
     $('.m-dropdown .u-show').click(function () {
@@ -75,20 +73,42 @@ $(() => {
         data: `table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
             console.log(JSON.parse(data).data)
-
             $('#name').html(JSON.parse(data).data.poor.name)
             $('#area').html(JSON.parse(data).data.poor.townname + '&nbsp;' + JSON.parse(data).data.poor.villagename)
-            $('#dutyname').html(JSON.parse(data).data.dutys[0].name)
-            $('#sex').html(JSON.parse(data).data.dutys[0].sex)
-            $('#telephone').html(JSON.parse(data).data.dutys[0].contacnumber)
-            $('#company').html(JSON.parse(data).data.dutys[0].orgname)
 
-            $('.photo').append(`
-                <div class="unit flex">
-                    <img src='http://test.360guanggu.com${JSON.parse(data).data.dutys[0].icon}'>
-                    <img src='http://test.360guanggu.com${JSON.parse(data).data.dutys[0].photo}'>
-                </div>
-            `)
+            if (JSON.parse(data).data.poor.isdangeroushouse === "是") {
+                $('#house').html(`<span class="title">是否危房：</span>是；<span class="title">危房等级：</span>${JSON.parse(data).data.poor.dangerousgrade}；<span class="title">面积：</span>${JSON.parse(data).data.poor.dangerousarea}㎡`)
+            } else {
+                $('#house').html(`<span class="title">是否危房：</span>${JSON.parse(data).data.poor.isdangeroushouse}；<span class="title">面积：</span>${JSON.parse(data).data.poor.dangerousarea}㎡`)
+            }
+
+            $('#water').html(`<span class="title">是否饮水困难：</span>${JSON.parse(data).data.poor.isdrinkwaterdiff}；<span class="title">是否饮水安全：</span>${JSON.parse(data).data.poor.iswatersafe}`)
+
+            if (JSON.parse(data).data.condition3s_mark1.length && JSON.parse(data).data.condition3s_mark1.length) {
+                if (!JSON.parse(data).data.condition3s_mark1[0].picture && !JSON.parse(data).data.condition3s_mark2[0].picture) {
+                    $('#housephoto').html('<div class="unit nodata">暂无照片信息</div>')
+                } else {
+                    $('#housephoto').append(
+                        `<div class="unit flex">
+                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark1[0].picture}">
+                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                        </div>`
+                    )
+                }
+            }
+
+            if (JSON.parse(data).data.condition4s_mark1.length && JSON.parse(data).data.condition4s_mark1.length) {
+                if (!JSON.parse(data).data.condition4s_mark1[0].picture && !JSON.parse(data).data.condition4s_mark2[0].picture) {
+                    $('#waterphoto').html('<div class="unit nodata">暂无照片信息</div>')
+                } else {
+                    $('#waterphoto').append(
+                        `<div class="unit flex">
+                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition4s_mark1[0].picture}">
+                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition4s_mark2[0].picture}">
+                        </div>`
+                    )
+                }
+            }
         }
     })
 })

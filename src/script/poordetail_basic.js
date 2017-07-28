@@ -35,6 +35,7 @@ $(() => {
     $('#condition').attr('href', `poordetail_condition.html?table_id=${app.getUrlPrama('table_id')}`)
     $('#helper').attr('href', `poordetail_helper.html?table_id=${app.getUrlPrama('table_id')}`)
     $('#result').attr('href', `poordetail_result.html?table_id=${app.getUrlPrama('table_id')}`)
+    $('#punchlist').attr('href', `punchlist.html?table_id=${app.getUrlPrama('table_id')}`)
 
     //侧边搜索框弹出
     $('.m-dropdown .u-show').click(function () {

@@ -25,7 +25,7 @@ $(() => {
                     prama = `${username}&${password}&${code}&${key}`
                     console.log(prama)
                 $.ajax({
-                    url: 'http://test.360guanggu.com/fupingv1/api.php/Login/login',
+                    url: 'http://test.360guanggu.com/fupingv1/api.php/login/dutyLogin',
                     type: "post",
                     data: prama,
                     success: (data) => {
