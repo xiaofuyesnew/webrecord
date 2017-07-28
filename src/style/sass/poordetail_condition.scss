@@ -112,12 +112,13 @@
     }
     .header {
         height: 60px;
-        width: 100%;
+        width: calc(100% - 10px);
+        padding-left: 10px;
         background-color: #1e82d0;
         color: #fff;
         font-size: 2rem;
         line-height: 60px;
-        text-align: center;
+        text-align: left;
     }
     .u-btngroup {
         height: 30px;
@@ -211,7 +212,6 @@
         .listfix {
             height: 30px;
         }
-        
         .wrap {
             margin-top: -11px;
             margin-bottom: 10px;
@@ -253,10 +253,10 @@
                 }
                 .flex {
                     display: flex;
-                    justify-content: center;
+                    justify-content: space-around;
                     height: 200px;
                     img {
-                        width: 50%;
+                        width: 40%;
                     }
                 }
             }
@@ -267,6 +267,10 @@
             margin-bottom: 10px;
             border-top: 1px solid #e2e2e2;
             border-bottom: 1px solid #e2e2e2;
+            display: block;
+            .color {
+                color: #000;
+            }
             .unit {
                 width: 100%;
                 height: 30px;
@@ -277,10 +281,18 @@
             }
             .header {
                 width: 70%;
+                font-size: 1.6rem;
+                font-weight: bold;
             }
             .arrow {
                 display: block;
                 width: 30px;
+            }
+            .a-arrow {
+                width: 30px;
+                background: url('../image/right.png') no-repeat;
+                background-position: 50%;
+                background-size: 40%;
             }
             .up {
                 width: 30px;

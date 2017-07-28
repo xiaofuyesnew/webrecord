@@ -1,0 +1,30 @@
+@import 'common/common';
+@import 'common/mixin';
+
+#app {
+    padding: 10px;
+    position: relative;
+}
+
+.m-header {
+    @include m-header;
+    background-color: #1e82d0;
+    .u-back {
+        @include u-back;
+    }
+    .u-title {
+        @include u-title;
+        width: 75vw;
+    }
+}
+
+@include u-add;
+
+textarea {
+    display: block;
+    margin: 60px 0 0;
+    width: calc(100% - 20px);
+    height: 300px;
+    resize: none;
+    padding: 10px;
+}

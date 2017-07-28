@@ -74,29 +74,33 @@ $(() => {
             console.log(JSON.parse(data).data)
             $('#name').html(JSON.parse(data).data.poor.name)
             $('#area').html(JSON.parse(data).data.poor.townname + '&nbsp;' + JSON.parse(data).data.poor.villagename)
-            $('#sex').html(JSON.parse(data).data.poor.sex)
-            $('#birthday').html(JSON.parse(data).data.poor.birthday)
-            $('#contacnumber').html(JSON.parse(data).data.poor.contacnumber)
-            $('#idnumber').html(JSON.parse(data).data.poor.idnumber)
-            $('#homeaddress').html(JSON.parse(data).data.poor.homeaddress)
-            $('#povertyattribute').html(JSON.parse(data).data.poor.povertyattribute)
-            $('#mainpovertyreason').html(JSON.parse(data).data.poor.mainpovertyreason)
 
-            if (JSON.parse(data).data.familys.length === 0) {
-                $('.family').html('<div class="unit nodata">暂无家庭成员信息</div>')
+            if (JSON.parse(data).data.poor.isdangeroushouse === "是") {
+                $('#house').html(`<span class="title">是否危房：</span>是；<span class="title">危房等级：</span>${JSON.parse(data).data.poor.dangerousgrade}；<span class="title">面积：</span>${JSON.parse(data).data.poor.dangerousarea}㎡`)
             } else {
-                for (var i = 0; i < JSON.parse(data).data.familys.length; i++) {
-                    $('.family').append(`<a href="poordetail_family.html?table_id=${app.getUrlPrama('table_id')}&no=${i}" class="unit">${i + 1}.${JSON.parse(data).data.familys[i].name}</a>`)
-                }
-                
+                $('#house').html(`<span class="title">是否危房：</span>${JSON.parse(data).data.poor.isdangeroushouse}；<span class="title">面积：</span>${JSON.parse(data).data.poor.dangerousarea}㎡`)
             }
 
-            if (!JSON.parse(data).data.poor.icon) {
-                $('.photo').html('<div class="unit nodata">暂无家庭照片信息</div>')
+            $('#water').html(`<span class="title">是否饮水困难：</span>${JSON.parse(data).data.poor.isdrinkwaterdiff}；<span class="title">是否饮水安全：</span>${JSON.parse(data).data.poor.iswatersafe}`)
+
+            if (!JSON.parse(data).data.condition3s_mark1[0].picture && !JSON.parse(data).data.condition3s_mark2[0].picture) {
+                $('#housephoto').html('<div class="unit nodata">暂无照片信息</div>')
             } else {
-                $('.photo').append(
+                $('#housephoto').append(
                     `<div class="unit flex">
-                        <img src="http://test.360guanggu.com${JSON.parse(data).data.poor.icon}">
+                        <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark1[0].picture}">
+                        <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                    </div>`
+                )
+            }
+
+            if (!JSON.parse(data).data.condition4s_mark1[0].picture && !JSON.parse(data).data.condition4s_mark2[0].picture) {
+                $('#waterphoto').html('<div class="unit nodata">暂无照片信息</div>')
+            } else {
+                $('#waterphoto').append(
+                    `<div class="unit flex">
+                        <img src="http://test.360guanggu.com${JSON.parse(data).data.condition4s_mark1[0].picture}">
+                        <img src="http://test.360guanggu.com${JSON.parse(data).data.condition4s_mark2[0].picture}">
                     </div>`
                 )
             }

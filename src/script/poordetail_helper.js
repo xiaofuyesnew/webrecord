@@ -84,19 +84,10 @@ $(() => {
 
             $('.photo').append(`
                 <div class="unit flex">
-                    <img src='http://test.360guanggu.com${JSON.parse(data).data.dutys[0].photo}'
+                    <img src='http://test.360guanggu.com${JSON.parse(data).data.dutys[0].icon}'>
+                    <img src='http://test.360guanggu.com${JSON.parse(data).data.dutys[0].photo}'>
                 </div>
             `)
-            /*
-            $('#sex').html(JSON.parse(data).data.poor.sex)
-            $('#birthday').html(JSON.parse(data).data.poor.birthday)
-            $('#telephone') //暂缺
-            $('#idnumber').html(JSON.parse(data).data.poor.idnumber)
-            $('#homeaddress').html(JSON.parse(data).data.poor.homeaddress)
-            $('#povertyattribute').html(JSON.parse(data).data.poor.povertyattribute)
-            $('#mainpovertyreason').html(JSON.parse(data).data.poor.mainpovertyreason)
-            */
-            
         }
     })
 })

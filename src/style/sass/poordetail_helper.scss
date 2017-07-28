@@ -245,10 +245,10 @@
                 }
                 .flex {
                     display: flex;
-                    justify-content: center;
+                    justify-content: space-around;
                     height: 200px;
                     img {
-                        width: 50%;
+                        width: 40%;
                     }
                 }
             }
@@ -273,6 +273,8 @@
             }
             .header {
                 width: 70%;
+                font-size: 1.6rem;
+                font-weight: bold;
             }
             .arrow {
                 display: block;

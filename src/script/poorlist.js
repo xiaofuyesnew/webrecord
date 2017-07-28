@@ -24,7 +24,8 @@ $(() => {
 
     //按需加载
     function needLoad() {
-        var page = 0
+        var page = 0,
+            prama = `uid=${localStorage.uid}`
 
         $('.cont').dropload({
             scrollArea : window,
@@ -33,13 +34,15 @@ $(() => {
                 var result = '',
                     newPage =''
                 newPage += `&page=${page}`
-
+                console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://test.360guanggu.com/fupingv1/api.php/Detail/departList',
-                    data: newPage,
+                    url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/helpList',
+                    data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {
+                        console.log(data)
+                        /*
                         if (page === 1) {
                             app.showMsg(`总共有${data.count}条记录`)
                         }
@@ -54,8 +57,9 @@ $(() => {
                             me.lock()
                             me.noData()
                         }
+
                         $('.lists').append(result)
-                        me.resetload()
+                        me.resetload()*/
                     },
                     error: function (xhr, type) {
                         alert('数据加载错误请重试！')

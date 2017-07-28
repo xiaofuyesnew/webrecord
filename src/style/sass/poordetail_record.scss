@@ -18,7 +18,24 @@
     }
 }
 
-@include u-index;
+@include u-add;
+
+.m-dropdown {
+    margin: 50px 0 0 -10px;
+    width: 100vw;
+    .u-show {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 20px;
+        background-color: #f5f5f5;
+        img {
+            width: 12px;
+            height: 12px;
+            margin-right: 10px; 
+        }
+    }
+}
 
 .u-mask {
     position: fixed;
@@ -29,6 +46,88 @@
     left: 0;
     width: 100vw;
     height: 100vh;
+}
+
+.u-hide {
+    position: fixed;
+    background-color: #fff;
+    top: 0;
+    left: -80vw;
+    width: 80vw;
+    height: 100vh;
+    z-index: 2;
+    .unit {
+        height: 40px;
+        padding-left: 10px;
+        line-height: 40px;
+        border-bottom: 1px solid #e2e2e2;
+        label {
+            font-size: 1.4rem;
+            color: #7f7f7f;
+            padding-right: 30px;
+        }
+        input {
+            width: 54vw;
+            height: 25px;
+            border: 1px solid #999;
+            background-color: #f4f4f4;
+            border-radius: 2px;
+        }
+    }
+    .header {
+        height: 60px;
+        width: 100%;
+        background-color: #1e82d0;
+        color: #fff;
+        font-size: 2rem;
+        line-height: 60px;
+        text-align: center;
+    }
+    .u-btngroup {
+        height: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin-top: 40px;
+        .u-btn {
+            color: #fff;
+            width: 30%;
+            height: 30px;
+            border-radius: 15px;
+            text-align: center;
+            line-height: 30px;
+        }   
+        .z-blue {
+            background-color: #1e82d0;
+        }
+        .z-yellow {
+            background-color: #ff9a38;
+        }
+    }
+}
+.animOut {
+    animation: showHide 0.3s forwards;
+}
+.animIn {
+    animation: hideHide 0.3s forwards;
+}
+
+@keyframes showHide {
+    0% {
+        left: -80vw;
+    }
+    100% {
+        left: 0;
+    }
+}
+
+@keyframes hideHide {
+    0% {
+        left: 0;
+    }
+    100% {
+        left: -80vw;
+    }
 }
 
 .select {
@@ -72,12 +171,10 @@
     margin-left: -10px;
     width: 100vw;
     font-size: 1.4rem;
-    margin-top: 50px;
     .lists {
         .listfix {
             height: 30px;
         }
-        
         .wrap {
             margin-top: -11px;
             margin-bottom: 10px;
@@ -132,6 +229,8 @@
             .record {
                 height: auto;
                 text-align: justify;
+                text-indent: 28px;
+                min-height: 30px;
             }
             .header {
                 width: 70%;

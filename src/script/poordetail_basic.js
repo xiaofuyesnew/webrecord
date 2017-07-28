@@ -56,6 +56,7 @@ $(() => {
         $('.u-mask').hide()
     }
 
+    //收起展开
     $('.arrow').click(function () {
         if ($(this).hasClass('up')) {
             $(this).removeClass('up').addClass('down')

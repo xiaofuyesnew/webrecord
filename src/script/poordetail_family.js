@@ -31,6 +31,17 @@ $(() => {
     app.setScreen()
     console.log(app.getUrlPrama('table_id'))
 
+    //收起展开
+    $('.arrow').click(function () {
+        if ($(this).hasClass('up')) {
+            $(this).removeClass('up').addClass('down')
+            $(this).parent().next().slideToggle()
+        } else {
+            $(this).removeClass('down').addClass('up')
+            $(this).parent().next().slideToggle()
+        }
+    })
+
     $.ajax({
         url: 'http://test.360guanggu.com/fupingv1/api.php/Macro/poorDetail',
         type: 'POST',
