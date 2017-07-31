@@ -29,10 +29,19 @@ $(() => {
 
     app.setScreen()
 
+    $.ajax({
+        url: `http://test.360guanggu.com/fupingv1/api.php/Duty/getHelpRecord?id=${app.getUrlPrama('id')}`,
+        type: 'GET',
+        success: (data) => {
+            console.log(JSON.parse(data).data.content)
+            $('#content').val(JSON.parse(data).data.content)
+        }
+    })
+
     $('.u-add').click(function () {
 
         var content = $('#content').val(),
-            prama = `familyid=${app.getUrlPrama('familyid')}&content=${content}`
+            prama = `id=${app.getUrlPrama('id')}&content=${content}`
 
         console.log(content)
 
@@ -43,7 +52,7 @@ $(() => {
         } else {
 
             $.ajax({
-                url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/addHelpRecord',
+                url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/updHelpRecord',
                 type: 'POST',
                 data: prama,
                 success: (data) => {
@@ -51,10 +60,10 @@ $(() => {
                     app.showMsg(JSON.parse(data).info)
                     
                     setTimeout(() => {
-                        window.location = `poordetail_record.html?table_id=${app.getUrlPrama('table_id')}`
+                        window.location = `poorrecord.html`
                     }, 3000)
                 }
-            })
+            })   
         }
     })
 })

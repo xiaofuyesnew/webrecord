@@ -96,13 +96,13 @@ $(() => {
 
     //重置按钮
     $('#reset').click(function () {
-        $('#keyword').val('')
+        $('#name').val('')
         $('#time').html('不限')
     })
 
     //搜索按钮
     $('#search').click(function () {
-        var keyword = $('#keyword').val(),
+        var name = $('#name').val(),
             time = $('#time').html()
 
         //清除原始内容
@@ -115,40 +115,19 @@ $(() => {
 
         getBack()
 
-        needLoad(keyword, time)
+        needLoad(name, time)
     })
 
-    var getRecordList = () => {
-
-        var prama = `table_id=${app.getUrlPrama('table_id')}`
-
-        $.ajax({
-            url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/poorDetail',
-            type: 'POST',
-            data: prama,
-            success: (data) => {
-
-                console.log(JSON.parse(data).data)
-            
-                $('#name').html(JSON.parse(data).data.poor.name)
-                $('#area').html(JSON.parse(data).data.poor.townname + '&nbsp;' + JSON.parse(data).data.poor.villagename)
-
-                $('.u-add').attr('href', `poordetail_add.html?table_id=${app.getUrlPrama('table_id')}&familyid=${JSON.parse(data).data.poor.familyid}`)
-            
-            }
-        })
-    }
-
     //按需加载
-    function needLoad(keyword, time) {
+    function needLoad(name, time) {
 
         var page = 0,
-            prama = `table_id=${app.getUrlPrama('table_id')}`,
-            okeyword = `&keyword=${keyword}`,
+            prama = `uid=${localStorage.uid}`,
+            oname = `&name=${name}`,
             otime = `&time=${time}`
 
-        if (keyword !== '') {
-            prama += okeyword
+        if (name !== '') {
+            prama += oname
         }
 
         if (time !== '') {
@@ -165,24 +144,29 @@ $(() => {
                 console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/poorDetail',
+                    url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/HelpRecordList',
                     data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {
                         console.log(data)
                         
                         if (page === 1) {
-                            app.showMsg(`总共有${data.data.records.count}条记录`)
+                            app.showMsg(`总共有${data.data.count}条记录`)
                         }
                         
-                        var arrLen = data.data.records.datas.length
+                        var arrLen = data.data.datas.length
                     
                         if (arrLen > 0) {
                             for (var i = 0; i < arrLen; i++) {
                             result += `
                                 <div class="list rcd">
-                                    <div class="unit record">${data.data.records.datas[i].content}</div>
-                                    <div class="unit date"><span>${data.data.records.datas[i].create_time}</span></div>
+                                    <div class="unit"><span class="title">姓名：</span>${data.data.datas[i].name}</div>
+                                    <div class="unit record">${data.data.datas[i].content}</div>
+                                    <div class="unit date"><span>${data.data.datas[i].create_time}</span></div>
+                                    <div class="unitbtn">
+                                        <a class="btn change" href="changerecord.html?id=${data.data.datas[i].id}">修改</a>
+                                        <a class="btn delete" data-id="?id=${data.data.datas[i].id}">删除</a>
+                                    </div>
                                 </div>`
                             }
                         } else {
@@ -202,7 +186,26 @@ $(() => {
         })
     }
 
-
-    getRecordList()
     needLoad('', '')
+
+    $(document).on('click', '.delete', function () {
+        var id = $(this).attr('data-id')
+
+        $.ajax({
+            url: `http://test.360guanggu.com/fupingv1/api.php/Duty/delHelpRecord${id}`,
+            type: 'GET',
+            success: (data) => {
+                app.showMsg(JSON.parse(data).info)
+            }
+        })
+
+        setTimeout(function () {
+
+            //清除原始内容
+            $('.cont .lists .rcd').remove()
+            $('.dropload-down').remove()
+
+            needLoad('', '')
+        }, 3000)
+    })
 })

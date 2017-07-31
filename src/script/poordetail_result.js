@@ -37,6 +37,9 @@ $(() => {
     $('#helper').attr('href', `poordetail_helper.html?table_id=${app.getUrlPrama('table_id')}`)
     $('#punchlist').attr('href', `punchlist.html?table_id=${app.getUrlPrama('table_id')}`)
 
+    //政策福利清单链接
+    $('#sharelist').attr('href', `sharelist.html?table_id=${app.getUrlPrama('table_id')}`)
+
     //侧边搜索框弹出
     $('.m-dropdown .u-show').click(function () {
         $('.u-hide').addClass('animOut')
@@ -68,46 +71,118 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://test.360guanggu.com/fupingv1/api.php/Macro/poorDetail',
+        url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/poorDetail',
         type: 'POST',
         data: `table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
-            console.log(JSON.parse(data).data)
+            console.log(JSON.parse(data))
+
+            //基本信息
             $('#name').html(JSON.parse(data).data.poor.name)
             $('#area').html(JSON.parse(data).data.poor.townname + '&nbsp;' + JSON.parse(data).data.poor.villagename)
 
-            if (JSON.parse(data).data.poor.isdangeroushouse === "是") {
-                $('#house').html(`<span class="title">是否危房：</span>是；<span class="title">危房等级：</span>${JSON.parse(data).data.poor.dangerousgrade}；<span class="title">面积：</span>${JSON.parse(data).data.poor.dangerousarea}㎡`)
+            //产业扶贫或者政策兜底
+            if (JSON.parse(data).data.industrys) {
+                $('#method').html('产业扶贫')
+
+                for (var i = 0; i < JSON.parse(data).data.industrys.length; i++) {
+                    $('#industry').next().append(`
+                        <div class="list listcont">
+                            <div class="unit">
+                                <span>主要产业：</span><span class="right">${JSON.parse(data).data.industrys[i].industry.type_name}</span>
+                            </div>
+                        </div>
+                        <div class="list listcont">
+                            <div class="unit">
+                                <span>产业规模：</span><span class="right">${JSON.parse(data).data.industrys[i].num}${JSON.parse(data).data.industrys[i].industry.unit}</span>
+                            </div>
+                        </div>
+                    `)
+
+                    if (JSON.parse(data).data.industrys[i].images1 && JSON.parse(data).data.industrys[i].images2) {
+                        $('#industry').next().append(`
+                            <div class="list listcont">
+                                <div class="unit flex">
+                                    <img src="http://test.360guanggu.com${JSON.parse(data).data.industrys[i].images1[0].picture}">
+                                    <img src="http://test.360guanggu.com${JSON.parse(data).data.industrys[i].images2[0].picture}">
+                                </div>
+                            </div>
+                        `)
+                    }
+                }
             } else {
-                $('#house').html(`<span class="title">是否危房：</span>${JSON.parse(data).data.poor.isdangeroushouse}；<span class="title">面积：</span>${JSON.parse(data).data.poor.dangerousarea}㎡`)
+                $('#method').html('政策兜底')
+                $('#industry').hide()
+                $('#industry').next().hide()
             }
 
-            $('#water').html(`<span class="title">是否饮水困难：</span>${JSON.parse(data).data.poor.isdrinkwaterdiff}；<span class="title">是否饮水安全：</span>${JSON.parse(data).data.poor.iswatersafe}`)
-
-            if (JSON.parse(data).data.condition3s_mark1.length && JSON.parse(data).data.condition3s_mark1.length) {
-                if (!JSON.parse(data).data.condition3s_mark1[0].picture && !JSON.parse(data).data.condition3s_mark2[0].picture) {
-                    $('#housephoto').html('<div class="unit nodata">暂无照片信息</div>')
-                } else {
-                    $('#housephoto').append(
-                        `<div class="unit flex">
-                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark1[0].picture}">
-                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark2[0].picture}">
-                        </div>`
-                    )
-                }
+            //享受政策资金清单汇总
+            for (var i = 0; i < JSON.parse(data).data.years.length; i++) {
+                $('#sharelist').next().append(`
+                    <div class="list listcont">
+                        <div class="unit">
+                            ${JSON.parse(data).data.years[i].year}年：${JSON.parse(data).data.years[i].sum}元
+                        </div>
+                    </div>
+                `)
             }
 
-            if (JSON.parse(data).data.condition4s_mark1.length && JSON.parse(data).data.condition4s_mark1.length) {
-                if (!JSON.parse(data).data.condition4s_mark1[0].picture && !JSON.parse(data).data.condition4s_mark2[0].picture) {
-                    $('#waterphoto').html('<div class="unit nodata">暂无照片信息</div>')
-                } else {
-                    $('#waterphoto').append(
-                        `<div class="unit flex">
-                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition4s_mark1[0].picture}">
-                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition4s_mark2[0].picture}">
-                        </div>`
-                    )
+            //异地搬迁或者危房改造
+            if (JSON.parse(data).data.poor.relocationsite) {
+                $('#dangerhouse').hide()
+                $('#dangerhouse').next().hide()
+
+                //异地搬迁
+                $('#r-loc').html(JSON.parse(data).data.poor.relocationsite)
+                $('#r-area').html(JSON.parse(data).data.poor.buildingarea)
+
+                if (JSON.parse(data).data.condition3s_mark1.length && JSON.parse(data).data.condition3s_mark1.length) {
+                    $('#relocation').next().append(`
+                        <div class="list listcont">
+                            <div class="unit flex">
+                                <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark1[0].picture}">
+                                <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                            </div>
+                        </div>
+                    `)  
                 }
+            } else {
+                $('#relocation').next().hide()
+                $('#relocation').hide()
+
+                //危房改造
+                $('#dh-area').html(JSON.parse(data).data.poor.rebulidarea)
+                $('#dh-level').html(JSON.parse(data).data.poor.dangerouslevel)
+                $('#dh-money').html(JSON.parse(data).data.poor.subsidymoney)
+                
+                if (JSON.parse(data).data.condition3s_mark1.length && JSON.parse(data).data.condition3s_mark1.length) {
+                    $('#dangerhouse').next().append(`
+                        <div class="list listcont">
+                            <div class="unit flex">
+                                <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark1[0].picture}">
+                                <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                            </div>
+                        </div>
+                    `)  
+                }
+            }
+            
+            //家庭收入清单
+            $('#wage').html(JSON.parse(data).data.poor.wageincome)
+            $('#prop').html(JSON.parse(data).data.poor.propertyincome)
+            $('#buss').html(JSON.parse(data).data.poor.productiveincome)
+            $('#trans').html(JSON.parse(data).data.poor.transferredincome)
+            $('#total').html(JSON.parse(data).data.poor.totalincome)
+            
+            if (JSON.parse(data).data.condition33s_mark1.length && JSON.parse(data).data.condition33s_mark1.length) {
+                $('#familyincome').next().append(`
+                    <div class="list listcont">
+                        <div class="unit flex">
+                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition33s_mark1[0].picture}">
+                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition33s_mark2[0].picture}">
+                        </div>
+                    </div>
+                `)  
             }
         }
     })

@@ -68,7 +68,7 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://test.360guanggu.com/fupingv1/api.php/Macro/poorDetail',
+        url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/poorDetail',
         type: 'POST',
         data: `table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {

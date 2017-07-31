@@ -9,8 +9,14 @@
 .m-header {
     @include m-header;
     background-color: #1e82d0;
-    .u-back {
-        @include u-back;
+    .u-logout {
+        height: 60px;
+        width: calc(11vw - 10px);
+        float: left;
+        padding-left: 10px;
+        line-height: 60px;
+        font-size: 1.5rem;
+        white-space: nowrap;
     }
     .u-title {
         @include u-title;
@@ -139,4 +145,13 @@
             }
         }
     }
+}
+
+@media screen and (max-width: 358px) {
+    .m-header {
+        .u-logout {
+            font-size: 1.2rem;
+        }
+    }
+
 }

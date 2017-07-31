@@ -76,12 +76,12 @@
     }
     .header {
         height: 60px;
-        width: calc(100% - 10px);
+        width: 100%;
         background-color: #1e82d0;
         color: #fff;
         font-size: 2rem;
         line-height: 60px;
-        padding-left: 10px;
+        text-align: center;
     }
     .u-btngroup {
         height: 30px;
@@ -171,6 +171,7 @@
     margin-left: -10px;
     width: 100vw;
     font-size: 1.4rem;
+    margin-top: 50px;
     .lists {
         .listfix {
             height: 30px;

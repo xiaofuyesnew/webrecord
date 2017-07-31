@@ -7,15 +7,13 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <title>帮扶记录</title>
-    <link rel="stylesheet" href="../css/poordetail_record.css">
+    <title>享受政策资金清单</title>
+    <link rel="stylesheet" href="../css/sharelist.css">
     <!-- build:css -->
-    <link rel="stylesheet" href="../lib/mobileSelect.css">
     <link rel="stylesheet" href="../lib/dropload.css">
     <!-- endbuild -->
     <!-- build:js -->
     <script src="../lib/jquery-3.2.1.js"></script>
-    <script src="../lib/mobileSelect.js"></script>
     <script src="../lib/dropload.js"></script>
     <!-- endbuild -->
 </head>
@@ -23,21 +21,11 @@
     <div id="app">
         <div class="m-header">
             <a class="u-back" href="javascript:history.go(-1);"></a>
-            <div class="u-title">帮扶记录</div>
-            <a class="u-add" href="main.html">新增</a>
-        </div>
-        <div class="m-dropdown">
-            <div class="u-show">
-                <img src="../image/dropright.png">
-                <span>点击展开搜索</span>
-            </div>
+            <div class="u-title">享受政策资金清单</div>
         </div>
         <div class="cont">
             <div class="lists">
-                <div class="list">
-                    <div class="unit">户主姓名：<span id="name"></span></div>
-                    <div class="unit">行政区划：<span id="area"></span></div>
-                </div>
+                <div id="kanban" class="list"></div>
             </div>
         </div>
         <div class="u-mask"></div>
@@ -60,6 +48,6 @@
     <div class="msg"></div>
     <!-- build:cordova -->
     <!-- endbuild -->
-    <script src="../js/poordetail_record.js"></script>
+    <script src="../js/sharelist.js"></script>
 </body>
 </html>

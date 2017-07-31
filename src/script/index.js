@@ -12,38 +12,71 @@ $(() => {
             app.el.css({"height": `${window.innerHeight - 20}px`})
         },
         checkCode: () => {
-            $('.u-check img').click(function () {
-                    $('.u-check img').attr('src', 'http://test.360guanggu.com/fupingv1/api.php/Login/get_codes?PHPSESSID=code')
-            })
+            $('.u-check img').attr('src', 'http://test.360guanggu.com/fupingv1/api.php/Login/get_codes?PHPSESSID=code')
+        },
+        lastLogin: () => {
+            var mytime = new Date(),
+                myYear = mytime.getFullYear(),
+                myMonth = mytime.getMonth(),
+                myDay = mytime.getDate()
+
+            localStorage.lastYear = myYear
+            localStorage.lastMonth = myMonth
+            localStorage.lastDay = myDay
         },
         login: () => {
-            $('button').click(function () {
-                var username = `username=${$('#username').val()}`,
-                    password = `password=${$('#password').val()}`,
-                    code = `code=${$('#code').val()}`,
-                    key = 'PHPSESSID=code',
-                    prama = `${username}&${password}&${code}&${key}`
-                    console.log(prama)
-                $.ajax({
-                    url: 'http://test.360guanggu.com/fupingv1/api.php/login/dutyLogin',
-                    type: "post",
-                    data: prama,
-                    success: (data) => {
-                        if (JSON.parse(data).status === 1) {
-                            localStorage.setItem('uid', JSON.parse(data).uid)
-                            if ($('#remember').prop('checked')) {
-                                localStorage.setItem('username', $('#username').val())
-                                localStorage.setItem('password', $('#password').val())
-                            }
-                            console.log(localStorage)
-                            window.location = 'html/poorlist.html'
-                        } else {
-                            app.showMsg(JSON.parse(data).info)
+            
+            var username = `username=${$('#username').val()}`,
+                password = `password=${$('#password').val()}`,
+                code = `code=${$('#code').val()}`,
+                key = 'PHPSESSID=code',
+                prama = `${username}&${password}&${code}&${key}`
+
+            $.ajax({
+                url: 'http://test.360guanggu.com/fupingv1/api.php/login/dutyLogin',
+                type: "post",
+                data: prama,
+                success: (data) => {
+                    if (JSON.parse(data).status === 1) {
+                        localStorage.setItem('uid', JSON.parse(data).uid)
+                        if ($('#remember').prop('checked')) {
+                            localStorage.setItem('username', $('#username').val())
+                            localStorage.setItem('password', $('#password').val())
                         }
-                        console.log(JSON.parse(data))
+                        app.lastLogin()
+                        window.location = 'html/poorlist.html'
+                    } else {
+                        if (JSON.parse(data).info === '验证码错误') {
+                            app.checkCode()
+                        }
+                        app.showMsg(JSON.parse(data).info)
                     }
-                })
+                }
             })
+        },
+        autoLogin: () => {
+            var nowtime = new Date(),
+                nowYear = nowtime.getFullYear(),
+                nowMonth = nowtime.getMonth(),
+                nowDay = nowtime.getDate()
+
+            if (!app.getUrlPrama('logout') && localStorage.username && localStorage.password) {
+                if (nowYear === +localStorage.lastYear) {
+                    if (nowMonth === +localStorage.lastMonth) {
+                        if ((nowDay - (+localStorage.lastDay)) < 7) {
+                            window.location = `html/poorlist.html`
+                        }
+                    }
+                }
+            }
+        },
+        getUrlPrama: (name) => {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i")
+            var r = window.location.search.substr(1).match(reg)
+            if (r != null) {
+                return unescape(r[2])
+            } 
+            return null
         },
         showMsg: (msg) => {
             $('.msg').html(msg).show(() => {
@@ -60,8 +93,19 @@ $(() => {
 
     //调用方法
     app.setScreen()
-    app.setLocalData()
-    app.checkCode()
-    app.login()
 
+    //自动登录
+    app.autoLogin()
+
+    //刷新验证码
+    $('.u-check img').click(function () {
+        app.checkCode()
+    })
+
+    //点击登录按钮
+    $('button').click(function () {
+        app.login()
+    })
+
+    app.setLocalData()
 })

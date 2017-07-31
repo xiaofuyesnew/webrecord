@@ -14,7 +14,13 @@
     }
     .u-title {
         @include u-title;
-        width: 75vw;
+        width: 78vw;
+    }
+    .u-notice {
+        @include u-notice;
+        .ntc-num {
+            @include ntc-num;
+        }
     }
 }
 
@@ -171,6 +177,7 @@
     margin-left: -10px;
     width: 100vw;
     font-size: 1.4rem;
+    padding-bottom: 71px;
     .lists {
         .listfix {
             height: 30px;
@@ -223,13 +230,40 @@
                     font-weight: bold;
                 }
             }
+            .unitbtn {
+                width: 100%;
+                height: 40px;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                .btn {
+                    height: 14px;
+                    line-height: 14px;
+                    border-width: 1px;
+                    padding: 7px 5px;
+                    text-align: center;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-radius: 4px;
+                }
+                .change {
+                    color: #1e82d0;
+                    border-color: #1e82d0;
+                    margin-right: 10px;
+                    width: 54px;
+                }
+                .delete {
+                    color: #fc7476;
+                    border-color: #fc7476;
+                    width: 54px;
+                }
+            }
             .date {
                     text-align: right;
                 }
             .record {
                 height: auto;
                 text-align: justify;
-                text-indent: 28px;
                 min-height: 30px;
             }
             .header {
@@ -269,6 +303,19 @@
             .over {
                 overflow: hidden;
             }
+        }
+    }
+}
+
+@include m-navbar;
+
+.m-navbar {
+    li {
+        width: 50%;
+        height: 100%;
+        a img {
+            width: 32px;
+            height: 32px;
         }
     }
 }

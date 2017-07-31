@@ -32,7 +32,7 @@ $(() => {
     //按需加载
     function needLoad() {
         var page = 0,
-            prama = `uid=${localStorage.uid}`
+            prama = `uid=${localStorage.uid}&familyid=${app.getUrlPrama('table_id')}`
 
         $('.cont').dropload({
             scrollArea : window,

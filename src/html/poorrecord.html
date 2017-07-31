@@ -7,8 +7,8 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <title>帮扶记录</title>
-    <link rel="stylesheet" href="../css/poordetail_record.css">
+    <title>历史帮扶记录</title>
+    <link rel="stylesheet" href="../css/poorrecord.css">
     <!-- build:css -->
     <link rel="stylesheet" href="../lib/mobileSelect.css">
     <link rel="stylesheet" href="../lib/dropload.css">
@@ -23,8 +23,10 @@
     <div id="app">
         <div class="m-header">
             <a class="u-back" href="javascript:history.go(-1);"></a>
-            <div class="u-title">帮扶记录</div>
-            <a class="u-add" href="main.html">新增</a>
+            <div class="u-title">历史帮扶记录</div>
+            <a class="u-notice" href="msg.html" style="background: url(&quot;../image/noticebell-spot.png&quot;) left center / 28px no-repeat;">
+                <span class="ntc-num">6</span>
+            </a>
         </div>
         <div class="m-dropdown">
             <div class="u-show">
@@ -34,18 +36,14 @@
         </div>
         <div class="cont">
             <div class="lists">
-                <div class="list">
-                    <div class="unit">户主姓名：<span id="name"></span></div>
-                    <div class="unit">行政区划：<span id="area"></span></div>
-                </div>
             </div>
         </div>
         <div class="u-mask"></div>
         <div class="u-hide">
             <div class="header">搜索</div>
             <div class="unit">
-                <label>关键字</label>
-                <input id="keyword" type="text">
+                <label>姓名</label>
+                <input id="name" type="text">
             </div>
             <div class="select">
                 <div class="name">时间</div>
@@ -56,10 +54,24 @@
                 <div id="reset" class="u-btn z-yellow">重置</div>
             </div>
         </div>
+        <ul class="m-navbar">
+            <li>
+                <a href="poorlist.html">
+                    <img src="../image/list.png">
+                    <span>扶贫清单</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <img src="../image/record-a.png">
+                    <span class="blue">扶贫记录</span>
+                </a>
+            </li>
+        </ul>
     </div>
     <div class="msg"></div>
     <!-- build:cordova -->
     <!-- endbuild -->
-    <script src="../js/poordetail_record.js"></script>
+    <script src="../js/poorrecord.js"></script>
 </body>
 </html>

@@ -99,6 +99,9 @@ $(() => {
         var fiText = $(this).attr('data-fi')
 
         if (!$(this).hasClass('punchok')) {
+
+            window.location = `punch.html${fiText}`
+            /*
             $.ajax({
                 url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/isTodaySign',
                 type: 'POST',
@@ -111,7 +114,7 @@ $(() => {
                         app.showMsg('今天已签到')
                     }
                 }
-            })
+            })*/
         }
     })
 })
