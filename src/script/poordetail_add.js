@@ -43,7 +43,7 @@ $(() => {
         } else {
 
             $.ajax({
-                url: 'http://www.hiphoon.com/fupingv1/api.php/Duty/addHelpRecord',
+                url: 'http://www.hiphoon.com/api.php/Duty/addHelpRecord',
                 type: 'POST',
                 data: prama,
                 success: (data) => {

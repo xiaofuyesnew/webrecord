@@ -144,7 +144,7 @@ $(() => {
                 console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://www.hiphoon.com/fupingv1/api.php/Duty/HelpRecordList',
+                    url: 'http://www.hiphoon.com/api.php/Duty/HelpRecordList',
                     data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {
@@ -192,7 +192,7 @@ $(() => {
         var id = $(this).attr('data-id')
 
         $.ajax({
-            url: `http://www.hiphoon.com/fupingv1/api.php/Duty/delHelpRecord${id}`,
+            url: `http://www.hiphoon.com/api.php/Duty/delHelpRecord${id}`,
             type: 'GET',
             success: (data) => {
                 app.showMsg(JSON.parse(data).info)

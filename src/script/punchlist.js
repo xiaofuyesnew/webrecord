@@ -44,7 +44,7 @@ $(() => {
                 console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://www.hiphoon.com/fupingv1/api.php/Duty/signList',
+                    url: 'http://www.hiphoon.com/api.php/Duty/signList',
                     data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {

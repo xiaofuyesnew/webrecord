@@ -22,7 +22,7 @@ $(() => {
                     app.showMsg('确认密码不正确')
                 } else {
                     $.ajax({
-                        url: 'http://www.hiphoon.com/fupingv1/api.php/Login/reset',
+                        url: 'http://www.hiphoon.com/api.php/Login/reset',
                         type: "POST",
                         data: prama,
                         success: (data) => {
@@ -38,7 +38,7 @@ $(() => {
         },
         checkCode: () => {
             $('.u-check img').click(function () {
-                    $('.u-check img').attr('src', 'http://www.hiphoon.com/fupingv1/api.php/Login/get_codes?PHPSESSID=code')
+                    $('.u-check img').attr('src', 'http://www.hiphoon.com/api.php/Login/get_codes?PHPSESSID=code')
             })
         },
         showMsg: (msg) => {

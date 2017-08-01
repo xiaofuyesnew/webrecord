@@ -12,7 +12,7 @@ $(() => {
             app.el.css({"height": `${window.innerHeight - 20}px`})
         },
         checkCode: () => {
-            $('.u-check img').attr('src', 'http://www.hiphoon.com/fupingv1/api.php/Login/get_codes?PHPSESSID=code')
+            $('.u-check img').attr('src', 'http://www.hiphoon.com/api.php/Login/get_codes?PHPSESSID=code')
         },
         lastLogin: () => {
             var mytime = new Date(),
@@ -33,7 +33,7 @@ $(() => {
                 prama = `${username}&${password}&${code}&${key}`
 
             $.ajax({
-                url: 'http://www.hiphoon.com/fupingv1/api.php/login/dutyLogin',
+                url: 'http://www.hiphoon.com/api.php/login/dutyLogin',
                 type: "post",
                 data: prama,
                 success: (data) => {

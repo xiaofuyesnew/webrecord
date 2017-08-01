@@ -30,7 +30,7 @@ $(() => {
     app.setScreen()
 
     $.ajax({
-        url: `http://www.hiphoon.com/fupingv1/api.php/Duty/getHelpRecord?id=${app.getUrlPrama('id')}`,
+        url: `http://www.hiphoon.com/api.php/Duty/getHelpRecord?id=${app.getUrlPrama('id')}`,
         type: 'GET',
         success: (data) => {
             console.log(JSON.parse(data).data.content)
@@ -52,7 +52,7 @@ $(() => {
         } else {
 
             $.ajax({
-                url: 'http://www.hiphoon.com/fupingv1/api.php/Duty/updHelpRecord',
+                url: 'http://www.hiphoon.com/api.php/Duty/updHelpRecord',
                 type: 'POST',
                 data: prama,
                 success: (data) => {

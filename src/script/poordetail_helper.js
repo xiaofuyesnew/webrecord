@@ -70,7 +70,7 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://www.hiphoon.com/fupingv1/api.php/Macro/poorDetail',
+        url: 'http://www.hiphoon.com/api.php/Macro/poorDetail',
         type: 'POST',
         data: `table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {

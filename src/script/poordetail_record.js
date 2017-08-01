@@ -123,7 +123,7 @@ $(() => {
         var prama = `table_id=${app.getUrlPrama('table_id')}`
 
         $.ajax({
-            url: 'http://www.hiphoon.com/fupingv1/api.php/Duty/poorDetail',
+            url: 'http://www.hiphoon.com/api.php/Duty/poorDetail',
             type: 'POST',
             data: prama,
             success: (data) => {
@@ -165,7 +165,7 @@ $(() => {
                 console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://www.hiphoon.com/fupingv1/api.php/Duty/poorDetail',
+                    url: 'http://www.hiphoon.com/api.php/Duty/poorDetail',
                     data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {
