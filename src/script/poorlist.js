@@ -37,7 +37,7 @@ $(() => {
                 console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/helpList',
+                    url: 'http://www.hiphoon.com/fupingv1/api.php/Duty/helpList',
                     data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {
@@ -103,7 +103,7 @@ $(() => {
             window.location = `punch.html${fiText}`
             /*
             $.ajax({
-                url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/isTodaySign',
+                url: 'http://www.hiphoon.com/fupingv1/api.php/Duty/isTodaySign',
                 type: 'POST',
                 data: `uid=${localStorage.uid}`,
                 success: (data) => {

@@ -20,7 +20,7 @@ $(() => {
                 } else {
                     console.log(prama)
                     $.ajax({
-                        url: 'http://test.360guanggu.com/fupingv1/api.php/Login/password',
+                        url: 'http://www.hiphoon.com/fupingv1/api.php/Login/password',
                         type: "POST",
                         data: prama,
                         success: (data) => {

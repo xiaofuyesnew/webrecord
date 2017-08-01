@@ -68,7 +68,7 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/poorDetail',
+        url: 'http://www.hiphoon.com/fupingv1/api.php/Duty/poorDetail',
         type: 'POST',
         data: `table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
@@ -90,8 +90,8 @@ $(() => {
                 } else {
                     $('#housephoto').append(
                         `<div class="unit flex">
-                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark1[0].picture}">
-                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                            <img src="http://www.hiphoon.com${JSON.parse(data).data.condition3s_mark1[0].picture}">
+                            <img src="http://www.hiphoon.com${JSON.parse(data).data.condition3s_mark2[0].picture}">
                         </div>`
                     )
                 }
@@ -103,8 +103,8 @@ $(() => {
                 } else {
                     $('#waterphoto').append(
                         `<div class="unit flex">
-                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition4s_mark1[0].picture}">
-                            <img src="http://test.360guanggu.com${JSON.parse(data).data.condition4s_mark2[0].picture}">
+                            <img src="http://www.hiphoon.com${JSON.parse(data).data.condition4s_mark1[0].picture}">
+                            <img src="http://www.hiphoon.com${JSON.parse(data).data.condition4s_mark2[0].picture}">
                         </div>`
                     )
                 }

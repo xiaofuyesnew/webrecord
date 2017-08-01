@@ -69,7 +69,7 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://test.360guanggu.com/fupingv1/api.php/Macro/poorDetail',
+        url: 'http://www.hiphoon.com/fupingv1/api.php/Macro/poorDetail',
         type: 'POST',
         data: `table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
@@ -98,7 +98,7 @@ $(() => {
             } else {
                 $('.photo').append(
                     `<div class="unit flex">
-                        <img src="http://test.360guanggu.com${JSON.parse(data).data.poor.icon}">
+                        <img src="http://www.hiphoon.com${JSON.parse(data).data.poor.icon}">
                     </div>`
                 )
             }

@@ -32,7 +32,7 @@ $(() => {
     console.log(app.getUrlPrama('table_id'))
 
     $.ajax({
-        url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/poorDetail',
+        url: 'http://www.hiphoon.com/fupingv1/api.php/Duty/poorDetail',
         type: 'POST',
         data: `table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {

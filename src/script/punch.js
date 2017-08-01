@@ -76,7 +76,7 @@ $(() => {
     //签到
     $('.btn').click(function () {
         $.ajax({
-            url: 'http://test.360guanggu.com/fupingv1/api.php/Duty/sign',
+            url: 'http://www.hiphoon.com/fupingv1/api.php/Duty/sign',
             type: 'POST',
             data: `uid=${localStorage.uid}&familyid=${app.getUrlPrama('familyid')}&address=${$('#address').val()}`,
             success: (data) => {
