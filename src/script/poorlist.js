@@ -86,6 +86,7 @@ $(() => {
         } catch (exception) {
             console.log(exception);
         }
+        
         $("#setTagWithAliasButton").click(function(ev) {
             try {
                 var tag1 = $("#tagText1").attr("value");
@@ -111,7 +112,7 @@ $(() => {
             }
         })
     };
-    
+
     document.addEventListener("jpush.setTagsWithAlias", onTagsWithAlias, false);
     document.addEventListener("deviceready", onDeviceReady, false);
     document.addEventListener("jpush.openNotification", onOpenNotification, false);

@@ -42,6 +42,9 @@ $(() => {
                         if ($('#remember').prop('checked')) {
                             localStorage.setItem('username', $('#username').val())
                             localStorage.setItem('password', $('#password').val())
+                        } else {
+                            localStorage.setItem('username', '')
+                            localStorage.setItem('password', '')
                         }
                         app.lastLogin()
                         window.location = 'html/poorlist.html'
