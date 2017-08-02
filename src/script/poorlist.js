@@ -14,7 +14,7 @@ $(() => {
             if (data.length == 0) {
                 var t1 = window.setTimeout(getRegistrationID, 1000);
             }
-            $("#registrationId").html(data);
+            //$("#registrationId").html(data);
         } catch (exception) {
             console.log(exception);
         }
@@ -23,10 +23,10 @@ $(() => {
     var onTagsWithAlias = function(event) {
         try {
             console.log("onTagsWithAlias");
-            var result = "result code:" + event.resultCode + " ";
-            result += "tags:" + event.tags + " ";
-            result += "alias:" + event.alias + " ";
-            $("#tagAliasResult").html(result);
+            //var result = "result code:" + event.resultCode + " ";
+            //result += "tags:" + event.tags + " ";
+            //result += "alias:" + event.alias + " ";
+            //$("#tagAliasResult").html(result);
         } catch (exception) {
             console.log(exception)
         }
@@ -40,7 +40,7 @@ $(() => {
             } else {
                 alertContent = event.aps.alert;
             }
-            alert("open Notification:" + alertContent);
+            //alert("open Notification:" + alertContent);
         } catch (exception) {
             console.log("JPushPlugin:onOpenNotification" + exception);
         }
@@ -53,7 +53,7 @@ $(() => {
             } else {
                 alertContent = event.aps.alert;
             }
-            $("#notificationResult").html(alertContent);
+            //$("#notificationResult").html(alertContent);
         } catch (exception) {
             console.log(exception)
         }
@@ -66,7 +66,7 @@ $(() => {
             } else {
                 message = event.content;
             }
-            $("#messageResult").html(message);
+            //$("#messageResult").html(message);
         } catch (exception) {
             console.log("JPushPlugin:onReceiveMessage-->" + exception);
         }
@@ -87,13 +87,14 @@ $(() => {
             console.log(exception);
         }
         
-        $("#setTagWithAliasButton").click(function(ev) {
-            try {
+        //$("#setTagWithAliasButton").click(function(ev) {
+            try {/*
                 var tag1 = $("#tagText1").attr("value");
                 var tag2 = $("#tagText2").attr("value");
                 var tag3 = $("#tagText3").attr("value");
-                var alias = $("#aliasText").attr("value");
-                var tags = [];
+                var alias = $("#aliasText").attr("value");*/
+                var tags = [localStorage.uid];
+                /*
                 if (tag1 != "") {
                     tags.push(tag1);
                 }
@@ -102,15 +103,15 @@ $(() => {
                 }
                 if (tag3 != "") {
                     tags.push(tag3);
-                }
-                window.plugins.jPushPlugin.setTagsWithAlias(tags, alias, function () {
+                }*/
+                window.plugins.jPushPlugin.setTags(tags, function () {
                   // Success callback
                   console.log(tags + ' - ' + alias)
                 });
             } catch (exception) {
                 console.log(exception);
             }
-        })
+        //})
     };
 
     document.addEventListener("jpush.setTagsWithAlias", onTagsWithAlias, false);
