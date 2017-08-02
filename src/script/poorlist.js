@@ -50,8 +50,8 @@ $(() => {
                         var arrLen = data.data.datas.length
                     
                         if (arrLen > 0) {
-                            for (var i = 0; i < arrLen; i++) {
-                            result += `
+                            for (var i = 0; i < arrLen; i++) {         
+                                result += `
                             <div class="bar"></div>
                             <div class="list">
                     <div class="unit-h">
@@ -71,7 +71,7 @@ $(() => {
                     </div>
                     <div class="unitbtn">
                         <a class="btn addrecord" href="poordetail_add.html?table_id=${data.data.datas[i].table_id}&familyid=${data.data.datas[i].table_id}">新增帮扶记录</a>
-                        <a class="btn ${data.data.datas[i].is_sign ? 'punchok' : 'punch'} pc" data-fi="?familyid=${data.data.datas[i].familyid}">${data.data.datas[i].is_sign ? '已签到' : '签到'}</a>
+                        <a class="btn ${data.data.datas[i].is_sign ? 'punchok' : 'punch'} pc" ${data.data.datas[i].is_sign ? '' : `href="punch.html?familyid=${data.data.datas[i].familyid}"`}>${data.data.datas[i].is_sign ? '已签到' : '签到'}</a>
                     </div>
                 </div>`
                             }
@@ -93,28 +93,4 @@ $(() => {
     }
 
     needLoad() 
-
-    $(document).on('click', '.pc', function () {
-        console.log('hit')
-        var fiText = $(this).attr('data-fi')
-
-        if (!$(this).hasClass('punchok')) {
-
-            window.location = `punch.html${fiText}`
-            /*
-            $.ajax({
-                url: 'http://www.hiphoon.com/api.php/Duty/isTodaySign',
-                type: 'POST',
-                data: `uid=${localStorage.uid}`,
-                success: (data) => {
-                    console.log(JSON.parse(data))
-                    if (JSON.parse(data).status === 1) {
-                        window.location = `punch.html${fiText}`
-                    } else if (JSON.parse(data).status === 0) {
-                        app.showMsg('今天已签到')
-                    }
-                }
-            })*/
-        }
-    })
 })
