@@ -51,7 +51,9 @@ $(() => {
                     app.showMsg(JSON.parse(data).info)
                     
                     setTimeout(() => {
-                        window.location = `poordetail_record.html?table_id=${app.getUrlPrama('table_id')}`
+
+                        window.history.go(-1)
+                    
                     }, 3000)
                 }
             })
