@@ -29,7 +29,25 @@ $(() => {
 
     //调用方法
     app.setScreen()
-    console.log(app.getUrlPrama('table_id'))
+
+    $.ajax({
+        url: `http://www.hiphoon.com/api.php/Duty/unreadMessage?uid=${localStorage.uid}`,
+        type: 'GET',
+        success: (data) => {
+            var jsonData = JSON.parse(data)
+            console.log(JSON.parse(data))
+            if (jsonData.status === 1) {
+                $('.u-notice').css({
+                    background: 'url(../image/noticebell-spot.png) left center / 28px no-repeat'
+                })
+                $('.ntc-num').html(jsonData.sum)
+            } else {
+                $('.u-notice').css({
+                    background: 'url(../image/noticebell-nospot.png) left center / 28px no-repeat'
+                })
+            }
+        }
+    })
 
     //侧边搜索框弹出
     $('.m-dropdown .u-show').click(function () {

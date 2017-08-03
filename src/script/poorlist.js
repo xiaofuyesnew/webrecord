@@ -142,6 +142,25 @@ $(() => {
     //调用方法
     app.setScreen()
 
+    $.ajax({
+        url: `http://www.hiphoon.com/api.php/Duty/unreadMessage?uid=${localStorage.uid}`,
+        type: 'GET',
+        success: (data) => {
+            var jsonData = JSON.parse(data)
+            console.log(JSON.parse(data))
+            if (jsonData.status === 1) {
+                $('.u-notice').css({
+                    background: 'url(../image/noticebell-spot.png) left center / 28px no-repeat'
+                })
+                $('.ntc-num').html(jsonData.sum)
+            } else {
+                $('.u-notice').css({
+                    background: 'url(../image/noticebell-nospot.png) left center / 28px no-repeat'
+                })
+            }
+        }
+    })
+
     //按需加载
     function needLoad() {
         var page = 0,
