@@ -37,7 +37,7 @@ $(() => {
                 console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://www.hiphoon.com/api.php/Duty/HelpRecordList',
+                    url: 'http://www.hiphoon.com/api.php/Duty/messageList',
                     data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {
@@ -52,10 +52,12 @@ $(() => {
                         if (arrLen > 0) {
                             for (var i = 0; i < arrLen; i++) {
                             result += `
-                                <div class="list rcd">
-                                    <div class="unit record">${data.data.datas[i].content}</div>
-                                    <div class="unit date"><span>${data.data.datas[i].create_time}</span></div>
-                                </div>`
+                            <a href="msgdetail.html?id=${data.data.datas[i].id}">
+                                <div class="list rcd ${data.data.datas[i].is_read !== '2' ? '' : 'noread'}">
+                                    <div class="unit record">${data.data.datas[i].type}</div>
+                                    <div class="unit date"><span>${data.data.datas[i].start_time.substring(0, 19)}</span></div>
+                                </div>
+                            </a>`
                             }
                         } else {
                             me.lock()
@@ -74,4 +76,5 @@ $(() => {
         })
     }
 
+    needLoad()
 })
