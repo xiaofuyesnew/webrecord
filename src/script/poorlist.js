@@ -152,7 +152,9 @@ $(() => {
                 $('.u-notice').css({
                     background: 'url(../image/noticebell-spot.png) left center / 28px no-repeat'
                 })
-                $('.ntc-num').html(jsonData.sum)
+                if (+jsonData.sum < 9) {
+                    $('.ntc-num').html(jsonData.sum)
+                }
             } else {
                 $('.u-notice').css({
                     background: 'url(../image/noticebell-nospot.png) left center / 28px no-repeat'
