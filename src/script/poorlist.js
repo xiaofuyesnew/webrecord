@@ -142,6 +142,20 @@ $(() => {
     //调用方法
     app.setScreen()
 
+    $.ajax({
+        url: `http://www.hiphoon.com/api.php/Duty/unreadMessage?uid=${localStorage.uid}`,
+        type: 'GET',
+        success: (data) => {
+            var jsonData = JSON.parse(data)
+            console.log(JSON.parse(data))
+            if (jsonData.status === 1) {
+                
+            } else {
+
+            }
+        }
+    })
+
     //按需加载
     function needLoad() {
         var page = 0,
