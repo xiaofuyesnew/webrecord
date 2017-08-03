@@ -119,7 +119,7 @@ $(() => {
     document.addEventListener("jpush.openNotification", onOpenNotification, false);
     document.addEventListener("jpush.receiveNotification", onReceiveNotification, false);
     document.addEventListener("jpush.receiveMessage", onReceiveMessage, false);
-    
+
     //创建根节点对象
     var app = {
         el: $('#app'),
@@ -142,24 +142,34 @@ $(() => {
     //调用方法
     app.setScreen()
 
+    function bell() {
+        $.ajax({
+            url: `http://www.hiphoon.com/api.php/Duty/unreadMessage?uid=${localStorage.uid}`,
+            type: 'GET',
+            success: (data) => {
+                var jsonData = JSON.parse(data)
+                console.log(JSON.parse(data))
+                if (jsonData.status === 1) {
+                    $('.u-notice').css({
+                        background: 'url(../image/noticebell-spot.png) left center / 28px no-repeat'
+                    })
+                    if (+jsonData.sum < 9) {
+                        $('.ntc-num').html(jsonData.sum)
+                    }
+                } else {
+                    $('.u-notice').css({
+                        background: 'url(../image/noticebell-nospot.png) left center / 28px no-repeat'
+                    })
+                }
+            }
+        })
+    }
+
     $.ajax({
-        url: `http://www.hiphoon.com/api.php/Duty/unreadMessage?uid=${localStorage.uid}`,
+        url: `http://www.hiphoon.com/api.php/Duty/isTodayMsg?uid=${localStorage.uid}`,
         type: 'GET',
         success: (data) => {
-            var jsonData = JSON.parse(data)
-            console.log(JSON.parse(data))
-            if (jsonData.status === 1) {
-                $('.u-notice').css({
-                    background: 'url(../image/noticebell-spot.png) left center / 28px no-repeat'
-                })
-                if (+jsonData.sum < 9) {
-                    $('.ntc-num').html(jsonData.sum)
-                }
-            } else {
-                $('.u-notice').css({
-                    background: 'url(../image/noticebell-nospot.png) left center / 28px no-repeat'
-                })
-            }
+            bell()
         }
     })
 
