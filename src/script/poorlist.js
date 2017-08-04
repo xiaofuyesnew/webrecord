@@ -12,10 +12,14 @@ $(() => {
             var alertContent;
             if (device.platform == "Android") {
                 alertContent = event.alert
-                window.location = `msgdetail.html?id=${event.extras.msgid}`
+                if (event.extras.msgid) {
+                    window.location = `msgdetail.html?id=${event.extras.msgid}`
+                }
             } else {
                 alertContent = event.aps.alert
-                window.location = `msgdetail.html?id=${event.msgid}`
+                if (event.msgid) {
+                    window.location = `msgdetail.html?id=${event.msgid}`
+                }
             }
         } catch (exception) {
             console.log("JPushPlugin:onOpenNotification" + exception)
