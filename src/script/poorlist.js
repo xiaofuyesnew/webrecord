@@ -1,7 +1,6 @@
 $(() => {
     var onDeviceReady = function() {
         initiateUI()
-        navigator.geolocation.getCurrentPosition(function(position){}, function(error){})
     }
 
     var onTagsWithAlias = function(event) {

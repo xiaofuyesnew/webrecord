@@ -1,4 +1,11 @@
 $(() => {
+
+    var onDeviceReady = function() {
+        navigator.geolocation.getCurrentPosition(function(position){}, function(error){})
+    }
+
+    document.addEventListener("deviceready", onDeviceReady, false)
+
     //创建根节点对象
     var app = {
         el: $('#app'),
