@@ -1,6 +1,7 @@
 $(() => {
     var onDeviceReady = function() {
-            initiateUI()
+        initiateUI()
+        navigator.geolocation.getCurrentPosition(function(position){}, function(error){})
     }
 
     var onTagsWithAlias = function(event) {
@@ -12,8 +13,10 @@ $(() => {
             var alertContent;
             if (device.platform == "Android") {
                 alertContent = event.alert
+                window.location = `msgdetail.html?id=${event.extras.msgid}`
             } else {
                 alertContent = event.aps.alert
+                window.location = `msgdetail.html?id=${event.msgid}`
             }
         } catch (exception) {
             console.log("JPushPlugin:onOpenNotification" + exception)
