@@ -61,8 +61,8 @@ $(() => {
         try {
             window.plugins.jPushPlugin.setTagsWithAlias([localStorage.uid], '', function () {
                       // Success callback
-                      console.log(tags + ' - ' + alias)
-                      alert('OK')
+                console.log(tags + ' - ' + alias)
+                alert('OK')
             })
         } catch (exception) {
             console.log(exception)
