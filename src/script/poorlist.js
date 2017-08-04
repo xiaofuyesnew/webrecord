@@ -1,5 +1,80 @@
 $(() => {
-    
+    var onDeviceReady = function() {
+            initiateUI()
+    }
+
+    var onTagsWithAlias = function(event) {
+        
+    }
+
+    var onOpenNotification = function(event) {
+        try {
+            var alertContent;
+            if (device.platform == "Android") {
+                alertContent = event.alert
+            } else {
+                alertContent = event.aps.alert
+            }
+        } catch (exception) {
+            console.log("JPushPlugin:onOpenNotification" + exception)
+        }
+    }
+
+    var onReceiveNotification = function(event) {
+        try {
+            var alertContent
+            if (device.platform == "Android") {
+                alertContent = event.alert
+            } else {
+                alertContent = event.aps.alert
+            }
+        } catch (exception) {
+            console.log(exception)
+        }
+    }
+
+    var onReceiveMessage = function(event) {
+        try {
+            var message
+            if (device.platform == "Android") {
+                message = event.message
+            } else {
+                message = event.content
+            }
+        } catch (exception) {
+            console.log("JPushPlugin:onReceiveMessage-->" + exception)
+        }
+    }
+
+    var initiateUI = function() {
+        try {
+            window.plugins.jPushPlugin.init();
+            if (device.platform != "Android") {
+                window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0)
+            } else {
+                window.plugins.jPushPlugin.setStatisticsOpen(true)
+            }
+        } catch (exception) {
+            console.log(exception)
+        }
+
+        try {
+            window.plugins.jPushPlugin.setTagsWithAlias([localStorage.uid], '', function () {
+                      // Success callback
+                      console.log(tags + ' - ' + alias)
+                      alert('OK')
+            })
+        } catch (exception) {
+            console.log(exception)
+        }
+    }
+
+    document.addEventListener("jpush.setTagsWithAlias", onTagsWithAlias, false)
+    document.addEventListener("deviceready", onDeviceReady, false)
+    document.addEventListener("jpush.openNotification", onOpenNotification, false)
+    document.addEventListener("jpush.receiveNotification", onReceiveNotification, false)
+    document.addEventListener("jpush.receiveMessage", onReceiveMessage, false)
+
     //创建根节点对象
     var app = {
         el: $('#app'),
