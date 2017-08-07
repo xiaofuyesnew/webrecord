@@ -1,9 +1,22 @@
 $(() => {
+
+    function onDeviceReady() {
+        if (app.getUrlPrama('logout') === '1') {
+            window.plugins.jPushPlugin.setTagsWithAlias([], '', function () {
+                // Success callback
+                console.log(tags + ' - ' + alias)
+            })
+        }
+    }
+
+    document.addEventListener("deviceready", onDeviceReady, false)
+
     //创建根节点对象
     var app = {
         el: $('#app'),
         setLocalData: () => {
-            if (localStorage.username && localStorage.password) {
+            if (localStorage.checked === '1') {
+                $('#remember').prop('checked', 'checked')
                 $('#username').val(localStorage.username)
                 $('#password').val(localStorage.password)
             }
@@ -40,9 +53,11 @@ $(() => {
                     if (JSON.parse(data).status === 1) {
                         localStorage.setItem('uid', JSON.parse(data).uid)
                         if ($('#remember').prop('checked')) {
+                            localStorage.setItem('checked', '1')
                             localStorage.setItem('username', $('#username').val())
                             localStorage.setItem('password', $('#password').val())
                         } else {
+                            localStorage.setItem('checked', '0')
                             localStorage.setItem('username', '')
                             localStorage.setItem('password', '')
                         }
