@@ -3,6 +3,10 @@ $(() => {
         initiateUI()
     }
 
+    var getRegistrationID = function() {
+        window.plugins.jPushPlugin.getRegistrationID(function () {})
+    }
+
     var onTagsWithAlias = function(event) {
         
     }
@@ -54,7 +58,8 @@ $(() => {
 
     var initiateUI = function() {
         try {
-            window.plugins.jPushPlugin.init();
+            window.plugins.jPushPlugin.init()
+            window.setTimeout(getRegistrationID, 1000)
             if (device.platform != "Android") {
                 window.plugins.jPushPlugin.setApplicationIconBadgeNumber(0)
             } else {
@@ -68,6 +73,7 @@ $(() => {
             window.plugins.jPushPlugin.setTagsWithAlias([localStorage.uid], '', function () {
                       // Success callback
                 console.log(tags + ' - ' + alias)
+                alert('OK')
             })
         } catch (exception) {
             console.log(exception)
@@ -79,7 +85,7 @@ $(() => {
     document.addEventListener("jpush.openNotification", onOpenNotification, false)
     document.addEventListener("jpush.receiveNotification", onReceiveNotification, false)
     document.addEventListener("jpush.receiveMessage", onReceiveMessage, false)
-
+    
     //创建根节点对象
     var app = {
         el: $('#app'),
