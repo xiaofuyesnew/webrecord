@@ -194,7 +194,6 @@ $(() => {
                         me.resetload()
                     },
                     error: function (xhr, type) {
-                        alert('数据加载错误请重试！')
                         me.resetload()
                     }
                 })
