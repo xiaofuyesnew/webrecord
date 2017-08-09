@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!--
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>上传图片</title>
+    <link rel="stylesheet" href="../css/uploader.css">
+    <link rel="stylesheet" href="../lib/webuploader.css">
+    <!-- build:css -->
+    <!-- endbuild -->
+    <!-- build:js -->
+    <script src="../lib/jquery-3.2.1.js"></script>
+    <script src="../lib/webuploader.html5only.js"></script>
+    <!-- endbuild -->
+</head>
+<body>
+    <div id="app">
+        <div class="m-header">
+            <a class="u-back" href="javascript:history.go(-1);"></a>
+            <div class="u-title">上传图片</div>
+            <a class="u-add">完成</a>
+        </div>
+        <div class="imglist">
+            <div class="add">+</div>
+        </div>
+    </div>
+    <div class="msg"></div>
+    <!-- build:cordova -->
+    <!-- endbuild -->
+    <script src="../js/uploader.js"></script>
+</body>
+</html>

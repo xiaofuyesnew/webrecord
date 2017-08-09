@@ -1,0 +1,42 @@
+@import 'common/common';
+@import 'common/mixin';
+
+#app {
+    padding: 10px;
+    position: relative;
+}
+
+.m-header {
+    @include m-header;
+    background-color: #1e82d0;
+    .u-back {
+        @include u-back;
+    }
+    .u-title {
+        @include u-title;
+        width: 75vw;
+    }
+}
+
+@include u-add;
+
+.imglist {
+    width: calc(100vw - 20px);
+    border-top: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    margin-left: -10px;
+    margin-top: 50px;
+    padding: 0 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .add, .pre {
+        width: 20%;
+        height: 20vw;
+        border: 1px solid #e2e2e2;
+        margin-top: 10px;
+    }
+    .add {
+        background: url()
+    }
+}

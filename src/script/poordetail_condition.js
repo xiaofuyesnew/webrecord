@@ -31,6 +31,19 @@ $(() => {
     app.setScreen()
     console.log(app.getUrlPrama('table_id'))
 
+    var typeSelect = new MobileSelect({
+        trigger: '.uploader',
+        title: '选择相册',
+        wheels: [
+            {data: [{id: '1', value: '家庭住房状况-之前'}, {id: '2', value: '家庭住房状况-现在'}, {id: '3', value: '家庭饮水状况-之前'}, {id: '4', value: '家庭饮水状况-现在'}]}
+        ],
+        callback: function (indexArr, data) {
+            console.log(data)
+            $('.uploader').html('')
+            window.location = `uploader.html?type=${data[0].id}`
+        }
+    })
+
     //生成列表链接
     $('#basic').attr('href', `poordetail_basic.html?table_id=${app.getUrlPrama('table_id')}`)
     $('#helper').attr('href', `poordetail_helper.html?table_id=${app.getUrlPrama('table_id')}`)
