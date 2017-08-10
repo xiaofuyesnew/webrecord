@@ -47,23 +47,15 @@ $(() => {
     uploader.on( 'fileQueued', function( file ) {
     console.log(file)
     var $li = $(`
-        <div id="'${file.id}'" class="file-item thumbnail"><img>
-                '<div class="info">' + file.name + '</div>' +
-            '</div>'
+        <div id="${file.id}" class="file-item thumbnail pre"><img style="width: 100%; height: 100%;"><a href="javascript:;" class="uploader_del"></a>
+        </div>
     `)
-    /*
-        var $li = $(
-            '<div id="' + file.id + '" class="file-item thumbnail">' +
-                '<img>' +
-                '<div class="info">' + file.name + '</div>' +
-            '</div>'
-            ),
-        $img = $li.find('img');
-
+    var $img = $li.find('img')
 
     // $list为容器jQuery实例
-    $list.append( $li );*/
-            /*
+    $pick.before($li)
+    //$list.append(  )
+            
     // 创建缩略图
     // 如果为非图片文件，可以不用调用此方法。
     // thumbnailWidth x thumbnailHeight 为 100 x 100
@@ -74,7 +66,7 @@ $(() => {
         }
 
         $img.attr( 'src', src );
-    }, thumbnailWidth, thumbnailHeight );*/
+    });
 });
 
     $('.u-add').click(function () {

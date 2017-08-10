@@ -29,12 +29,26 @@
     padding: 0 10px 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
     .add, .pre {
         width: 20%;
         height: 20vw;
         border: 1px solid #e2e2e2;
         margin-top: 10px;
+        margin-right: 4vw;
+        position: relative;
+        .uploader_del {
+            position: absolute;
+            display: block;
+            width: 4vw;
+            height: 4vw;
+            top: -2vw;
+            right: -2vw;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, .4) url(../image/imgdel.png) no-repeat;
+            background-size: 60%;
+            background-position: 50%;
+        }
     }
     .add {
         background: url(../image/cross.png) no-repeat;
