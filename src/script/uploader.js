@@ -30,6 +30,8 @@ $(() => {
     app.setScreen()
 
     var $pick = $('#picker')
+    var fileArray = []
+	var fileNameArray = []
 
     var uploader = WebUploader.create({
         auto: false,
@@ -55,7 +57,22 @@ $(() => {
     // $list为容器jQuery实例
     $pick.before($li)
     //$list.append(  )
+    $('.imglist').find('.uploader_del').unbind('click').click(function() {
+        var fname = $(this).parent().attr('name')
+
+		for(var i = 0; i < fileNameArray.length; i++) {
             
+			if(fname == fileNameArray[i]) {
+				fileArray.splice(i, 1)
+				fileNameArray.splice(i, 1)
+			}
+		}
+		$('#filearray').val(fileArray);
+		$(this).parent().remove();
+		if($('.imglist').find('.file-item').length == 0) {
+			$('.tip_text').show()
+		}
+	})      
     // 创建缩略图
     // 如果为非图片文件，可以不用调用此方法。
     // thumbnailWidth x thumbnailHeight 为 100 x 100
