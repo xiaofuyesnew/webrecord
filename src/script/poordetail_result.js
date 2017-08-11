@@ -118,15 +118,22 @@ $(() => {
 
             //享受政策资金清单汇总
             for (var i = 0; i < JSON.parse(data).data.years.length; i++) {
-                $('#sharelist').next().append(`
-                    <div class="list listcont">
-                        <div class="unit">
-                            ${JSON.parse(data).data.years[i].year}年：${JSON.parse(data).data.years[i].sum}元
-                        </div>
+                $('#totalmoney').append(`
+                    <div class="unit">
+                        ${JSON.parse(data).data.years[i].year}年：${JSON.parse(data).data.years[i].sum}元
                     </div>
                 `)
             }
-
+            //享受政策资金清单
+            for (var i = 0; i < JSON.parse(data).data.shares.length; i++) {
+                $('#sharelist').next().append(`
+                    <div class="list rcd">
+                        <div class="unit"><span class="title">资金名称：</span><span>${JSON.parse(data).data.shares[i].fund_name}</span></div>
+                        <div class="unit"><span class="title">发放年度：</span><span>${JSON.parse(data).data.shares[i].year}</span></div>
+                        <div class="unit"><span class="title">发放金额：</span><span>${JSON.parse(data).data.shares[i].grant_funds}元</span></div>
+                    </div>
+                `)
+            }
             //异地搬迁或者危房改造
             if (JSON.parse(data).data.poor.relocationsite) {
                 $('#dangerhouse').hide()
