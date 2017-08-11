@@ -82,13 +82,18 @@ $(() => {
             $('#sex').html(JSON.parse(data).data.dutys[0].sex)
             $('#telephone').html(JSON.parse(data).data.dutys[0].contacnumber)
             $('#company').html(JSON.parse(data).data.dutys[0].orgname)
-
-            $('.photo').append(`
-                <div class="unit flex">
+            
+            if (JSON.parse(data).data.dutys[0].icon) {
+                $('.photo .unit').append(`
                     <img src='http://www.hiphoon.com${JSON.parse(data).data.dutys[0].icon}'>
+                `)
+            }
+
+            if (JSON.parse(data).data.dutys[0].photo) {
+                $('.photo .unit').append(`
                     <img src='http://www.hiphoon.com${JSON.parse(data).data.dutys[0].photo}'>
-                </div>
-            `)
+                `)
+            }
         }
     })
 })
