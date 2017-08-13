@@ -56,7 +56,7 @@ $(() => {
     
     var uploader = WebUploader.create({
         auto: false,
-        server: 'https://120.76.203.56/api.php/Duty/uploadImg',
+        server: 'http://120.76.203.56/api.php/Duty/uploadImg',
         pick: '#picker',
         accept: {
             title: 'Images',
