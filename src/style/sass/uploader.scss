@@ -1,0 +1,99 @@
+@import 'common/common';
+@import 'common/mixin';
+
+#app {
+    padding: 10px;
+    position: relative;
+}
+
+.m-header {
+    @include m-header;
+    background-color: #1e82d0;
+    .u-back {
+        @include u-back;
+    }
+    .u-title {
+        @include u-title;
+        width: 75vw;
+    }
+}
+
+@include u-add;
+
+.imglist {
+    width: calc(100vw - 20px);
+    border-top: 1px solid #e2e2e2;
+    border-bottom: 1px solid #e2e2e2;
+    margin-left: -10px;
+    margin-top: 60px;
+    padding: 0 10px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    .add, .pre {
+        width: 20%;
+        height: 20vw;
+        border: 1px solid #e2e2e2;
+        margin-top: 10px;
+        margin-right: 4vw;
+        position: relative;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        .uploader_del {
+            position: absolute;
+            display: block;
+            width: 4vw;
+            height: 4vw;
+            top: -2vw;
+            right: -2vw;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, .4) url(../image/imgdel.png) no-repeat;
+            background-size: 60%;
+            background-position: 50%;
+        }
+    }
+    .add {
+        background: url(../image/cross.png) no-repeat;
+        background-size: 70%;
+        background-position: 50%;
+    }
+}
+
+.btncell {
+    width: 100%;
+    height: 32px;
+    padding: 10px 0;
+    .addbtn {
+        float: left;
+        text-align: center;
+        width: 60px;
+        height: 20px;
+        line-height: 20px;
+        border: 1px solid #1e82d0;
+        padding: 5px;
+        color: #1e82d0;
+        border-radius: 4px;
+    }
+    .info {
+        float: left;
+        height: 32px;
+        line-height: 32px;
+        padding-left: 10px;
+    }
+}
+
+.remark {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    .rmkname {
+        font-size: 1.4rem;
+        padding: 8px 0;
+    }
+    .rmkcontent {
+        font-size: 1.4rem;
+        padding: 5px;
+    }
+}
