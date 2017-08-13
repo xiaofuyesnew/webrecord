@@ -1,4 +1,24 @@
 $(() => {
+    /*
+    document.addEventListener("deviceready", onDeviceReady, false)
+
+    function onDeviceReady() {
+        $('#picker').click(function () {
+            navigator.camera.getPicture(onSuccess, onFail, {})
+        })
+
+        function onSuccess(imageData) {
+            //var image = document.getElementById('myImage');
+            //image.src = "data:image/jpeg;base64," + imageData;
+            //alert(imageData)
+        }
+      
+        function onFail(message) {
+            alert(message)
+        }
+    }
+    */
+
 
     //创建根节点对象
     var app = {
@@ -29,13 +49,14 @@ $(() => {
 
     app.setScreen()
 
+    var prama = `familyid=${app.getUrlPrama('familyid')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=`
     var $pick = $('#picker')
     var fileArray = []
-	var fileNameArray = []
-
+    var fileNameArray = []
+    
     var uploader = WebUploader.create({
         auto: false,
-        server: 'http://120.76.203.56/api.php/Duty/uploadImg',
+        server: 'https://120.76.203.56/api.php/Duty/uploadImg',
         pick: '#picker',
         accept: {
             title: 'Images',
@@ -47,7 +68,9 @@ $(() => {
     uploader.on( 'fileQueued', function( file ) {
         console.log(file)
         var $li = $(`
-            <div id="${file.id}" name="${file.name}" class="file-item thumbnail pre"><img><a href="javascript:;" class="uploader_del"></a>
+            <div id="${file.id}" name="${file.name}" class="file-item thumbnail pre">
+                <img>
+                <a href="javascript:;" class="uploader_del"></a>
             </div>
         `)
         var $img = $li.find('img')
@@ -82,23 +105,41 @@ $(() => {
             $img.attr( 'src', src )
         })
 
-        $('.u-add').click(function () {
+        $('.addbtn').click(function () {
             //完成按钮功能
+            $('.remark').children().remove()
             uploader.upload(file)
-            console.log('ok')
         })
     })
 
-    uploader.on( 'uploadSuccess', function( file,response ) {
-
-        console.log(file)
+    uploader.on('uploadSuccess', function(file, response) {
+        
         console.log(response)
-        /*
-        if($.inArray(response.img_name, fileArray) < 0) {
-    				
-		    fileNameArray.push(file.name);
-		    fileArray.push(response.img_name);
-	    }
-    			*/
-	})
+        
+        $('.remark').append(`
+            <label class="rmkname">${file.name}</label>
+            <input class="rmkcontent" data-url="${response.url}" type="text">
+        `)
+
+        if (uploader.getStats().progressNum !== 0) {
+            $('.btncell .info').html(`上传进度：${uploader.getStats().successNum}/${uploader.getStats().progressNum + uploader.getStats().progressNum}`)
+        } else {
+            $('.btncell .info').html('上传完成，请填写备注！')
+        }
+    })
+    
+    $('.u-add').click(function () {
+
+        for (var i = 0; i < $('.rmkcontent').length; i ++) {
+            console.log(`${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`)
+            $.ajax({
+                url: 'http://120.76.203.56/api.php/Duty/saveImg',
+                type: 'POST',
+                data: `${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`,
+                success: (data) => {
+                    console.log(JSON.parse(data))
+                }
+            })
+        }
+    })
 })

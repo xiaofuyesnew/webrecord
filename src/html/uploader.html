@@ -15,6 +15,7 @@
     <!-- build:js -->
     <script src="../lib/jquery-3.2.1.js"></script>
     <!-- endbuild -->
+    <script src="../cordova.js"></script>
 </head>
 <body>
     <div id="app">
@@ -24,8 +25,13 @@
             <a class="u-add">完成</a>
         </div>
         <div class="imglist" id="imglist">
-            <div class="add" id="picker"></div>
+            <div class="add" id="picker" capture="camera"></div>
         </div>
+        <div class="btncell">
+            <div class="addbtn" id="addbtn">上传图片</div>
+            <div class="info"></div>
+        </div>
+        <div class="remark"></div>
     </div>
     <div class="msg"></div>
     <!-- build:cordova -->
