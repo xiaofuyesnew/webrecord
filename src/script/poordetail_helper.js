@@ -31,6 +31,19 @@ $(() => {
         app.setScreen()
         console.log(app.getUrlPrama('table_id'))
     
+        var typeSelect = new MobileSelect({
+            trigger: '.uploader',
+            title: '选择相册',
+            wheels: [
+                {data: [{id: '1', value: '帮扶责任人个人照片-之前', mark: 1, type: 200}, {id: '2', value: '帮扶责任人个人照片-现在', mark: 2, type: 200}, {id: '3', value: '帮扶责任人与户主合照-之前', mark: 1, type: 201}, {id: '4', value: '帮扶责任人与户主合照-现在', mark: 2, type: 201}]}
+            ],
+            callback: function (indexArr, data) {
+                console.log(data)
+                $('.uploader').html('')
+                window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=${data[0].type}&mark=${data[0].mark}&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
+            }
+        })
+    
         //生成列表链接
         $('#condition').attr('href', `poordetail_condition.html?table_id=${app.getUrlPrama('table_id')}`)
         $('#basic').attr('href', `poordetail_basic.html?table_id=${app.getUrlPrama('table_id')}`)
