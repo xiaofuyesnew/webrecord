@@ -52,7 +52,7 @@ $(() => {
                     
                     setTimeout(() => {
 
-                        window.history.go(-1)
+                        window.location = `poordetail_record.html?table_id=${app.getUrlPrama('table_id')}`
                     
                     }, 3000)
                 }
