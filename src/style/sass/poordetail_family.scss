@@ -14,7 +14,17 @@
     }
     .u-title {
         @include u-title;
-        width: 75vw;
+        width: 70vw;
+        text-indent: 5vw;
+    }
+    .uploader {
+        height: 60px;
+        width: calc(16vw - 10px);
+        padding-right: 10px;
+        float: right;
+        background: url(../image/uploader.png) no-repeat;
+        background-size: 50%;
+        background-position: 50%;
     }
 }
 
