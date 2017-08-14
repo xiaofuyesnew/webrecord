@@ -25,7 +25,7 @@ $(() => {
             app.el.css({"height": `${window.innerHeight - 20}px`})
         },
         checkCode: () => {
-            $('.u-check img').attr('src', 'http://www.hiphoon.com/api.php/Login/get_codes?PHPSESSID=code')
+            $('.u-check img').attr('src', 'https://www.hiphoon.com/api.php/Login/get_codes?PHPSESSID=code')
         },
         lastLogin: () => {
             var mytime = new Date(),
