@@ -87,6 +87,7 @@ $(() => {
         data: `table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
             console.log(JSON.parse(data).data)
+            $('.uploader').attr('data-year', JSON.parse(data).data.poor.filingyear)
             $('#name').html(JSON.parse(data).data.poor.name)
             $('#area').html(JSON.parse(data).data.poor.townname + '&nbsp;' + JSON.parse(data).data.poor.villagename)
             $('#sex').html(JSON.parse(data).data.poor.sex)
