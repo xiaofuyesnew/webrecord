@@ -41,13 +41,17 @@ $(() => {
             var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i")
             var r = window.location.search.substr(1).match(reg)
             if (r != null) {
-                return unescape(r[2])
+                return decodeURI(r[2])
+                //unescape(r[2])
             } 
             return null
         }
     }
 
     app.setScreen()
+
+    //显示标题
+    $('.m-title').html(app.getUrlPrama('title'))
 
     var prama = `familyid=${app.getUrlPrama('familyid')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=`
     var $pick = $('#picker')
