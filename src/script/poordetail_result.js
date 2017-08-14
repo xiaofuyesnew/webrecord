@@ -1,5 +1,6 @@
 $(() => {
-    
+        var dataList = []
+
         //创建根节点对象
         var app = {
             el: $('#app'),
@@ -30,7 +31,7 @@ $(() => {
         //调用方法
         app.setScreen()
         console.log(app.getUrlPrama('table_id'))
-    
+
         //生成列表链接
         $('#condition').attr('href', `poordetail_condition.html?table_id=${app.getUrlPrama('table_id')}`)
         $('#basic').attr('href', `poordetail_basic.html?table_id=${app.getUrlPrama('table_id')}`)
@@ -83,6 +84,8 @@ $(() => {
     
                 //产业扶贫或者政策兜底
                 if (JSON.parse(data).data.industrys) {
+                    dataList.push({id: '1', value: '产业扶贫-之前', mark: 1, type: 30}, {id: '2', value: '产业扶贫-现在', mark: 2, type: 30})
+                
                     $('#method').html('产业扶贫')
     
                     for (var i = 0; i < JSON.parse(data).data.industrys.length; i++) {
@@ -138,7 +141,9 @@ $(() => {
                 if (JSON.parse(data).data.poor.relocationsite) {
                     $('#dangerhouse').hide()
                     $('#dangerhouse').next().hide()
-    
+                    
+                    dataList.push({id: '3', value: '异地搬迁-之前', mark: 1, type: 31}, {id: '4', value: '异地搬迁-现在', mark: 2, type: 31})
+
                     //异地搬迁
                     $('#r-loc').html(JSON.parse(data).data.poor.relocationsite)
                     $('#r-area').html(JSON.parse(data).data.poor.buildingarea)
@@ -156,7 +161,9 @@ $(() => {
                 } else {
                     $('#relocation').next().hide()
                     $('#relocation').hide()
-    
+
+                    dataList.push({id: '3', value: '危房改造-之前', mark: 1, type: 32}, {id: '4', value: '危房改造-现在', mark: 2, type: 32})
+
                     //危房改造
                     $('#dh-area').html(JSON.parse(data).data.poor.rebulidarea)
                     $('#dh-level').html(JSON.parse(data).data.poor.dangerouslevel)
@@ -191,6 +198,21 @@ $(() => {
                         </div>
                     `)  
                 }
+
+                dataList.push({id: '1', value: '家庭收入清单-之前', mark: 1, type: 33}, {id: '2', value: '家庭收入清单-现在', mark: 2, type: 33})
+
+                var typeSelect = new MobileSelect({
+                    trigger: '.uploader',
+                    title: '选择相册',
+                    wheels: [
+                        {data: dataList}
+                    ],
+                    callback: function (indexArr, data) {
+                        console.log(data)
+                        $('.uploader').html('')
+                        window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=${data[0].type}&mark=${data[0].mark}&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
+                    }
+                })
             }
         })
     })
