@@ -1,0 +1,33 @@
+.ui-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .4);
+    display: none;
+}
+
+.popupBtn {
+    width: calc(100vw - 40px);
+    padding: 0 20px 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 150px;
+    .unit {
+        width: 100%;
+        background-color: rgba(255, 255, 255, .6);
+        height: 40px;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 40px;
+        margin-top: 10px;
+    }
+    .btn {
+        color: #1e82d0;
+    }
+    .cancle {
+        color: #fc7476;
+    }
+}
