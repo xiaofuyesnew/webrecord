@@ -67,7 +67,7 @@ var getpicture = (source) => {
 }
 
 var onPhotoSuccess = (imgData) => {
-
+    
 }
 
 var onDeviceReady = () => {
@@ -78,7 +78,7 @@ var onDeviceReady = () => {
     })
 
     $(document).on('click', '#iu-photo', function () {
-        getpicture()
+        getpicture(pictureSource.PHOTOLIBRARY)
     })
 }
 
