@@ -1,4 +1,4 @@
-.ui-mask {
+.iu-mask {
     position: fixed;
     left: 0;
     top: 0;
@@ -12,7 +12,7 @@
     width: calc(100vw - 40px);
     padding: 0 20px 10px;
     position: fixed;
-    bottom: 0;
+    bottom: -160px;
     left: 0;
     height: 150px;
     .unit {
@@ -30,4 +30,28 @@
     .cancle {
         color: #fc7476;
     }
+}
+
+.animIn {
+    animation: in 0.5s forwards;
+}
+
+.animOut {
+    animation: out 0.5s forwards;
+}
+
+@keyframes in {
+    0% {bottom: -160px;}
+    100% {bottom: 0;}
+}
+
+@keyframes out {
+    0% {bottom: 0;}
+    100% {bottom: -160px;}
+}
+
+#btn {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
 }
