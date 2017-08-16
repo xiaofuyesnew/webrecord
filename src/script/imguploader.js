@@ -91,36 +91,45 @@ var previewImg = (imgData) => {
 
 //上传成功
 var win = function (r) {
-    alert("Code = " + r.responseCode);
-    alert("Response = " + r.response);
-    alert("Sent = " + r.bytesSent);
+    alert(JSON.stringify(r))
+
+    $('.remark').append(`<label class="rmkname">${file.name}</label><input class="rmkcontent" data-url="${response.url}" type="text">`)
+
+if (uploader.getStats().progressNum !== 0) {
+    $('.btncell .info').html(`上传进度：${uploader.getStats().successNum}/${uploader.getStats().progressNum + uploader.getStats().progressNum}`)
+} else {
+    $('.btncell .info').html('上传完成，请填写备注！')
+}
+    $('body').append(`<div>${JSON.stringify(r)}</div>`)
 }
 
 //上传失败
 var fail = function (error) {
-    alert("上传失败! Code = " + error.code);
+    alert(JSON.stringify(error))
 }
-
-//初始化参数
-var options = new FileUploadOptions(),
-    params = {},
-    ft = new FileTransfer()
 
 var uploadImg = (files) => {
     for (var i = 0; i < files.length; i++) {
+
+        var options = new FileUploadOptions()
         options.fileName = files[i].substr(files[i].lastIndexOf('/') + 1)
         options.mimeType = 'image/*'
         
+        var params = {}
         params.username = localStorage.username
         params.password = localStorage.password
+        params.file = files[i]
+        alert(params)
         options.params = params
         
-        ft.upload(fileURL, encodeURI("http://120.76.203.56:8002/api.php/Duty/uploadImg"), win(r), fail(error), options);
+        var ft = new FileTransfer()
+        ft.upload(files[i], encodeURI(`http://120.76.203.56:8002/api.php/Duty/uploadImg`), win, fail, options);
     }
 }
 
 //设备准备好后调用函数-
 var onDeviceReady = () => {
+
     popupBtn()
 
     $(document).on('click', '#iu-camera', function () {
@@ -132,10 +141,15 @@ var onDeviceReady = () => {
         getpicture(1)
         hideBtn()
     })
+
+    //上传按钮点击绑定
+    $('#addbtn').click(function () {
+        uploadImg(files)
+    })
 }
 
 $(() => { 
-    popupBtn()
+    //popupBtn()
     //设备准备
     document.addEventListener("deviceready", onDeviceReady, false)
 
@@ -162,5 +176,5 @@ $(() => {
             }
         }
         $(this).parent().remove()
-    })  
+    })
 })
