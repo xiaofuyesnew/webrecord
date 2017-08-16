@@ -25,7 +25,7 @@ $(() => {
             app.el.css({"height": `${window.innerHeight - 20}px`})
         },
         checkCode: () => {
-            $('.u-check img').attr('src', 'http://www.hiphoon.com/api.php/Login/get_codes?PHPSESSID=code')
+            $('.u-check img').attr('src', 'http://120.76.203.56:8002/api.php/Login/get_codes?PHPSESSID=code')
         },
         lastLogin: () => {
             var mytime = new Date(),
@@ -46,20 +46,18 @@ $(() => {
                 prama = `${username}&${password}&${code}&${key}`
 
             $.ajax({
-                url: 'http://www.hiphoon.com/api.php/login/dutyLogin',
+                url: 'http://120.76.203.56:8002/api.php/login/dutyLogin',
                 type: "post",
                 data: prama,
                 success: (data) => {
                     if (JSON.parse(data).status === 1) {
                         localStorage.setItem('uid', JSON.parse(data).uid)
+                        localStorage.setItem('username', $('#username').val())
+                        localStorage.setItem('password', $('#password').val())
                         if ($('#remember').prop('checked')) {
                             localStorage.setItem('checked', '1')
-                            localStorage.setItem('username', $('#username').val())
-                            localStorage.setItem('password', $('#password').val())
                         } else {
                             localStorage.setItem('checked', '0')
-                            localStorage.setItem('username', '')
-                            localStorage.setItem('password', '')
                         }
                         app.lastLogin()
                         window.location = 'html/poorlist.html'

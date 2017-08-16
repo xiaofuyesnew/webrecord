@@ -67,7 +67,11 @@ var getpicture = (source) => {
 }
 
 var onPhotoSuccess = (imgData) => {
-    
+    previewImg(img)
+}
+
+var previewImg = (img) => {
+    $(img).attr('src', imgData)
 }
 
 var onDeviceReady = () => {
