@@ -16,8 +16,9 @@
     left: 0;
     height: 150px;
     .unit {
+        font-size: 1.8rem;
         width: 100%;
-        background-color: rgba(225, 225, 225, 0.60);
+        background-color: rgba(255, 255, 255, 0.60);
         height: 40px;
         border-radius: 10px;
         text-align: center;
@@ -33,11 +34,11 @@
 }
 
 .animIn {
-    animation: in 0.5s forwards;
+    animation: in 0.3s forwards;
 }
 
 .animOut {
-    animation: out 0.5s forwards;
+    animation: out 0.3s forwards;
 }
 
 @keyframes in {

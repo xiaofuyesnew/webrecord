@@ -6,6 +6,7 @@ $(() => {
                 // Success callback
                 console.log(tags + ' - ' + alias)
             })
+            localStorage.uid = ''
         }
     }
 

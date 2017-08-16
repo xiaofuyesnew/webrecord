@@ -12,12 +12,17 @@
  * log: 
  *      2017-08-15   init
  */
+
+//document注入弹出框
+var files = []
+
 var popupBtn = () => {
     
     $('body').append(`<div class="iu-mask"></div><div class="popupBtn"><div id="iu-camera" class="unit btn">拍照</div><div id="iu-photo" class="unit btn">相册</div><div id="iu-cancle" class="unit cancle">取消</div></div>`)
 
 }
 
+//弹出框弹出
 var showBtn = () => {
 
     if ($('.popupBtn').hasClass('animOut')) {
@@ -30,6 +35,7 @@ var showBtn = () => {
     $('.iu-mask').show()
 }
 
+//弹出框收回
 var hideBtn = () => {
 
     if ($('.popupBtn').hasClass('animIn')) {
@@ -41,7 +47,10 @@ var hideBtn = () => {
     $('.iu-mask').hide()
 }
 
+//获取图片cordova的camera插件
 var getpicture = (source) => {
+    
+    //如果有source证明是来自相册
     if (source) {
         navigator.camera.getPicture(
             onPhotoSuccess, 
@@ -50,9 +59,11 @@ var getpicture = (source) => {
             }, 
             { 
                 destinationType: Camera.DestinationType.FILE_URI, 
-                sourceType: source 
+                sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
             }
         )
+
+    //不传source来自相机
     } else {
         navigator.camera.getPicture(
             onPhotoSuccess, 
@@ -66,40 +77,65 @@ var getpicture = (source) => {
     }
 }
 
+//获取照片后的回调函数
 var onPhotoSuccess = (imgData) => {
-    previewImg(img)
+    files.push(imgData)
+    previewImg(imgData)
 }
 
-var previewImg = (img) => {
-    $(img).attr('src', imgData)
+//图片预览功能
+var previewImg = (imgData) => {
+    $('#picker').before(`<div data-name="${imgData.substring(imgData.lastIndexOf('/') + 1)}" data-url="${imgData}" class="file-item thumbnail pre"><img src="${imgData}"><a href="javascript:;" class="uploader_del"></a></div>`)
 }
 
+var uploadImg = (files) => {
+    for (var i = 0; i < files.length; i++) {
+        
+    }
+}
+
+//设备准备好后调用函数-
 var onDeviceReady = () => {
     popupBtn()
 
     $(document).on('click', '#iu-camera', function () {
         getpicture()
+        hideBtn()
     })
 
     $(document).on('click', '#iu-photo', function () {
-        getpicture(pictureSource.PHOTOLIBRARY)
+        getpicture(1)
+        hideBtn()
     })
 }
 
 $(() => { 
     popupBtn()
-
+    //设备准备
     document.addEventListener("deviceready", onDeviceReady, false)
 
+    //取消按钮点击绑定
     $(document).on('click', '#iu-cancle', () => {
         hideBtn()
     })
 
+    //遮罩点击绑定
     $(document).on('click', '.iu-mask', () => {
         hideBtn()
     })
 
-    $('#btn').click(function () {
+    //添加按钮点击绑定
+    $('#picker').click(function () {
         showBtn()
     })
+
+    //预览删除点击绑定
+    $(document).on('click', '.imglist .uploader_del', function() {
+        for (var i = 0; i < files.length; i++) {
+            if ($(this).parent().attr('data-url') === files[i]) {
+                files.splice(i, 1)
+            }
+        }
+        $(this).parent().remove()
+    })  
 })

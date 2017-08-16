@@ -53,6 +53,7 @@ $(() => {
     //显示标题
     $('.m-title').html(app.getUrlPrama('title'))
 
+    /*
     var prama = `familyid=${app.getUrlPrama('familyid')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=`
     var $pick = $('#picker')
     var fileArray = []
@@ -60,7 +61,7 @@ $(() => {
     
     var uploader = WebUploader.create({
         auto: false,
-        server: 'http://120.76.203.56/api.php/Duty/uploadImg',
+        server: 'http://120.76.203.56:8002/api.php/Duty/uploadImg',
         pick: '#picker',
         accept: {
             title: 'Images',
@@ -137,7 +138,7 @@ $(() => {
         for (var i = 0; i < $('.rmkcontent').length; i ++) {
             console.log(`${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`)
             $.ajax({
-                url: 'http://120.76.203.56/api.php/Duty/saveImg',
+                url: 'http://120.76.203.56:8002/api.php/Duty/saveImg',
                 type: 'POST',
                 data: `${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`,
                 success: (data) => {
@@ -146,4 +147,5 @@ $(() => {
             })
         }
     })
+    */    
 })

@@ -110,7 +110,7 @@ $(() => {
 
     function bell() {
         $.ajax({
-            url: `http://www.hiphoon.com/api.php/Duty/unreadMessage?uid=${localStorage.uid}`,
+            url: `http://120.76.203.56:8002/api.php/Duty/unreadMessage?uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}`,
             type: 'GET',
             success: (data) => {
                 var jsonData = JSON.parse(data)
@@ -132,7 +132,7 @@ $(() => {
     }
 
     $.ajax({
-        url: `http://www.hiphoon.com/api.php/Duty/isTodayMsg?uid=${localStorage.uid}`,
+        url: `http://120.76.203.56:8002/api.php/Duty/isTodayMsg?uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}`,
         type: 'GET',
         success: (data) => {
             bell()
@@ -142,7 +142,7 @@ $(() => {
     //按需加载
     function needLoad() {
         var page = 0,
-            prama = `uid=${localStorage.uid}`
+            prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}`
 
         $('.cont').dropload({
             scrollArea : window,
@@ -154,7 +154,7 @@ $(() => {
                 console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://www.hiphoon.com/api.php/Duty/helpList',
+                    url: 'http://120.76.203.56:8002/api.php/Duty/helpList',
                     data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {
