@@ -11,6 +11,7 @@
  * 
  * log: 
  *      2017-08-15   init
+ *      2017-08-16   uploader
  */
 
 //document注入弹出框
@@ -88,9 +89,33 @@ var previewImg = (imgData) => {
     $('#picker').before(`<div data-name="${imgData.substring(imgData.lastIndexOf('/') + 1)}" data-url="${imgData}" class="file-item thumbnail pre"><img src="${imgData}"><a href="javascript:;" class="uploader_del"></a></div>`)
 }
 
+//上传成功
+var win = function (r) {
+    alert("Code = " + r.responseCode);
+    alert("Response = " + r.response);
+    alert("Sent = " + r.bytesSent);
+}
+
+//上传失败
+var fail = function (error) {
+    alert("上传失败! Code = " + error.code);
+}
+
+//初始化参数
+var options = new FileUploadOptions(),
+    params = {},
+    ft = new FileTransfer()
+
 var uploadImg = (files) => {
     for (var i = 0; i < files.length; i++) {
+        options.fileName = files[i].substr(files[i].lastIndexOf('/') + 1)
+        options.mimeType = 'image/*'
         
+        params.username = localStorage.username
+        params.password = localStorage.password
+        options.params = params
+        
+        ft.upload(fileURL, encodeURI("http://120.76.203.56:8002/api.php/Duty/uploadImg"), win(r), fail(error), options);
     }
 }
 
