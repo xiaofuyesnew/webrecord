@@ -136,13 +136,25 @@ var onDeviceReady = () => {
 
     popupBtn()
 
-    $(document).on('click', '#iu-camera', function () {
-        //getpicture()
+    $('#iu-camera').click(function () {
+        getpicture()
         hideBtn()
     })
 
-    $(document).on('click', '#iu-photo', function () {
-        //getpicture(1)
+    $('#iu-photo').click(function () {
+        getpicture(1)
+        hideBtn()
+    })
+
+    //取消按钮点击绑定
+    $('#iu-cancle').click(function () {
+        alert('cancelok')
+        hideBtn()
+    })
+
+    //遮罩点击绑定
+    $('.iu-mask').click(function () {
+        alert('maskok')
         hideBtn()
     })
 
@@ -159,16 +171,6 @@ $(() => {
     //popupBtn()
     //设备准备
     document.addEventListener("deviceready", onDeviceReady, false)
-
-    //取消按钮点击绑定
-    $(document).on('click', '#iu-cancle', () => {
-        hideBtn()
-    })
-
-    //遮罩点击绑定
-    $(document).on('click', '.iu-mask', () => {
-        hideBtn()
-    })
 
     //添加按钮点击绑定
     $('#picker').click(function () {
