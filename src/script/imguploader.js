@@ -112,7 +112,7 @@ var fail = function (error) {
 }
 
 var uploadImg = (files) => {
-
+    $('.btncell .info').html('正在上传，请稍等...')
     for (var i = 0; i < files.length; i++) {
     var options = new FileUploadOptions(),
         fileName = files[i].substr(files[i].lastIndexOf('/') + 1)
@@ -129,6 +129,7 @@ var uploadImg = (files) => {
     ft.upload(files[i], encodeURI(`http://120.76.203.56:8002/api.php/Duty/uploadImg`), win, fail, options)
     
     }
+    
 }
 
 //设备准备好后调用函数-
@@ -148,13 +149,11 @@ var onDeviceReady = () => {
 
     //取消按钮点击绑定
     $('#iu-cancle').click(function () {
-        alert('cancelok')
         hideBtn()
     })
 
     //遮罩点击绑定
     $('.iu-mask').click(function () {
-        alert('maskok')
         hideBtn()
     })
 
