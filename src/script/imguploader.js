@@ -112,7 +112,7 @@ var fail = function (error) {
 }
 
 var uploadImg = (files) => {
-
+    $('.btncell .info').html('正在上传，请稍等...')
     for (var i = 0; i < files.length; i++) {
     var options = new FileUploadOptions(),
         fileName = files[i].substr(files[i].lastIndexOf('/') + 1)
