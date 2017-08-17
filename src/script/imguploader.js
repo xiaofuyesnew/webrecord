@@ -92,9 +92,10 @@ var previewImg = (imgData) => {
 
 //上传成功
 var win = function (r) {
-    alert(JSON.stringify(r))
-    alert(JSON.parse(r.response).url)
+    //alert(JSON.stringify(r))
+    //alert(JSON.parse(r.response).url)
     $('.remark').append(`<label class="rmkname"><img src="http://120.76.203.56:8002/${JSON.parse(r.response).url}"></label><input class="rmkcontent" data-url="${JSON.parse(r.response).url}" type="text">`)
+    $('.btncell .info').html('上传完成，请填写备注！')
     /*
     $('.remark').append(`<label class="rmkname">${fileName}</label><input class="rmkcontent" data-url="${r.response.url}" type="text">`)
 
@@ -148,6 +149,7 @@ var onDeviceReady = () => {
     //上传按钮点击绑定
     $('#addbtn').click(function () {
         
+        $('.remark').children().remove()
         uploadImg(files)
         
     })

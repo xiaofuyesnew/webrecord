@@ -144,8 +144,12 @@ $(() => {
                 url: 'http://120.76.203.56:8002/api.php/Duty/saveImg',
                 type: 'POST',
                 data: `${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`,
+                async: false,
                 success: (data) => {
-                    console.log(JSON.parse(data))
+                    //alert(data)
+                    if ($('.rmkcontent').length === i + 1) {
+                        app.showMsg('信息已经保存')
+                    }
                 }
             })
         }
