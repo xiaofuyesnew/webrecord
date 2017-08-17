@@ -93,7 +93,7 @@ var previewImg = (imgData) => {
 //上传成功
 var win = function (r) {
     //alert(JSON.stringify(r))
-    //alert(JSON.parse(r.response).url)
+    alert(JSON.parse(r.response).url)
     $('.remark').append(`<label class="rmkname"><img src="${JSON.parse(r.response).url}"></label><input class="rmkcontent" data-url="${JSON.parse(r.response).url}" type="text">`)
     $('.btncell .info').html('上传完成，请填写备注！')
     /*
