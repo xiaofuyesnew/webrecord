@@ -132,7 +132,10 @@ $(() => {
             $('.btncell .info').html('上传完成，请填写备注！')
         }
     })
-    
+    */
+
+    var prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=`
+
     $('.u-add').click(function () {
 
         for (var i = 0; i < $('.rmkcontent').length; i ++) {
@@ -147,5 +150,4 @@ $(() => {
             })
         }
     })
-    */    
 })

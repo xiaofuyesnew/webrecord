@@ -82,6 +82,7 @@ var getpicture = (source) => {
 var onPhotoSuccess = (imgData) => {
     files.push(imgData)
     previewImg(imgData)
+    
 }
 
 //图片预览功能
@@ -92,15 +93,16 @@ var previewImg = (imgData) => {
 //上传成功
 var win = function (r) {
     alert(JSON.stringify(r))
+    alert(JSON.stringify(r.response))
+    $('.remark').append(`<label class="rmkname">${r.response.url.substring(r.response.url.lastIndexOf('/') + 1)}</label><input class="rmkcontent" data-url="${r.response.url}" type="text">`)
+    /*
+    $('.remark').append(`<label class="rmkname">${fileName}</label><input class="rmkcontent" data-url="${r.response.url}" type="text">`)
 
-    $('.remark').append(`<label class="rmkname">${file.name}</label><input class="rmkcontent" data-url="${response.url}" type="text">`)
-
-if (uploader.getStats().progressNum !== 0) {
-    $('.btncell .info').html(`上传进度：${uploader.getStats().successNum}/${uploader.getStats().progressNum + uploader.getStats().progressNum}`)
-} else {
-    $('.btncell .info').html('上传完成，请填写备注！')
-}
-    $('body').append(`<div>${JSON.stringify(r)}</div>`)
+    if (length !== index + 1) {
+        $('.btncell .info').html(`上传进度：${index}/${length}`)
+    } else {
+        $('.btncell .info').html('上传完成，请填写备注！')
+    }*/
 }
 
 //上传失败
@@ -109,21 +111,21 @@ var fail = function (error) {
 }
 
 var uploadImg = (files) => {
-    for (var i = 0; i < files.length; i++) {
 
-        var options = new FileUploadOptions()
-        options.fileName = files[i].substr(files[i].lastIndexOf('/') + 1)
-        options.mimeType = 'image/*'
+    for (var i = 0; i < files.length; i++) {
+    var options = new FileUploadOptions()
+    options.fileName = files[i].substr(files[i].lastIndexOf('/') + 1)
+    options.mimeType = 'image/*'
         
-        var params = {}
-        params.uid = localStorage.uid
-        params.username = localStorage.username
-        params.password = localStorage.password
-        alert(JSON.stringify(params))
-        options.params = params
+    var params = {}
+    params.uid = localStorage.uid
+    params.username = localStorage.username
+    params.password = localStorage.password
+    options.params = params
         
-        var ft = new FileTransfer()
-        ft.upload(files[i], encodeURI(`http://120.76.203.56:8002/api.php/Duty/uploadImg`), win, fail, options);
+    var ft = new FileTransfer()
+    ft.upload(files[i], encodeURI(`http://120.76.203.56:8002/api.php/Duty/uploadImg`), win, fail, options)
+    
     }
 }
 
@@ -144,7 +146,9 @@ var onDeviceReady = () => {
 
     //上传按钮点击绑定
     $('#addbtn').click(function () {
+        
         uploadImg(files)
+        
     })
 }
 
