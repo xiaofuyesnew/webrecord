@@ -93,8 +93,8 @@ var previewImg = (imgData) => {
 //上传成功
 var win = function (r) {
     alert(JSON.stringify(r))
-    alert(JSON.stringify(r.response))
-    $('.remark').append(`<label class="rmkname">${r.response.url.substring(r.response.url.lastIndexOf('/') + 1)}</label><input class="rmkcontent" data-url="${r.response.url}" type="text">`)
+    alert(JSON.parse(r.response).url)
+    $('.remark').append(`<label class="rmkname"><img src="http://120.76.203.56:8002/${JSON.parse(r.response).url}"></label><input class="rmkcontent" data-url="${JSON.parse(r.response).url}" type="text">`)
     /*
     $('.remark').append(`<label class="rmkname">${fileName}</label><input class="rmkcontent" data-url="${r.response.url}" type="text">`)
 
@@ -113,8 +113,9 @@ var fail = function (error) {
 var uploadImg = (files) => {
 
     for (var i = 0; i < files.length; i++) {
-    var options = new FileUploadOptions()
-    options.fileName = files[i].substr(files[i].lastIndexOf('/') + 1)
+    var options = new FileUploadOptions(),
+        fileName = files[i].substr(files[i].lastIndexOf('/') + 1)
+    options.fileName = fileName
     options.mimeType = 'image/*'
         
     var params = {}
