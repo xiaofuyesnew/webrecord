@@ -116,10 +116,10 @@ var uploadImg = (files) => {
         options.mimeType = 'image/*'
         
         var params = {}
+        params.uid = localStorage.uid
         params.username = localStorage.username
         params.password = localStorage.password
-        params.file = files[i]
-        alert(params)
+        alert(JSON.stringify(params))
         options.params = params
         
         var ft = new FileTransfer()
