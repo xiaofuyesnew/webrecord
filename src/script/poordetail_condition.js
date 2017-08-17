@@ -80,9 +80,9 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://www.hiphoon.com/api.php/Duty/poorDetail',
+        url: 'http://120.76.203.56:8002/api.php/Duty/poorDetail',
         type: 'POST',
-        data: `table_id=${app.getUrlPrama('table_id')}`,
+        data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
             $('.uploader').attr('data-year', JSON.parse(data).data.poor.filingyear)
             console.log(JSON.parse(data).data)
@@ -103,8 +103,8 @@ $(() => {
                 } else {
                     $('#housephoto').append(
                         `<div class="unit flex">
-                            <img src="http://www.hiphoon.com${JSON.parse(data).data.condition3s_mark1[0].picture}">
-                            <img src="http://www.hiphoon.com${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                            <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark1[0].picture}">
+                            <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark2[0].picture}">
                         </div>`
                     )
                 }
@@ -116,8 +116,8 @@ $(() => {
                 } else {
                     $('#waterphoto').append(
                         `<div class="unit flex">
-                            <img src="http://www.hiphoon.com${JSON.parse(data).data.condition4s_mark1[0].picture}">
-                            <img src="http://www.hiphoon.com${JSON.parse(data).data.condition4s_mark2[0].picture}">
+                            <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition4s_mark1[0].picture}">
+                            <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition4s_mark2[0].picture}">
                         </div>`
                     )
                 }

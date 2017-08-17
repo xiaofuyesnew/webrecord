@@ -83,9 +83,9 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://www.hiphoon.com/api.php/Macro/poorDetail',
+        url: 'http://120.76.203.56:8002/api.php/Macro/poorDetail',
         type: 'POST',
-        data: `table_id=${app.getUrlPrama('table_id')}`,
+        data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
             console.log(JSON.parse(data).data)
 
@@ -98,13 +98,13 @@ $(() => {
             
             if (JSON.parse(data).data.dutys[0].icon) {
                 $('.photo .unit').append(`
-                    <img src='http://www.hiphoon.com${JSON.parse(data).data.dutys[0].icon}'>
+                    <img src='http://120.76.203.56:8002${JSON.parse(data).data.dutys[0].icon}'>
                 `)
             }
 
             if (JSON.parse(data).data.dutys[0].photo) {
                 $('.photo .unit').append(`
-                    <img src='http://www.hiphoon.com${JSON.parse(data).data.dutys[0].photo}'>
+                    <img src='http://120.76.203.56:8002${JSON.parse(data).data.dutys[0].photo}'>
                 `)
             }
         }

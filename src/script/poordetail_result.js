@@ -72,9 +72,9 @@ $(() => {
         })
     
         $.ajax({
-            url: 'http://www.hiphoon.com/api.php/Duty/poorDetail',
+            url: 'http://120.76.203.56:8002/api.php/Duty/poorDetail',
             type: 'POST',
-            data: `table_id=${app.getUrlPrama('table_id')}`,
+            data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
             success: (data) => {
                 console.log(JSON.parse(data))
     
@@ -106,8 +106,8 @@ $(() => {
                             $('#industry').next().append(`
                                 <div class="list listcont">
                                     <div class="unit flex">
-                                        <img src="http://www.hiphoon.com${JSON.parse(data).data.industrys[i].images1[0].picture}">
-                                        <img src="http://www.hiphoon.com${JSON.parse(data).data.industrys[i].images2[0].picture}">
+                                        <img src="http://120.76.203.56:8002${JSON.parse(data).data.industrys[i].images1[0].picture}">
+                                        <img src="http://120.76.203.56:8002${JSON.parse(data).data.industrys[i].images2[0].picture}">
                                     </div>
                                 </div>
                             `)
@@ -152,8 +152,8 @@ $(() => {
                         $('#relocation').next().append(`
                             <div class="list listcont">
                                 <div class="unit flex">
-                                    <img src="http://www.hiphoon.com${JSON.parse(data).data.condition3s_mark1[0].picture}">
-                                    <img src="http://www.hiphoon.com${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark1[0].picture}">
+                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark2[0].picture}">
                                 </div>
                             </div>
                         `)  
@@ -173,8 +173,8 @@ $(() => {
                         $('#dangerhouse').next().append(`
                             <div class="list listcont">
                                 <div class="unit flex">
-                                    <img src="http://www.hiphoon.com${JSON.parse(data).data.condition3s_mark1[0].picture}">
-                                    <img src="http://www.hiphoon.com${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark1[0].picture}">
+                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark2[0].picture}">
                                 </div>
                             </div>
                         `)  
@@ -192,8 +192,8 @@ $(() => {
                     $('#familyincome').next().append(`
                         <div class="list listcont">
                             <div class="unit flex">
-                                <img src="http://www.hiphoon.com${JSON.parse(data).data.condition33s_mark1[0].picture}">
-                                <img src="http://www.hiphoon.com${JSON.parse(data).data.condition33s_mark2[0].picture}">
+                                <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition33s_mark1[0].picture}">
+                                <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition33s_mark2[0].picture}">
                             </div>
                         </div>
                     `)  
