@@ -137,12 +137,12 @@ var onDeviceReady = () => {
     popupBtn()
 
     $(document).on('click', '#iu-camera', function () {
-        getpicture()
+        //getpicture()
         hideBtn()
     })
 
     $(document).on('click', '#iu-photo', function () {
-        getpicture(1)
+        //getpicture(1)
         hideBtn()
     })
 
