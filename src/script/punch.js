@@ -83,9 +83,9 @@ $(() => {
     //签到
     $('.btn').click(function () {
         $.ajax({
-            url: 'http://www.hiphoon.com/api.php/Duty/sign',
+            url: 'http://120.76.203.56:8002/api.php/Duty/sign',
             type: 'POST',
-            data: `uid=${localStorage.uid}&familyid=${app.getUrlPrama('familyid')}&address=${$('#address').val()}`,
+            data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&uid=${localStorage.uid}&familyid=${app.getUrlPrama('familyid')}&address=${$('#address').val()}`,
             success: (data) => {
                 console.log(JSON.parse(data))
                 app.showMsg(JSON.parse(data).info)

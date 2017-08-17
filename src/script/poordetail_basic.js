@@ -82,9 +82,9 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://www.hiphoon.com/api.php/Macro/poorDetail',
+        url: 'http://120.76.203.56:8002/api.php/Macro/poorDetail',
         type: 'POST',
-        data: `table_id=${app.getUrlPrama('table_id')}`,
+        data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
             console.log(JSON.parse(data).data)
             $('.uploader').attr('data-year', JSON.parse(data).data.poor.filingyear)
@@ -112,7 +112,7 @@ $(() => {
             } else {
                 $('.photo').append(
                     `<div class="unit flex">
-                        <img src="http://www.hiphoon.com${JSON.parse(data).data.poor.icon}">
+                        <img src="http://120.76.203.56:8002/${JSON.parse(data).data.poor.icon}">
                     </div>`
                 )
             }

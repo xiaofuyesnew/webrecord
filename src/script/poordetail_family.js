@@ -56,9 +56,9 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://www.hiphoon.com/api.php/Macro/poorDetail',
+        url: 'http://120.76.203.56:8002/api.php/Macro/poorDetail',
         type: 'POST',
-        data: `table_id=${app.getUrlPrama('table_id')}`,
+        data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
             var family = JSON.parse(data).data.familys[+(app.getUrlPrama('no'))]
             console.log(JSON.parse(data).data)
@@ -80,7 +80,7 @@ $(() => {
             } else {
                 $('.photo').append(
                     `<div class="unit flex">
-                        <img src="http://www.hiphoon.com${family.icon}">
+                        <img src="http://120.76.203.56:8002${family.icon}">
                     </div>`
                 )
             }
