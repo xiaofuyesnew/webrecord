@@ -149,7 +149,9 @@ $(() => {
                     //alert(data)
                     if ($('.rmkcontent').length === i + 1) {
                         app.showMsg('信息已经保存')
-                        window.location = history.go(-1)
+                        setTimeout(function () {
+                            window.location = history.go(-1)
+                        }, 3000)
                     }
                 }
             })
