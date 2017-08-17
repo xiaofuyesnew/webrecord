@@ -32,7 +32,7 @@ $(() => {
     //按需加载
     function needLoad() {
         var page = 0,
-            prama = `uid=${localStorage.uid}&familyid=${app.getUrlPrama('table_id')}`
+            prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&uid=${localStorage.uid}&familyid=${app.getUrlPrama('table_id')}`
 
         $('.cont').dropload({
             scrollArea : window,
@@ -44,7 +44,7 @@ $(() => {
                 console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://www.hiphoon.com/api.php/Duty/signList',
+                    url: 'http://120.76.203.56:8002/api.php/Duty/signList',
                     data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {

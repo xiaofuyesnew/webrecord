@@ -30,7 +30,7 @@ $(() => {
     app.setScreen()
 
     $.ajax({
-        url: `http://www.hiphoon.com/api.php/Duty/getHelpRecord?id=${app.getUrlPrama('id')}`,
+        url: `http://120.76.203.56:8002/api.php/Duty/getHelpRecord?id=${app.getUrlPrama('id')}&uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}`,
         type: 'GET',
         success: (data) => {
             console.log(JSON.parse(data).data.content)
@@ -41,7 +41,7 @@ $(() => {
     $('.u-add').click(function () {
 
         var content = $('#content').val(),
-            prama = `id=${app.getUrlPrama('id')}&content=${content}`
+            prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&id=${app.getUrlPrama('id')}&content=${content}`
 
         console.log(content)
 
@@ -52,7 +52,7 @@ $(() => {
         } else {
 
             $.ajax({
-                url: 'http://www.hiphoon.com/api.php/Duty/updHelpRecord',
+                url: 'http://120.76.203.56:8002/api.php/Duty/updHelpRecord',
                 type: 'POST',
                 data: prama,
                 success: (data) => {

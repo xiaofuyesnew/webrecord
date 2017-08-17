@@ -25,7 +25,7 @@ $(() => {
     function needLoad() {
 
         var page = 0,
-            prama = `uid=${localStorage.uid}`
+            prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}`
 
         $('.cont').dropload({
             scrollArea : window,
@@ -37,7 +37,7 @@ $(() => {
                 console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://www.hiphoon.com/api.php/Duty/messageList',
+                    url: 'http://120.76.203.56:8002/api.php/Duty/messageList',
                     data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {

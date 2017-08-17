@@ -20,7 +20,7 @@ $(() => {
                 } else {
                     console.log(prama)
                     $.ajax({
-                        url: 'http://www.hiphoon.com/api.php/Login/password',
+                        url: 'http://120.76.203.56:8002/api.php/Login/password',
                         type: "POST",
                         data: prama,
                         success: (data) => {

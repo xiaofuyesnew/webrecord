@@ -53,6 +53,7 @@ $(() => {
     //显示标题
     $('.m-title').html(app.getUrlPrama('title'))
 
+    /*
     var prama = `familyid=${app.getUrlPrama('familyid')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=`
     var $pick = $('#picker')
     var fileArray = []
@@ -60,7 +61,7 @@ $(() => {
     
     var uploader = WebUploader.create({
         auto: false,
-        server: 'http://120.76.203.56/api.php/Duty/uploadImg',
+        server: 'http://120.76.203.56:8002/api.php/Duty/uploadImg',
         pick: '#picker',
         accept: {
             title: 'Images',
@@ -131,17 +132,25 @@ $(() => {
             $('.btncell .info').html('上传完成，请填写备注！')
         }
     })
-    
+    */
+
+    var prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=`
+
     $('.u-add').click(function () {
 
         for (var i = 0; i < $('.rmkcontent').length; i ++) {
             console.log(`${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`)
             $.ajax({
-                url: 'http://120.76.203.56/api.php/Duty/saveImg',
+                url: 'http://120.76.203.56:8002/api.php/Duty/saveImg',
                 type: 'POST',
                 data: `${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`,
+                async: false,
                 success: (data) => {
-                    console.log(JSON.parse(data))
+                    //alert(data)
+                    if ($('.rmkcontent').length === i + 1) {
+                        app.showMsg('信息已经保存')
+                        window.location = history.go(-1)
+                    }
                 }
             })
         }

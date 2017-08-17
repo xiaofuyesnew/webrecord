@@ -120,10 +120,10 @@ $(() => {
 
     var getRecordList = () => {
 
-        var prama = `table_id=${app.getUrlPrama('table_id')}`
+        var prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`
 
         $.ajax({
-            url: 'http://www.hiphoon.com/api.php/Duty/poorDetail',
+            url: 'http://120.76.203.56:8002/api.php/Duty/poorDetail',
             type: 'POST',
             data: prama,
             success: (data) => {
@@ -143,7 +143,7 @@ $(() => {
     function needLoad(keyword, time) {
 
         var page = 0,
-            prama = `table_id=${app.getUrlPrama('table_id')}`,
+            prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
             okeyword = `&keyword=${keyword}`,
             otime = `&time=${time}`
 
@@ -165,7 +165,7 @@ $(() => {
                 console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://www.hiphoon.com/api.php/Duty/poorDetail',
+                    url: 'http://120.76.203.56:8002/api.php/Duty/poorDetail',
                     data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {

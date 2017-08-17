@@ -29,9 +29,10 @@ $(() => {
 
     //调用方法
     app.setScreen()
+    console.log(app.getUrlPrama('table_id'))
 
     $.ajax({
-        url: `http://www.hiphoon.com/api.php/Duty/unreadMessage?uid=${localStorage.uid}`,
+        url: `http://120.76.203.56:8002/api.php/Duty/unreadMessage?uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}`,
         type: 'GET',
         success: (data) => {
             var jsonData = JSON.parse(data)
@@ -142,7 +143,7 @@ $(() => {
     function needLoad(name, time) {
 
         var page = 0,
-            prama = `uid=${localStorage.uid}`,
+            prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}`,
             oname = `&name=${name}`,
             otime = `&time=${time}`
 
@@ -164,7 +165,7 @@ $(() => {
                 console.log(prama + newPage)
                 $.ajax({
                     type: 'POST',
-                    url: 'http://www.hiphoon.com/api.php/Duty/HelpRecordList',
+                    url: 'http://120.76.203.56:8002/api.php/Duty/HelpRecordList',
                     data: prama + newPage,
                     dataType: 'json',
                     success: function (data) {
@@ -185,7 +186,7 @@ $(() => {
                                     <div class="unit date"><span>${data.data.datas[i].create_time}</span></div>
                                     <div class="unitbtn">
                                         <a class="btn change" href="changerecord.html?id=${data.data.datas[i].id}">修改</a>
-                                        <a class="btn delete" data-id="?id=${data.data.datas[i].id}">删除</a>
+                                        <a class="btn delete" data-id="id=${data.data.datas[i].id}">删除</a>
                                     </div>
                                 </div>`
                             }
@@ -209,9 +210,9 @@ $(() => {
 
     $(document).on('click', '.delete', function () {
         var id = $(this).attr('data-id')
-
+        
         $.ajax({
-            url: `http://www.hiphoon.com/api.php/Duty/delHelpRecord${id}`,
+            url: `http://120.76.203.56:8002/api.php/Duty/delHelpRecord?uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&${id}`,
             type: 'GET',
             success: (data) => {
                 app.showMsg(JSON.parse(data).info)
