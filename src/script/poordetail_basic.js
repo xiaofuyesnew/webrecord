@@ -82,7 +82,7 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://120.76.203.56:8002/api.php/Macro/poorDetail',
+        url: 'http://120.76.203.56:8002/api.php/Duty/poorDetail',
         type: 'POST',
         data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
