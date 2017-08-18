@@ -31,17 +31,8 @@ $(() => {
     app.setScreen()
     console.log(app.getUrlPrama('table_id'))
 
-    var typeSelect = new MobileSelect({
-        trigger: '.uploader',
-        title: '选择相册',
-        wheels: [
-            {data: [{id: '1', value: '户主照片-之前', mark: 1, type: 50}, {id: '2', value: '户主照片-现在', mark: 2, type: 50}]}
-        ],
-        callback: function (indexArr, data) {
-            console.log(data)
-            $('.uploader').html('')
-            window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=${data[0].type}&mark=${data[0].mark}&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
-        }
+    $('.uploader').click(function () {
+        window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=50&mark=&filingyear=${$('.uploader').attr('data-year')}&title=户主照片`
     })
 
     //生成列表链接
