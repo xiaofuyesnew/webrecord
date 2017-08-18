@@ -112,7 +112,7 @@ $(() => {
             } else {
                 $('.photo').append(
                     `<div class="unit flex">
-                        <img src="http://120.76.203.56:8002/${JSON.parse(data).data.poor.icon}">
+                        <img src="${JSON.parse(data).data.poor.icon}">
                     </div>`
                 )
             }
