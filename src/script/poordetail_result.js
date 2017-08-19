@@ -106,8 +106,8 @@ $(() => {
                             $('#industry').next().append(`
                                 <div class="list listcont">
                                     <div class="unit flex">
-                                        <img src="http://120.76.203.56:8002${JSON.parse(data).data.industrys[i].images1[0].picture}">
-                                        <img src="http://120.76.203.56:8002${JSON.parse(data).data.industrys[i].images2[0].picture}">
+                                        <img src="${JSON.parse(data).data.industrys[i].images1[0].picture}">
+                                        <img src="${JSON.parse(data).data.industrys[i].images2[0].picture}">
                                     </div>
                                 </div>
                             `)
@@ -120,20 +120,20 @@ $(() => {
                 }
     
                 //享受政策资金清单汇总
-                for (var i = 0; i < JSON.parse(data).data.years.length; i++) {
+                for (var key in JSON.parse(data).data.moneyTotal) {
                     $('#totalmoney').append(`
                         <div class="unit">
-                            ${JSON.parse(data).data.years[i].year}年：${JSON.parse(data).data.years[i].sum}元
+                            ${key}年：${JSON.parse(data).data.moneyTotal[key]}元
                         </div>
                     `)
                 }
                 //享受政策资金清单
-                for (var i = 0; i < JSON.parse(data).data.shares.length; i++) {
+                for (var i = 0; i < JSON.parse(data).data.moneys.length; i++) {
                     $('#sharelist').next().append(`
                         <div class="list rcd">
-                            <div class="unit"><span class="title">资金名称：</span><span>${JSON.parse(data).data.shares[i].fund_name}</span></div>
-                            <div class="unit"><span class="title">发放年度：</span><span>${JSON.parse(data).data.shares[i].year}</span></div>
-                            <div class="unit"><span class="title">发放金额：</span><span>${JSON.parse(data).data.shares[i].grant_funds}元</span></div>
+                            <div class="unit"><span class="title">资金名称：</span><span>${JSON.parse(data).data.moneys[i].name}</span></div>
+                            <div class="unit"><span class="title">发放年度：</span><span>${JSON.parse(data).data.moneys[i].year}</span></div>
+                            <div class="unit"><span class="title">发放金额：</span><span>${JSON.parse(data).data.moneys[i].money}元</span></div>
                         </div>
                     `)
                 }
@@ -152,8 +152,8 @@ $(() => {
                         $('#relocation').next().append(`
                             <div class="list listcont">
                                 <div class="unit flex">
-                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark1[0].picture}">
-                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                                    <img src="${JSON.parse(data).data.condition3s_mark1[0].picture}">
+                                    <img src="${JSON.parse(data).data.condition3s_mark2[0].picture}">
                                 </div>
                             </div>
                         `)  
@@ -173,8 +173,8 @@ $(() => {
                         $('#dangerhouse').next().append(`
                             <div class="list listcont">
                                 <div class="unit flex">
-                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark1[0].picture}">
-                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                                    <img src="${JSON.parse(data).data.condition3s_mark1[0].picture}">
+                                    <img src="${JSON.parse(data).data.condition3s_mark2[0].picture}">
                                 </div>
                             </div>
                         `)  
@@ -192,8 +192,8 @@ $(() => {
                     $('#familyincome').next().append(`
                         <div class="list listcont">
                             <div class="unit flex">
-                                <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition33s_mark1[0].picture}">
-                                <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition33s_mark2[0].picture}">
+                                <img src="${JSON.parse(data).data.condition33s_mark1[0].picture}">
+                                <img src="${JSON.parse(data).data.condition33s_mark2[0].picture}">
                             </div>
                         </div>
                     `)  

@@ -103,8 +103,8 @@ $(() => {
                 } else {
                     $('#housephoto').append(
                         `<div class="unit flex">
-                            <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark1[0].picture}">
-                            <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                            <img src="${JSON.parse(data).data.condition3s_mark1[0].picture}">
+                            <img src="${JSON.parse(data).data.condition3s_mark2[0].picture}">
                         </div>`
                     )
                 }
@@ -116,8 +116,8 @@ $(() => {
                 } else {
                     $('#waterphoto').append(
                         `<div class="unit flex">
-                            <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition4s_mark1[0].picture}">
-                            <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition4s_mark2[0].picture}">
+                            <img src="${JSON.parse(data).data.condition4s_mark1[0].picture}">
+                            <img src="${JSON.parse(data).data.condition4s_mark2[0].picture}">
                         </div>`
                     )
                 }

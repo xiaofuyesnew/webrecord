@@ -31,17 +31,8 @@ $(() => {
     app.setScreen()
     console.log(app.getUrlPrama('table_id'))
 
-    var typeSelect = new MobileSelect({
-        trigger: '.uploader',
-        title: '选择相册',
-        wheels: [
-            {data: [{id: '1', value: '家庭成员-之前', mark: 1, type: 100}, {id: '2', value: '家庭成员-现在', mark: 2, type: 100}]}
-        ],
-        callback: function (indexArr, data) {
-            console.log(data)
-            $('.uploader').html('')
-            window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=${data[0].type}&mark=${data[0].mark}&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
-        }
+    $('.uploader').click(function () {
+        window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&table_id=${$('.uploader').attr('data-family')}&type=100&mark=&filingyear=${$('.uploader').attr('data-year')}&title=家庭成员照片`
     })
 
     //收起展开
@@ -56,13 +47,15 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://120.76.203.56:8002/api.php/Macro/poorDetail',
+        url: 'http://120.76.203.56:8002/api.php/Duty/poorDetail',
         type: 'POST',
         data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
             var family = JSON.parse(data).data.familys[+(app.getUrlPrama('no'))]
             console.log(JSON.parse(data).data)
             console.log(JSON.parse(data).data.familys[+(app.getUrlPrama('no'))])
+            $('.uploader').attr('data-year', JSON.parse(data).data.poor.filingyear)
+            $('.uploader').attr('data-family', family.table_id)
             $('#name').html(JSON.parse(data).data.poor.name)
             $('#area').html(JSON.parse(data).data.poor.townname + '&nbsp;' + JSON.parse(data).data.poor.villagename)
             $('#familyname').html(family.name)
@@ -80,7 +73,7 @@ $(() => {
             } else {
                 $('.photo').append(
                     `<div class="unit flex">
-                        <img src="http://120.76.203.56:8002${family.icon}">
+                        <img src="${family.icon}">
                     </div>`
                 )
             }
