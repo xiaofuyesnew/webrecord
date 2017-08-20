@@ -15,7 +15,39 @@
  */
 
 //document注入弹出框
-var files = []
+var files = [],
+    limit = 0,
+    remark = 1
+
+var showMsg = (msg) => {
+    $('.msg').html(msg).show(() => {
+        $('.msg').css({'opacity': '1'})
+        setTimeout(() => {
+            $('.msg').css({'opacity': '0'})
+        }, 2000)
+        setTimeout(() => {
+            $('.msg').hide()
+        }, 3000)
+    })
+}
+
+var getUrlPrama = (name) => {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i")
+    var r = window.location.search.substr(1).match(reg)
+    if (r != null) {
+        return decodeURI(r[2])
+        //unescape(r[2])
+    } 
+    return null
+}
+
+if (getUrlPrama('type') === '50' || '100' || '200' || '201' || '101' || '102' || '103' || '104' || '105' || '106' || '107' || '108' || '109') {
+    limit = 1
+}
+
+if (getUrlPrama('type') === '50' || '100' || '200' || '201') {
+    remark = 0
+}
 
 var popupBtn = () => {
     
@@ -94,16 +126,13 @@ var previewImg = (imgData) => {
 var win = function (r) {
     //alert(JSON.stringify(r))
     //alert(JSON.parse(r.response).url)
-    $('.remark').append(`<label class="rmkname"><img src="${JSON.parse(r.response).url}"></label><input class="rmkcontent" data-url="${JSON.parse(r.response).url}" type="text">`)
-    $('.btncell .info').html('上传完成，请填写备注！')
-    /*
-    $('.remark').append(`<label class="rmkname">${fileName}</label><input class="rmkcontent" data-url="${r.response.url}" type="text">`)
-
-    if (length !== index + 1) {
-        $('.btncell .info').html(`上传进度：${index}/${length}`)
+    if (limit === 1 && remark === 0) {
+        $('.remark').append(`<label class="rmkname"><img src="${JSON.parse(r.response).url}"></label><input class="rmkcontent" data-url="${JSON.parse(r.response).url}" type="hidden">`)
     } else {
-        $('.btncell .info').html('上传完成，请填写备注！')
-    }*/
+        $('.remark').append(`<label class="rmkname"><img src="${JSON.parse(r.response).url}"></label><input class="rmkcontent" data-url="${JSON.parse(r.response).url}" type="text">`)
+    }
+    
+    $('.btncell .info').html('上传完成，请填写备注！')
 }
 
 //上传失败
@@ -114,20 +143,20 @@ var fail = function (error) {
 var uploadImg = (files) => {
     
     for (var i = 0; i < files.length; i++) {
-    $('.btncell .info').html('正在上传，请稍等...')
-    var options = new FileUploadOptions(),
-        fileName = files[i].substr(files[i].lastIndexOf('/') + 1)
-    options.fileName = fileName
-    options.mimeType = 'image/*'
+        $('.btncell .info').html('正在上传，请稍等...')
+        var options = new FileUploadOptions(),
+            fileName = files[i].substr(files[i].lastIndexOf('/') + 1)
+        options.fileName = fileName
+        options.mimeType = 'image/*'
         
-    var params = {}
-    params.uid = localStorage.uid
-    params.username = localStorage.username
-    params.password = localStorage.password
-    options.params = params
+        var params = {}
+        params.uid = localStorage.uid
+        params.username = localStorage.username
+        params.password = localStorage.password
+        options.params = params
         
-    var ft = new FileTransfer()
-    ft.upload(files[i], encodeURI(`http://120.76.203.56:8002/api.php/Duty/uploadImg`), win, fail, options)
+        var ft = new FileTransfer()
+        ft.upload(files[i], encodeURI(`http://120.76.203.56:8002/api.php/Duty/uploadImg`), win, fail, options)
     
     }
 }
@@ -173,7 +202,11 @@ $(() => {
 
     //添加按钮点击绑定
     $('#picker').click(function () {
-        showBtn()
+        if (limit === 1 && files.length) {
+            showMsg('限制上传一张')
+        } else {
+            showBtn()
+        }
     })
 
     //预览删除点击绑定

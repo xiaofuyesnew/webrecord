@@ -24,6 +24,20 @@ $(() => {
                 return unescape(r[2])
             } 
             return null
+        },
+        showSingleImg: (pick, img) => {
+            //添加节点
+            $('body').append(`
+                <div id="${pick.substr(1)}Big" class="imgshow">
+                    <img src="${img}">
+                </div>
+            `)
+            $(pick).click(function () {
+                $(`${pick}Big`).show()
+            })
+            $('.imgshow').click(function () {
+                $(this).hide()
+            })
         }
     }
 
@@ -98,14 +112,16 @@ $(() => {
             
             if (JSON.parse(data).data.dutys[0].icon) {
                 $('.photo .unit').append(`
-                    <img src='${JSON.parse(data).data.dutys[0].icon}'>
+                    <img id="personal" src='${JSON.parse(data).data.dutys[0].icon}'>
                 `)
+                app.showSingleImg('#personal', JSON.parse(data).data.dutys[0].icon)
             }
 
             if (JSON.parse(data).data.dutys[0].photo) {
                 $('.photo .unit').append(`
-                    <img src='${JSON.parse(data).data.dutys[0].photo}'>
+                    <img id="together" src='${JSON.parse(data).data.dutys[0].photo}'>
                 `)
+                app.showSingleImg('#together', JSON.parse(data).data.dutys[0].icon)
             }
         }
     })

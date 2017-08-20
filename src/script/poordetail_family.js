@@ -24,6 +24,19 @@ $(() => {
                 return unescape(r[2])
             } 
             return null
+        },
+        showSingleImg: (pick, img) => {
+            //添加节点
+            $('body').append(`
+                <div id="${pick.substr(1)}Big" class="imgshow">
+                    <img src="${img}">
+                </div>`)
+            $(pick).click(function () {
+                $(`${pick}Big`).show()
+            })
+            $('.imgshow').click(function () {
+                $(this).hide()
+            })
         }
     }
 
@@ -73,9 +86,10 @@ $(() => {
             } else {
                 $('.photo').append(
                     `<div class="unit flex">
-                        <img src="${family.icon}">
+                        <img id="familyIcon" src="${family.icon}">
                     </div>`
                 )
+                app.showSingleImg('#familyIcon', family.icon)
             }
         }
     })
