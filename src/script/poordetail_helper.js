@@ -121,7 +121,7 @@ $(() => {
                 $('.photo .unit').append(`
                     <img id="together" src='${JSON.parse(data).data.dutys[0].photo}'>
                 `)
-                app.showSingleImg('#together', JSON.parse(data).data.dutys[0].icon)
+                app.showSingleImg('#together', JSON.parse(data).data.dutys[0].photo)
             }
         }
     })
