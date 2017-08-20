@@ -119,7 +119,7 @@ $(() => {
                     $('#industry').next().hide()
                 }
     
-                //享受政策资金清单汇总
+                //享受政策资金清单汇总 
                 for (var key in JSON.parse(data).data.moneyTotal) {
                     $('#totalmoney').append(`
                         <div class="unit">
