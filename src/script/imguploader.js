@@ -15,7 +15,39 @@
  */
 
 //document注入弹出框
-var files = []
+var files = [],
+    limit = 0,
+    remark = 1
+
+var showMsg = (msg) => {
+    $('.msg').html(msg).show(() => {
+        $('.msg').css({'opacity': '1'})
+        setTimeout(() => {
+            $('.msg').css({'opacity': '0'})
+        }, 2000)
+        setTimeout(() => {
+            $('.msg').hide()
+        }, 3000)
+    })
+}
+    
+var getUrlPrama = (name) => {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i")
+    var r = window.location.search.substr(1).match(reg)
+    if (r != null) {
+        return decodeURI(r[2])
+        //unescape(r[2])
+    } 
+    return null
+}
+    
+if (getUrlPrama('type') === '50' || '100' || '200' || '201' || '101' || '102' || '103' || '104' || '105' || '106' || '107' || '108' || '109') {
+    limit = 1
+}
+    
+if (getUrlPrama('type') === '50' || '100' || '200' || '201') {
+    remark = 0
+}
 
 var popupBtn = () => {
     
@@ -108,7 +140,8 @@ var win = function (r) {
 
 //上传失败
 var fail = function (error) {
-    alert(JSON.stringify(error))
+    //alert(JSON.stringify(error))
+    alert('上传失败，请重试！')
 }
 
 var uploadImg = (files) => {
