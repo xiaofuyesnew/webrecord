@@ -60,6 +60,7 @@ $(() => {
                         } else {
                             localStorage.setItem('checked', '0')
                         }
+                        localStorage.logout = '0'
                         app.lastLogin()
                         window.location = 'html/poorlist.html'
                     } else {
@@ -81,7 +82,9 @@ $(() => {
                 if (nowYear === +localStorage.lastYear) {
                     if (nowMonth === +localStorage.lastMonth) {
                         if ((nowDay - (+localStorage.lastDay)) < 7) {
-                            window.location = `html/poorlist.html`
+                            if (localStorage.logout !== '1') {
+                                window.location = `html/poorlist.html`
+                            }
                         }
                     }
                 }

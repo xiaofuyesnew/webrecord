@@ -102,6 +102,12 @@ $(() => {
                     $('.msg').hide()
                 }, 3000)
             })
+        },
+        logout: () => {
+            $('.u-logout').click(function () {
+                localStorage.logout = '1'
+                window.location = '../index.html?logout=1'
+            })
         }
     }
 
@@ -208,5 +214,6 @@ $(() => {
         })
     }
 
-    needLoad() 
+    needLoad()
+    app.logout()
 })

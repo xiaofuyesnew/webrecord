@@ -265,6 +265,9 @@
                     display: flex;
                     justify-content: space-around;
                     height: 200px;
+                    span {
+                        line-height: 200px;
+                    }
                     img {
                         width: 40%;
                     }
@@ -393,6 +396,12 @@
         margin: 40vw auto 0;
         width: 80vw;
         height: auto;
+    }
+    .quit{
+        position: fixed;
+        bottom: 0;
+        height: 20vw;
+        width: 100vw;
     }
 }
 
