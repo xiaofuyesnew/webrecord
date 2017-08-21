@@ -18,7 +18,7 @@
         text-indent: 5vw;
     }
     .uploader {
-        height: 60px;
+        height: 100%;
         width: calc(16vw - 10px);
         padding-right: 10px;
         float: right;
@@ -215,5 +215,29 @@
     }
     .content {
         font-size: 1.2rem;
+    }
+}
+
+
+.imgshow {
+    position: fixed;
+    display: none;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    img{
+        display: block;
+        margin: 40vw auto 0;
+        width: 80vw;
+        height: auto;
+    }
+    .quit{
+        position: fixed;
+        bottom: 0;
+        height: 20vw;
+        width: 100vw;
     }
 }

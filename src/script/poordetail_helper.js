@@ -24,6 +24,21 @@ $(() => {
                 return unescape(r[2])
             } 
             return null
+        },
+        showSingleImg: (pick, img) => {
+            //添加节点
+            $('body').append(`
+                <div id="${pick.substr(1)}Big" class="imgshow">
+                    <img src="${img}">
+                    <div class="quit"></div>
+                </div>
+            `)
+            $(pick).click(function () {
+                $(`${pick}Big`).show()
+            })
+            $('.quit').click(function () {
+                $('.imgshow').hide()
+            })
         }
     }
 
@@ -35,12 +50,12 @@ $(() => {
         trigger: '.uploader',
         title: '选择相册',
         wheels: [
-            {data: [{id: '1', value: '帮扶责任人个人照片-之前', mark: 1, type: 200}, {id: '2', value: '帮扶责任人个人照片-现在', mark: 2, type: 200}, {id: '3', value: '帮扶责任人与户主合照-之前', mark: 1, type: 201}, {id: '4', value: '帮扶责任人与户主合照-现在', mark: 2, type: 201}]}
+            {data: [{id: '1', value: '帮扶责任人个人照片', type: 200}, {id: '2', value: '帮扶责任人与户主合照', type: 201}]}
         ],
         callback: function (indexArr, data) {
             console.log(data)
             $('.uploader').html('')
-            window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=${data[0].type}&mark=${data[0].mark}&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
+            window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=${data[0].type}&mark=&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
         }
     })
 
@@ -83,7 +98,7 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://120.76.203.56:8002/api.php/Macro/poorDetail',
+        url: 'http://120.76.203.56:8002/api.php/Duty/poorDetail',
         type: 'POST',
         data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
@@ -98,14 +113,16 @@ $(() => {
             
             if (JSON.parse(data).data.dutys[0].icon) {
                 $('.photo .unit').append(`
-                    <img src='http://120.76.203.56:8002${JSON.parse(data).data.dutys[0].icon}'>
+                    <img id="personal" src='${JSON.parse(data).data.dutys[0].icon}'>
                 `)
+                app.showSingleImg('#personal', JSON.parse(data).data.dutys[0].icon)
             }
 
             if (JSON.parse(data).data.dutys[0].photo) {
                 $('.photo .unit').append(`
-                    <img src='http://120.76.203.56:8002${JSON.parse(data).data.dutys[0].photo}'>
+                    <img id="together" src='${JSON.parse(data).data.dutys[0].photo}'>
                 `)
+                app.showSingleImg('#together', JSON.parse(data).data.dutys[0].photo)
             }
         }
     })

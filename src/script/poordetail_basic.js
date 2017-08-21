@@ -24,6 +24,21 @@ $(() => {
                 return unescape(r[2])
             } 
             return null
+        },
+        showSingleImg: (pick, img) => {
+            //添加节点
+            $('body').append(`
+                <div id="${pick.substr(1)}Big" class="imgshow">
+                    <img src="${img}">
+                    <div class="quit"></div>
+                </div>
+            `)
+            $(pick).click(function () {
+                $(`${pick}Big`).show()
+            })
+            $('.quit').click(function () {
+                $('.imgshow').hide()
+            })
         }
     }
 
@@ -31,17 +46,8 @@ $(() => {
     app.setScreen()
     console.log(app.getUrlPrama('table_id'))
 
-    var typeSelect = new MobileSelect({
-        trigger: '.uploader',
-        title: '选择相册',
-        wheels: [
-            {data: [{id: '1', value: '户主照片-之前', mark: 1, type: 50}, {id: '2', value: '户主照片-现在', mark: 2, type: 50}]}
-        ],
-        callback: function (indexArr, data) {
-            console.log(data)
-            $('.uploader').html('')
-            window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=${data[0].type}&mark=${data[0].mark}&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
-        }
+    $('.uploader').click(function () {
+        window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=50&mark=&filingyear=${$('.uploader').attr('data-year')}&title=户主照片`
     })
 
     //生成列表链接
@@ -82,7 +88,7 @@ $(() => {
     })
 
     $.ajax({
-        url: 'http://120.76.203.56:8002/api.php/Macro/poorDetail',
+        url: 'http://120.76.203.56:8002/api.php/Duty/poorDetail',
         type: 'POST',
         data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
@@ -112,9 +118,10 @@ $(() => {
             } else {
                 $('.photo').append(
                     `<div class="unit flex">
-                        <img src="http://120.76.203.56:8002/${JSON.parse(data).data.poor.icon}">
+                        <img id="masterIcon" src="${JSON.parse(data).data.poor.icon}">
                     </div>`
                 )
+                app.showSingleImg('#masterIcon', JSON.parse(data).data.poor.icon)
             }
         }
     })

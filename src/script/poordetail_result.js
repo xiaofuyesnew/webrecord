@@ -25,9 +25,29 @@ $(() => {
                     return unescape(r[2])
                 } 
                 return null
+            },
+            imgPrev: (imglist) => {
+                $('.imgmulshow .left').click(function () {
+                    if (+$('.imgmulshow img').attr('data-now') - 1 >= 0) {
+                        $('.imgmulshow img').attr('src', imglist[+$('.imgmulshow img').attr('data-now') - 1])
+                        $('.imgmulshow img').attr('data-now', +$('.imgmulshow img').attr('data-now') - 1)
+                    } else {
+                        app.showMsg('前面没有图片')
+                    }
+                })
+            },
+            imgNext: (imglist) => {
+                $('.imgmulshow .right').click(function () {
+                    if (+$('.imgmulshow img').attr('data-now') + 1 < imglist.length) {
+                        $('.imgmulshow img').attr('src', imglist[+$('.imgmulshow img').attr('data-now') + 1])
+                        $('.imgmulshow img').attr('data-now', +$('.imgmulshow img').attr('data-now') + 1)
+                    } else {
+                        app.showMsg('后面没有图片')
+                    }
+                })
             }
         }
-    
+        
         //调用方法
         app.setScreen()
         console.log(app.getUrlPrama('table_id'))
@@ -76,6 +96,8 @@ $(() => {
             type: 'POST',
             data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
             success: (data) => {
+
+                $('.uploader').attr('data-year', JSON.parse(data).data.poor.filingyear)
                 console.log(JSON.parse(data))
     
                 //基本信息
@@ -84,11 +106,12 @@ $(() => {
     
                 //产业扶贫或者政策兜底
                 if (JSON.parse(data).data.industrys) {
-                    dataList.push({id: '1', value: '产业扶贫-之前', mark: 1, type: 30}, {id: '2', value: '产业扶贫-现在', mark: 2, type: 30})
+                    //dataList.push({id: '1', value: '产业扶贫-之前', mark: 1, type: 30}, {id: '2', value: '产业扶贫-现在', mark: 2, type: 30})
                 
                     $('#method').html('产业扶贫')
     
                     for (var i = 0; i < JSON.parse(data).data.industrys.length; i++) {
+                        dataList.push({value: `${JSON.parse(data).data.industrys[i].industry.type_name}-之前`, mark: 1, type: 30, indId: `${JSON.parse(data).data.industrys[i].id}`}, {value: `${JSON.parse(data).data.industrys[i].industry.type_name}-之后`, mark: 2, type: 30, indId: `${JSON.parse(data).data.industrys[i].id}`})
                         $('#industry').next().append(`
                             <div class="list listcont">
                                 <div class="unit">
@@ -101,16 +124,50 @@ $(() => {
                                 </div>
                             </div>
                         `)
-    
-                        if (JSON.parse(data).data.industrys[i].images1 && JSON.parse(data).data.industrys[i].images2) {
-                            $('#industry').next().append(`
-                                <div class="list listcont">
-                                    <div class="unit flex">
-                                        <img src="http://120.76.203.56:8002${JSON.parse(data).data.industrys[i].images1[0].picture}">
-                                        <img src="http://120.76.203.56:8002${JSON.parse(data).data.industrys[i].images2[0].picture}">
+                        
+                        if (JSON.parse(data).data.industrys[i].images1.length) {
+                            var imgList1 = []
+                            for (var j = 0; j < JSON.parse(data).data.industrys[i].images1.length; j++) {
+                                imgList1.push(JSON.parse(data).data.industrys[i].images1[j].picture)
+                            }
+                            //console.log(imgList1)
+                            if (JSON.parse(data).data.industrys[i].images2.length) {
+                                var imgList2 = []
+                                for (var j = 0; j < JSON.parse(data).data.industrys[i].images2.length; j++) {
+                                    imgList2.push(JSON.parse(data).data.industrys[i].images2[j].picture)
+                                }
+                                //console.log(imgList1)
+                                $('#industry').next().append(`
+                                    <div class="list listcont">
+                                        <div class="unit flex">
+                                            <img data-list=${JSON.stringify(imgList1)} src="${JSON.parse(data).data.industrys[i].images1[0].picture}">
+                                            <img data-list=${JSON.stringify(imgList2)} src="${JSON.parse(data).data.industrys[i].images2[0].picture}">
+                                        </div>
                                     </div>
-                                </div>
-                            `)
+                                `)
+                            } else {
+                                $('#industry').next().append(`
+                                    <div class="list listcont">
+                                        <div class="unit flex">
+                                            <img data-list=${JSON.stringify(imgList1)} src="${JSON.parse(data).data.industrys[i].images1[0].picture}">
+                                        </div>
+                                    </div>
+                                `)
+                            }
+                        } else {
+                            if (JSON.parse(data).data.industrys[i].images2.length) {
+                                var imgList2 = []
+                                for (var j = 0; j < JSON.parse(data).data.industrys[i].images2.length; j++) {
+                                    imgList2.push(JSON.parse(data).data.industrys[i].images2.picture)
+                                }
+                                $('#industry').next().append(`
+                                    <div class="list listcont">
+                                        <div class="unit flex">
+                                            <img data-list=${JSON.stringify(imgList2)} src="${JSON.parse(data).data.industrys[i].images2[0].picture}">
+                                        </div>
+                                    </div>
+                                `)
+                            }
                         }
                     }
                 } else {
@@ -119,21 +176,21 @@ $(() => {
                     $('#industry').next().hide()
                 }
     
-                //享受政策资金清单汇总
-                for (var i = 0; i < JSON.parse(data).data.years.length; i++) {
+                //享受政策资金清单汇总 
+                for (var key in JSON.parse(data).data.moneyTotal) {
                     $('#totalmoney').append(`
                         <div class="unit">
-                            ${JSON.parse(data).data.years[i].year}年：${JSON.parse(data).data.years[i].sum}元
+                            ${key}年：${JSON.parse(data).data.moneyTotal[key]}元
                         </div>
                     `)
                 }
                 //享受政策资金清单
-                for (var i = 0; i < JSON.parse(data).data.shares.length; i++) {
+                for (var i = 0; i < JSON.parse(data).data.moneys.length; i++) {
                     $('#sharelist').next().append(`
                         <div class="list rcd">
-                            <div class="unit"><span class="title">资金名称：</span><span>${JSON.parse(data).data.shares[i].fund_name}</span></div>
-                            <div class="unit"><span class="title">发放年度：</span><span>${JSON.parse(data).data.shares[i].year}</span></div>
-                            <div class="unit"><span class="title">发放金额：</span><span>${JSON.parse(data).data.shares[i].grant_funds}元</span></div>
+                            <div class="unit"><span class="title">资金名称：</span><span>${JSON.parse(data).data.moneys[i].name}</span></div>
+                            <div class="unit"><span class="title">发放年度：</span><span>${JSON.parse(data).data.moneys[i].year}</span></div>
+                            <div class="unit"><span class="title">发放金额：</span><span>${JSON.parse(data).data.moneys[i].money}元</span></div>
                         </div>
                     `)
                 }
@@ -148,15 +205,48 @@ $(() => {
                     $('#r-loc').html(JSON.parse(data).data.poor.relocationsite)
                     $('#r-area').html(JSON.parse(data).data.poor.buildingarea)
     
-                    if (JSON.parse(data).data.condition3s_mark1.length && JSON.parse(data).data.condition3s_mark1.length) {
-                        $('#relocation').next().append(`
-                            <div class="list listcont">
-                                <div class="unit flex">
-                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark1[0].picture}">
-                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                    
+                    if (JSON.parse(data).data.condition31s_mark1.length) {
+                        var imgList31s1 = []
+                        for (var j = 0; j < JSON.parse(data).data.condition31s_mark1.length; j++) {
+                            imgList31s1.push(JSON.parse(data).data.condition31s_mark1[j].picture)
+                        }
+                        if (JSON.parse(data).data.condition31s_mark2.length) {
+                            var imgList31s2 = []
+                            for (var j = 0; j < JSON.parse(data).data.condition31s_mark2.length; j++) {
+                                imgList31s2.push(JSON.parse(data).data.condition31s_mark2[j].picture)
+                            }
+                            $('#relocation').next().append(`
+                                <div class="list listcont">
+                                    <div class="unit flex">
+                                    <img data-list=${JSON.stringify(imgList31s1)} src="${JSON.parse(data).data.condition31s_mark1[0].picture}">
+                                    <img data-list=${JSON.stringify(imgList31s2)} src="${JSON.parse(data).data.condition31s_mark2[0].picture}">
+                                    </div>
                                 </div>
-                            </div>
-                        `)  
+                            `)
+                        } else {
+                            $('#relocation').next().append(`
+                                <div class="list listcont">
+                                    <div class="unit flex">
+                                    <img data-list=${JSON.stringify(imgList31s1)} src="${JSON.parse(data).data.condition31s_mark1[0].picture}">
+                                    </div>
+                                </div>
+                            `)
+                        }
+                    } else {
+                        if (JSON.parse(data).data.condition31s_mark2.length) {
+                            var imgList31s2 = []
+                            for (var j = 0; j < JSON.parse(data).data.condition31s_mark2.length; j++) {
+                                imgList31s2.push(JSON.parse(data).data.condition31s_mark2[j].picture)
+                            }
+                            $('#relocation').next().append(`
+                                <div class="list listcont">
+                                    <div class="unit flex">
+                                    <img data-list=${JSON.stringify(imgList31s2)} src="${JSON.parse(data).data.condition31s_mark2[0].picture}">
+                                    </div>
+                                </div>
+                            `)
+                        }
                     }
                 } else {
                     $('#relocation').next().hide()
@@ -169,15 +259,47 @@ $(() => {
                     $('#dh-level').html(JSON.parse(data).data.poor.dangerouslevel)
                     $('#dh-money').html(JSON.parse(data).data.poor.subsidymoney)
                     
-                    if (JSON.parse(data).data.condition3s_mark1.length && JSON.parse(data).data.condition3s_mark1.length) {
-                        $('#dangerhouse').next().append(`
-                            <div class="list listcont">
-                                <div class="unit flex">
-                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark1[0].picture}">
-                                    <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition3s_mark2[0].picture}">
+                    if (JSON.parse(data).data.condition32s_mark1.length) {
+                        var imgList32s1 = []
+                        for (var j = 0; j < JSON.parse(data).data.condition32s_mark1.length; j++) {
+                            imgList32s1.push(JSON.parse(data).data.condition32s_mark1[j].picture)
+                        }
+                        if (JSON.parse(data).data.condition32s_mark2.length) {
+                            var imgList32s2 = []
+                            for (var j = 0; j < JSON.parse(data).data.condition32s_mark2.length; j++) {
+                                imgList32s2.push(JSON.parse(data).data.condition32s_mark2[j].picture)
+                            }
+                            $('#dangerhouse').next().append(`
+                                <div class="list listcont">
+                                    <div class="unit flex">
+                                    <img data-list=${JSON.stringify(imgList32s1)} src="${JSON.parse(data).data.condition32s_mark1[0].picture}">
+                                    <img data-list=${JSON.stringify(imgList32s2)} src="${JSON.parse(data).data.condition32s_mark2[0].picture}">
+                                    </div>
                                 </div>
-                            </div>
-                        `)  
+                            `)
+                        } else {
+                            $('#dangerhouse').next().append(`
+                                <div class="list listcont">
+                                    <div class="unit flex">
+                                    <img data-list=${JSON.stringify(imgList32s1)} src="${JSON.parse(data).data.condition32s_mark1[0].picture}">
+                                    </div>
+                                </div>
+                            `)
+                        }
+                    } else {
+                        if (JSON.parse(data).data.condition32s_mark2.length) {
+                            var imgList32s2 = []
+                            for (var j = 0; j < JSON.parse(data).data.condition32s_mark2.length; j++) {
+                                imgList32s2.push(JSON.parse(data).data.condition32s_mark2[j].picture)
+                            }
+                            $('#dangerhouse').next().append(`
+                                <div class="list listcont">
+                                    <div class="unit flex">
+                                    <img data-list=${JSON.stringify(imgList32s2)} src="${JSON.parse(data).data.condition32s_mark2[0].picture}">
+                                    </div>
+                                </div>
+                            `)
+                        }
                     }
                 }
                 
@@ -188,15 +310,47 @@ $(() => {
                 $('#trans').html(JSON.parse(data).data.poor.transferredincome)
                 $('#total').html(JSON.parse(data).data.poor.totalincome)
                 
-                if (JSON.parse(data).data.condition33s_mark1.length && JSON.parse(data).data.condition33s_mark1.length) {
-                    $('#familyincome').next().append(`
-                        <div class="list listcont">
-                            <div class="unit flex">
-                                <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition33s_mark1[0].picture}">
-                                <img src="http://120.76.203.56:8002${JSON.parse(data).data.condition33s_mark2[0].picture}">
+                if (JSON.parse(data).data.condition33s_mark1.length) {
+                    var imgList33s1 = []
+                    for (var j = 0; j < JSON.parse(data).data.condition33s_mark1.length; j++) {
+                        imgList33s1.push(JSON.parse(data).data.condition33s_mark1[j].picture)
+                    }
+                    if (JSON.parse(data).data.condition33s_mark2.length) {
+                        var imgList33s2 = []
+                        for (var j = 0; j < JSON.parse(data).data.condition33s_mark2.length; j++) {
+                            imgList33s2.push(JSON.parse(data).data.condition33s_mark2[j].picture)
+                        }
+                        $('#familyincome').next().append(`
+                            <div class="list listcont">
+                                <div class="unit flex">
+                                <img data-list=${JSON.stringify(imgList33s1)} src="${JSON.parse(data).data.condition33s_mark1[0].picture}">
+                                <img data-list=${JSON.stringify(imgList33s2)} src="${JSON.parse(data).data.condition33s_mark2[0].picture}">
+                                </div>
                             </div>
-                        </div>
-                    `)  
+                        `)
+                    } else {
+                        $('#familyincome').next().append(`
+                            <div class="list listcont">
+                                <div class="unit flex">
+                                <img data-list=${JSON.stringify(imgList33s1)} src="${JSON.parse(data).data.condition33s_mark1[0].picture}">
+                                </div>
+                            </div>
+                        `)
+                    }
+                } else {
+                    if (JSON.parse(data).data.condition33s_mark2.length) {
+                        var imgList33s2 = []
+                        for (var j = 0; j < JSON.parse(data).data.condition33s_mark2.length; j++) {
+                            imgList33s2.push(JSON.parse(data).data.condition33s_mark2[j].picture)
+                        }
+                        $('#familyincome').next().append(`
+                            <div class="list listcont">
+                                <div class="unit flex">
+                                <img data-list=${JSON.stringify(imgList33s2)} src="${JSON.parse(data).data.condition33s_mark2[0].picture}">
+                                </div>
+                            </div>
+                        `)
+                    }
                 }
 
                 dataList.push({id: '1', value: '家庭收入清单-之前', mark: 1, type: 33}, {id: '2', value: '家庭收入清单-现在', mark: 2, type: 33})
@@ -208,9 +362,36 @@ $(() => {
                         {data: dataList}
                     ],
                     callback: function (indexArr, data) {
-                        console.log(data)
+                        //console.log(data)
                         $('.uploader').html('')
-                        window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=${data[0].type}&mark=${data[0].mark}&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
+                        if (data[0].type !== 30) {
+                            window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=${data[0].type}&mark=${data[0].mark}&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
+                        } else {
+                            window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=${data[0].type}&mark=${data[0].mark}&indId=${data[0].indId}&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
+                        }
+                    }
+                })
+                
+                $('img').click(function () {
+                    var imgList
+                    if ($(this).attr('data-list')){
+                        $('.imgmulshow').remove()
+                        imgList = JSON.parse($(this).attr('data-list'))
+                        //console.log(imgList)
+                        $('body').append(`
+                            <div class="imgmulshow">
+                                <div class="left"></div>
+                                <div class="right"></div>
+                                <img data-now="0" src="${imgList[0]}">
+                                <div class="quit"></div>
+                            </div>
+                        `)
+                        $('.imgmulshow').show()
+                        $('.imgmulshow .quit').click(function () {
+                            $('.imgmulshow').hide()
+                        })
+                        app.imgNext(imgList)
+                        app.imgPrev(imgList)
                     }
                 })
             }
