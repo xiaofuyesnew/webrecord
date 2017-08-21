@@ -126,16 +126,13 @@ var previewImg = (imgData) => {
 var win = function (r) {
     //alert(JSON.stringify(r))
     //alert(JSON.parse(r.response).url)
-    $('.remark').append(`<label class="rmkname"><img src="${JSON.parse(r.response).url}"></label><input class="rmkcontent" data-url="${JSON.parse(r.response).url}" type="text">`)
-    $('.btncell .info').html('上传完成，请填写备注！')
-    /*
-    $('.remark').append(`<label class="rmkname">${fileName}</label><input class="rmkcontent" data-url="${r.response.url}" type="text">`)
-
-    if (length !== index + 1) {
-        $('.btncell .info').html(`上传进度：${index}/${length}`)
+    if (limit === 1 && remark === 0) {
+        $('.remark').append(`<label class="rmkname"><img src="${JSON.parse(r.response).url}"></label><input class="rmkcontent" data-url="${JSON.parse(r.response).url}" type="hidden">`)
     } else {
-        $('.btncell .info').html('上传完成，请填写备注！')
-    }*/
+        $('.remark').append(`<label class="rmkname"><img src="${JSON.parse(r.response).url}"></label><input class="rmkcontent" data-url="${JSON.parse(r.response).url}" type="text">`)
+    }
+    
+    $('.btncell .info').html('上传完成，请填写备注！')
 }
 
 //上传失败
