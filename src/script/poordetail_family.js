@@ -30,12 +30,13 @@ $(() => {
             $('body').append(`
                 <div id="${pick.substr(1)}Big" class="imgshow">
                     <img src="${img}">
+                    <div class="quit"></div>
                 </div>`)
             $(pick).click(function () {
                 $(`${pick}Big`).show()
             })
-            $('.imgshow').click(function () {
-                $(this).hide()
+            $('.quit').click(function () {
+                $('.imgshow').hide()
             })
         }
     }

@@ -137,7 +137,8 @@ var win = function (r) {
 
 //上传失败
 var fail = function (error) {
-    alert(JSON.stringify(error))
+    //alert(JSON.stringify(error))
+    alert('上传失败，请重试！')
 }
 
 var uploadImg = (files) => {
