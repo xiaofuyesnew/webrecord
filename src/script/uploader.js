@@ -1,24 +1,4 @@
 $(() => {
-    /*
-    document.addEventListener("deviceready", onDeviceReady, false)
-
-    function onDeviceReady() {
-        $('#picker').click(function () {
-            navigator.camera.getPicture(onSuccess, onFail, {})
-        })
-
-        function onSuccess(imageData) {
-            //var image = document.getElementById('myImage');
-            //image.src = "data:image/jpeg;base64," + imageData;
-            //alert(imageData)
-        }
-      
-        function onFail(message) {
-            alert(message)
-        }
-    }
-    */
-
 
     //创建根节点对象
     var app = {
