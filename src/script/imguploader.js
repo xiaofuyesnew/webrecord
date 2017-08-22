@@ -41,11 +41,11 @@ var getUrlPrama = (name) => {
     return null
 }
     
-if (getUrlPrama('type') === '50' || '100' || '200' || '201' || '101' || '102' || '103' || '104' || '105' || '106' || '107' || '108' || '109') {
+if (getUrlPrama('type') === '50' || getUrlPrama('type') === '100' || getUrlPrama('type') === '200' || getUrlPrama('type') === '201' || getUrlPrama('type') === '101' || getUrlPrama('type') === '102' || getUrlPrama('type') === '103' || getUrlPrama('type') === '104' || getUrlPrama('type') === '105' || getUrlPrama('type') === '106' || getUrlPrama('type') === '107' || getUrlPrama('type') === '108' || getUrlPrama('type') === '109') {
     limit = 1
 }
-    
-if (getUrlPrama('type') === '50' || '100' || '200' || '201') {
+
+if (getUrlPrama('type') === '50' || getUrlPrama('type') === '100' || getUrlPrama('type') === '200' || getUrlPrama('type') === '201') {
     remark = 0
 }
 
