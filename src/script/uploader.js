@@ -33,10 +33,10 @@ $(() => {
     //显示标题
     $('.m-title').html(app.getUrlPrama('title'))
 
-    var prama = '',
-        server = ''
-
     $('.u-add').click(function () {
+        var prama = '',
+            server = ''
+
         if (app.getUrlPrama('type') === '50') {
             
             prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=&icon=${$($('.rmkcontent')).attr('data-url')}`
@@ -74,6 +74,8 @@ $(() => {
             server = 'http://120.76.203.56:8002/api.php/Duty/saveImg'
         }
 
+        alert({'prama': prama, 'server': server})
+        
         for (var i = 0; i < $('.rmkcontent').length; i++) {
             console.log(`${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`)
             $.ajax({
