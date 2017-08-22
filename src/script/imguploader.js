@@ -132,7 +132,11 @@ var win = function (r) {
         $('.remark').append(`<label class="rmkname"><img src="${JSON.parse(r.response).url}"></label><input class="rmkcontent" data-url="${JSON.parse(r.response).url}" type="text">`)
     }
     
-    $('.btncell .info').html('上传完成，请填写备注！')
+    if (remark === 0) {
+        $('.btncell .info').html('上传完成，请保存！')
+    } else {
+        $('.btncell .info').html('上传完成，请填写备注！')
+    }
 }
 
 //上传失败
