@@ -41,31 +41,31 @@ $(() => {
             
             prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=&icon=${$($('.rmkcontent')).attr('data-url')}`
             
-            server = 'http://120.76.203.56/api.php/Duty/savePoorImg'
+            server = 'http://120.76.203.56:8002/api.php/Duty/savePoorImg'
             
         } else if (app.getUrlPrama('type') === '100') {
             
             prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&table_id=${app.getUrlPrama('table_id')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=`
                     
-            server = 'http://120.76.203.56/api.php/Duty/saveFamilyImg'
+            server = 'http://120.76.203.56:8002/api.php/Duty/saveFamilyImg'
             
         } else if (app.getUrlPrama('type') === '200') {
                     
             prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&table_id=${app.getUrlPrama('table_id')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=&icon=${$($('.rmkcontent')).attr('data-url')}`
                             
-            server = 'http://120.76.203.56/api.php/Duty/saveDutyIcon'
+            server = 'http://120.76.203.56:8002/api.php/Duty/saveDutyIcon'
 
         } else if (app.getUrlPrama('type') === '201') {
                     
             prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&table_id=${app.getUrlPrama('table_id')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=&photo=${$($('.rmkcontent')).attr('data-url')}`
                             
-            server = 'http://120.76.203.56/api.php/Duty/saveDutyPhoto'
+            server = 'http://120.76.203.56:8002/api.php/Duty/saveDutyPhoto'
 
         } else if (app.getUrlPrama('type') === '30') {
             
             prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&id=${app.getUrlPrama('indId')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=`
             
-            server = 'http://120.76.203.56/api.php/Duty/saveIndustryImg'
+            server = 'http://120.76.203.56:8002/api.php/Duty/saveIndustryImg'
             
         } else {
             
@@ -74,18 +74,17 @@ $(() => {
             server = 'http://120.76.203.56:8002/api.php/Duty/saveImg'
         }
 
-        alert(prama)
-        alert(server)
+        app.showMsg('开始上传，请稍等')
         
         for (var i = 0; i < $('.rmkcontent').length; i++) {
-            alert(`${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`)
+            //alert(`${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`)
             $.ajax({
                 url: server,
                 type: 'POST',
                 data: `${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`,
-                //async: false,
+                async: false,
                 success: (data) => {
-                    alert(data)
+                    //alert(data)
                     if ($('.rmkcontent').length === i + 1) {
                         app.showMsg('信息已经保存')
                         setTimeout(function () {
