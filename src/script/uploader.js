@@ -74,17 +74,18 @@ $(() => {
             server = 'http://120.76.203.56:8002/api.php/Duty/saveImg'
         }
 
-        alert({'prama': prama, 'server': server})
+        alert(prama)
+        alert(server)
         
         for (var i = 0; i < $('.rmkcontent').length; i++) {
-            console.log(`${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`)
+            alert(`${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`)
             $.ajax({
                 url: server,
                 type: 'POST',
                 data: `${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`,
-                async: false,
+                //async: false,
                 success: (data) => {
-                    //alert(data)
+                    alert(data)
                     if ($('.rmkcontent').length === i + 1) {
                         app.showMsg('信息已经保存')
                         setTimeout(function () {
