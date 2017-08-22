@@ -402,6 +402,9 @@
         bottom: 0;
         height: 20vw;
         width: 100vw;
+        background: url(../image/outpreview.png) no-repeat;
+        background-size: 32px;
+        background-position: calc(90vw - 32px) 50%;
     }
 }
 
@@ -445,5 +448,8 @@
         bottom: 0;
         height: 20vw;
         width: 100vw;
+        background: url(../image/outpreview.png) no-repeat;
+        background-size: 32px;
+        background-position: calc(90vw - 32px) 50%;
     }
 }
