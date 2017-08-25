@@ -55,7 +55,7 @@ $(() => {
         callback: function (indexArr, data) {
             console.log(data)
             $('.uploader').html('')
-            window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&type=${data[0].type}&mark=&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
+            window.location = `uploader.html?familyid=${app.getUrlPrama('table_id')}&table_id=${$('.uploader').attr('data-id')}&type=${data[0].type}&mark=&filingyear=${$('.uploader').attr('data-year')}&title=${data[0].value}`
         }
     })
 
@@ -103,7 +103,8 @@ $(() => {
         data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}`,
         success: (data) => {
             console.log(JSON.parse(data).data)
-
+            $('.uploader').attr('data-year', JSON.parse(data).data.dutys[0].filingyear)
+            $('.uploader').attr('data-id', JSON.parse(data).data.dutys[0].table_id)
             $('#name').html(JSON.parse(data).data.poor.name)
             $('#area').html(JSON.parse(data).data.poor.townname + '&nbsp;' + JSON.parse(data).data.poor.villagename)
             $('#dutyname').html(JSON.parse(data).data.dutys[0].name)
