@@ -208,7 +208,11 @@ $(() => {
 
     //添加按钮点击绑定
     $('#picker').click(function () {
-        showBtn()
+        if (limit === 1 && files.length) {
+            showMsg('限制上传一张')
+        } else {
+            showBtn()
+        }
     })
 
     //预览删除点击绑定
