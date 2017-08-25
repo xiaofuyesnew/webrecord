@@ -33,49 +33,52 @@ $(() => {
         //显示标题
         $('.m-title').html(app.getUrlPrama('title'))
     
-        var prama = '',
-            server = ''
-    
         $('.u-add').click(function () {
+            var prama = '',
+                server = ''
+    
             if (app.getUrlPrama('type') === '50') {
                 
+                console.log(app.getUrlPrama('type'))
                 prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=&icon=${$($('.rmkcontent')).attr('data-url')}`
                 
                 server = 'http://120.76.203.56:8002/api.php/Duty/savePoorImg'
                 
             } else if (app.getUrlPrama('type') === '100') {
-                
-                prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&table_id=${app.getUrlPrama('table_id')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=`
+                console.log(app.getUrlPrama('type'))
+                prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&table_id=${app.getUrlPrama('table_id')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=&icon=${$($('.rmkcontent')).attr('data-url')}`
                         
                 server = 'http://120.76.203.56:8002/api.php/Duty/saveFamilyImg'
                 
             } else if (app.getUrlPrama('type') === '200') {
-                        
+                console.log(app.getUrlPrama('type'))
                 prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&table_id=${app.getUrlPrama('table_id')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=&icon=${$($('.rmkcontent')).attr('data-url')}`
                                 
                 server = 'http://120.76.203.56:8002/api.php/Duty/saveDutyIcon'
     
             } else if (app.getUrlPrama('type') === '201') {
-                        
+                console.log(app.getUrlPrama('type'))
                 prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&table_id=${app.getUrlPrama('table_id')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=&photo=${$($('.rmkcontent')).attr('data-url')}`
                                 
                 server = 'http://120.76.203.56:8002/api.php/Duty/saveDutyPhoto'
     
             } else if (app.getUrlPrama('type') === '30') {
-                
+                console.log(app.getUrlPrama('type'))
                 prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&id=${app.getUrlPrama('indId')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=`
                 
                 server = 'http://120.76.203.56:8002/api.php/Duty/saveIndustryImg'
                 
             } else {
-                
+                console.log(app.getUrlPrama('type'))
                 prama = `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&familyid=${app.getUrlPrama('familyid')}&type=${app.getUrlPrama('type')}&mark=${app.getUrlPrama('mark')}&filingyear=${app.getUrlPrama('filingyear')}&sorder=`
                 
                 server = 'http://120.76.203.56:8002/api.php/Duty/saveImg'
             }
     
+            app.showMsg('开始上传，请稍等')
+            
             for (var i = 0; i < $('.rmkcontent').length; i++) {
-                console.log(`${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`)
+                //alert(`${prama}&picture=${$($('.rmkcontent')[i]).attr('data-url')}&remark=${$($('.rmkcontent')[i]).val()}`)
                 $.ajax({
                     url: server,
                     type: 'POST',
