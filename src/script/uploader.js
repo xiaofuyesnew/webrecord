@@ -89,7 +89,7 @@ $(() => {
                     if ($('.rmkcontent').length === i + 1) {
                         app.showMsg('信息已经保存')
                         setTimeout(function () {
-                            window.history.go(-1)
+                            window.history.back()
                         }, 3000)
                     }
                 }
