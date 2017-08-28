@@ -63,7 +63,7 @@ $(() => {
     $('#condition').attr('href', `poordetail_condition.html?table_id=${app.getUrlPrama('table_id')}`)
     $('#basic').attr('href', `poordetail_basic.html?table_id=${app.getUrlPrama('table_id')}`)
     $('#result').attr('href', `poordetail_result.html?table_id=${app.getUrlPrama('table_id')}`)
-    $('#record').attr('href', `poordetail_record.html?table_id=${app.getUrlPrama('table_id')}`)
+    $('#record').attr('href', `poordetail_record_true.html?table_id=${app.getUrlPrama('table_id')}`)
     $('#punchlist').attr('href', `punchlist.html?table_id=${app.getUrlPrama('table_id')}`)
 
 

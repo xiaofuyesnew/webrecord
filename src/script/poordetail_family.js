@@ -74,12 +74,17 @@ $(() => {
             $('#area').html(JSON.parse(data).data.poor.townname + '&nbsp;' + JSON.parse(data).data.poor.villagename)
             $('#familyname').html(family.name)
             $('#sex').html(family.sex)
+            $('#idnumber').html(family.idnumber)
             $('#birthday').html(family.birthday)
             $('#relation').html(family.relationship)
             $('#education').html(family.educationdegree)
             $('#school').html(family.studenstatus)
-            $('#skill').html(family.worksituation)
+            $('#worksituation').html(family.worksituation)
+            $('#workingmonths').html(family.workingmonths)
+            $('#workplace').html(family.workplace)
+            $('#laborcondition').html(family.laborcondition)
             $('#health').html(family.healthcondition)
+            $('#marraycondition').html(family.marraycondition)
             
 
             if (!family.icon) {

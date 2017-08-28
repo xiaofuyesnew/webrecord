@@ -103,6 +103,15 @@ $(() => {
             $('#homeaddress').html(JSON.parse(data).data.poor.homeaddress)
             $('#povertyattribute').html(JSON.parse(data).data.poor.povertyattribute)
             $('#mainpovertyreason').html(JSON.parse(data).data.poor.mainpovertyreason)
+            $('#otherpovertyreasons').html(JSON.parse(data).data.poor.otherpovertyreasons)
+            $('#redyellowcard').html(JSON.parse(data).data.poor.redyellowcard)
+            $('#familysize').html(JSON.parse(data).data.poor.familysize)
+            $('#backpoor').html(JSON.parse(data).data.poor.backpoor)
+            $('#backpoorreason').html(JSON.parse(data).data.poor.backpoorreason)
+            $('#isoupoor').html(JSON.parse(data).data.poor.isoupoor)
+            $('#outpooryear').html(JSON.parse(data).data.poor.outpooryear)
+            $('#ishardpoor').html(JSON.parse(data).data.poor.ishardpoor)
+            
 
             if (JSON.parse(data).data.familys.length === 0) {
                 $('.family').html('<div class="unit nodata">暂无家庭成员信息</div>')
