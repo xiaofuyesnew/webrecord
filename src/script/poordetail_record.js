@@ -204,4 +204,8 @@ $(() => {
 
     getRecordList()
     needLoad('', '')
+
+    if ($('.u-back').attr('data-cer') === '1') {
+        $('.u-back').attr('href', `poordetail_helper.html?table_id=${app.getUrlPrama('table_id')}`)
+    }
 })

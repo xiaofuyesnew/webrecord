@@ -269,6 +269,8 @@ $(() => {
             }
 
             //必备生活用品
+            $('#isfullcondition1').html(`<span class="title">基本生活用品是否齐全：</span>${JSON.parse(data).data.poor2.isfullcondition1}；`)
+
             if (JSON.parse(data).data.condition1_1s.length) {
                 $('#basicItem').append(`
                     <div class="unit flex">
@@ -351,6 +353,10 @@ $(() => {
             }
 
             //用电情况
+            $('#usepower').html(`<span class="title">已通生产用电：</span>${JSON.parse(data).data.poor.isproductuseelectr}；<span class="title">已通生活用电：</span>${JSON.parse(data).data.poor.islifeuseelectr}；`)
+
+            $('#usepowerst').html(`<span class="title">电压稳定：</span>${JSON.parse(data).data.poor.isstableelectr}；`)
+
             if (JSON.parse(data).data.condition5s_mark1.length) {
                 var imgList5s1 = []
                 for (var j = 0; j < JSON.parse(data).data.condition5s_mark1.length; j++) {
@@ -389,6 +395,10 @@ $(() => {
             }
 
             //交通状况
+            $('#dismainroad').html(`<span class="title">到村主干路的距离是：</span>${JSON.parse(data).data.poor.dismainroad}；`)
+            
+            $('#roadtype').html(`<span class="title">道路类型：</span>${JSON.parse(data).data.poor.roadtype}；`)
+
             if (JSON.parse(data).data.condition6s_mark1.length) {
                 var imgList6s1 = []
                 for (var j = 0; j < JSON.parse(data).data.condition6s_mark1.length; j++) {
@@ -427,6 +437,8 @@ $(() => {
             }
 
             //教育保障
+            $('#isinschool').html(`<span class="title">是否有在校生：</span>${JSON.parse(data).data.poor2.isinschool}；<span class="title">在校生人数：</span>${JSON.parse(data).data.poor2.numinschool}人；`)
+
             if (JSON.parse(data).data.condition7s_mark1.length) {
                 var imgList7s1 = []
                 for (var j = 0; j < JSON.parse(data).data.condition7s_mark1.length; j++) {
@@ -465,6 +477,10 @@ $(() => {
             }
 
             //医疗保障
+            $('#newfarm').html(`<span class="title">新农合，</span>参加：${JSON.parse(data).data.poor2.newfarm}人，未参加：${JSON.parse(data).data.poor2.notnewfarm}人；`)
+
+            $('#newfarmdetail').html(`<span class="title">参合人员，</span>政府资助：${JSON.parse(data).data.poor2.govhelp}人，自费：${JSON.parse(data).data.poor2.selfhelp}人；`)
+
             if (JSON.parse(data).data.condition8s_mark1.length) {
                 var imgList8s1 = []
                 for (var j = 0; j < JSON.parse(data).data.condition8s_mark1.length; j++) {
@@ -503,6 +519,10 @@ $(() => {
             }
 
             //养老保障
+            $('#joinoldinsurance').html(`<span class="title">养老保险，</span>参加：${JSON.parse(data).data.poor2.joinoldinsurance}人，未参加：${JSON.parse(data).data.poor2.notbuyinsurance}人；`)
+            
+            $('#insurancedetail').html(`<span class="title">参保人员，</span>正在缴费：${JSON.parse(data).data.poor2.payinginsurance}人，正在享受：${JSON.parse(data).data.poor2.sharedeal}人；`)
+
             if (JSON.parse(data).data.condition9s_mark1.length) {
                 var imgList9s1 = []
                 for (var j = 0; j < JSON.parse(data).data.condition9s_mark1.length; j++) {
@@ -579,6 +599,8 @@ $(() => {
             }
 
             //广播保障
+            $('#istv').html(`<span class="title">广播电视入户：</span>${JSON.parse(data).data.poor2.istv}；`)
+
             if (JSON.parse(data).data.condition11s_mark1.length) {
                 var imgList11s1 = []
                 for (var j = 0; j < JSON.parse(data).data.condition11s_mark1.length; j++) {
@@ -617,6 +639,8 @@ $(() => {
             }
 
             //信号保障
+            $('#isradio').html(`<span class="title">通讯信号覆盖：</span>${JSON.parse(data).data.poor2.isradio}；`)
+
             if (JSON.parse(data).data.condition12s_mark1.length) {
                 var imgList12s1 = []
                 for (var j = 0; j < JSON.parse(data).data.condition12s_mark1.length; j++) {
