@@ -49,7 +49,8 @@ gulp.task('img:dev', () => {
 gulp.task('sass:dev', () => {
     return setTimeout(() => {
         gulp.src('./src/style/sass/*.scss')
-            .pipe(sass().on('error', sass.logError))
+            .pipe(sass({ outputStyle: 'compressed' })
+            .on('error', sass.logError))
             .pipe(gulp.dest('./dev/css'))
             .pipe(reload({ stream: true }))
     }, 500) 
@@ -66,18 +67,27 @@ gulp.task('js:dev', () => {
         .pipe(babel({
             presets: ['es2015', 'stage-3']
         }))
+        .pipe(uglify())
         .pipe(gulp.dest('./dev/js'))
         .pipe(reload({ stream: true }))
 })
 
 gulp.task('index:dev', () => {
     return gulp.src('./src/html/index.html')
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            removeComments: true
+        }))
         .pipe(gulp.dest('./dev'))
         .pipe(reload({ stream: true }))
 })
 
 gulp.task('html:dev', () => {
     return gulp.src(['./src/html/*.html', '!./src/html/index.html'])
+        .pipe(htmlmin({
+            collapseWhitespace: true,
+            removeComments: true
+        }))
         .pipe(gulp.dest('./dev/html'))
         .pipe(reload({ stream: true }))
 })
