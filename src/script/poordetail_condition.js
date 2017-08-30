@@ -51,8 +51,8 @@ $(() => {
         title: '选择相册',
         wheels: [
             {data: [
-                {id: '1', value: '兜底保障全覆盖-之前', mark: 1, type: 2}, 
-                {id: '2', value: '兜底保障全覆盖-现在', mark: 2, type: 2}, 
+                //{id: '1', value: '兜底保障全覆盖-之前', mark: 1, type: 2}, 
+                //{id: '2', value: '兜底保障全覆盖-现在', mark: 2, type: 2}, 
                 {id: '3', value: '家庭住房状况-之前', mark: 1, type: 3}, 
                 {id: '4', value: '家庭住房状况-现在', mark: 2, type: 3}, 
                 {id: '5', value: '家庭饮水状况-之前', mark: 1, type: 4}, 
@@ -147,7 +147,7 @@ $(() => {
             $('#area').html(JSON.parse(data).data.poor.townname + '&nbsp;' + JSON.parse(data).data.poor.villagename)
 
             //政策全覆盖
-            if (JSON.parse(data).data.condition2s_mark1.length) {
+            /*if (JSON.parse(data).data.condition2s_mark1.length) {
                 var imgList2s1 = []
                 for (var j = 0; j < JSON.parse(data).data.condition2s_mark1.length; j++) {
                     imgList2s1.push(JSON.parse(data).data.condition2s_mark1[j].picture)
@@ -182,7 +182,7 @@ $(() => {
                         </div>
                     `)
                 }
-            }
+            }*/
 
             //住房情况
             if (JSON.parse(data).data.poor.isdangeroushouse === "是") {
