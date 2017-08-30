@@ -194,14 +194,14 @@ $(() => {
                         </div>
                     `)
                 }
-                //异地搬迁或者危房改造
+                //易地搬迁或者危房改造
                 if (JSON.parse(data).data.poor.relocationsite) {
                     $('#dangerhouse').hide()
                     $('#dangerhouse').next().hide()
                     
-                    dataList.push({id: '3', value: '异地搬迁-之前', mark: 1, type: 31}, {id: '4', value: '异地搬迁-现在', mark: 2, type: 31})
+                    dataList.push({id: '3', value: '易地搬迁-之前', mark: 1, type: 31}, {id: '4', value: '易地搬迁-现在', mark: 2, type: 31})
 
-                    //异地搬迁
+                    //易地搬迁
                     $('#r-loc').html(JSON.parse(data).data.poor.relocationsite)
                     $('#r-area').html(JSON.parse(data).data.poor.buildingarea)
     
