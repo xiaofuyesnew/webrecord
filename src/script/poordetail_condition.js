@@ -63,7 +63,7 @@ $(() => {
                 {id: '10', value: '必备生活用品-电饭煲', type: 104}, 
                 {id: '11', value: '必备生活用品-电视机', type: 105}, 
                 {id: '12', value: '必备生活用品-电风扇', type: 106}, 
-                {id: '13', value: '必备生活用品-衣柜', type: 107}, 
+                {id: '13', value: '必备生活用品-柜', type: 107}, 
                 {id: '14', value: '必备生活用品-其他', type: 108}, 
                 {id: '15', value: '必备生活用品-床', type: 109}, 
                 {id: '16', value: '家庭用电状况-之前', mark: 1, type: 5}, 
@@ -328,7 +328,7 @@ $(() => {
             if (JSON.parse(data).data.condition1_7s.length) {
                 $('#basicItem').append(`
                     <div class="unit flex">
-                        <span>衣柜</span>
+                        <span>柜</span>
                         <img src="${JSON.parse(data).data.condition1_7s[0].picture}">
                     </div>
                 `)
