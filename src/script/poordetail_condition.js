@@ -639,7 +639,7 @@ $(() => {
             }
 
             //信号保障
-            $('#isradio').html(`<span class="title">通讯信号覆盖：</span>${JSON.parse(data).data.poor2.isradio}；`)
+            $('#isradio').html(`<span class="title">通讯信号覆盖：</span>${JSON.parse(data).data.poor2.isradio}；${`${JSON.parse(data).data.poor2.isradio}` === '是'  ? `<span class="title">信号是否稳定：</span>${JSON.parse(data).data.poor2.isstate}；`: '' }`)
 
             if (JSON.parse(data).data.condition12s_mark1.length) {
                 var imgList12s1 = []
