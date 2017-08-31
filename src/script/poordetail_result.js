@@ -104,8 +104,7 @@ $(() => {
                 $('#name').html(JSON.parse(data).data.poor.name)
                 $('#area').html(JSON.parse(data).data.poor.townname + '&nbsp;' + JSON.parse(data).data.poor.villagename)
     
-                //帮扶措施
-                if (JSON.parse(data).data.industrys) {
+                // 政策性资金清单
                     //dataList.push({id: '1', value: '产业扶贫-之前', mark: 1, type: 30}, {id: '2', value: '产业扶贫-现在', mark: 2, type: 30})
                 
                     $('#method').html(`${JSON.parse(data).data.poor2.help_measure}`)
@@ -170,17 +169,13 @@ $(() => {
                             }
                         }
                     }
-                } else {
-                    $('#method').html('政策兜底')
-                    $('#industry').hide()
-                    $('#industry').next().hide()
-                }
+                
     
                 //享受政策资金清单汇总 
                 for (var key in JSON.parse(data).data.moneyTotal) {
                     $('#totalmoney').append(`
                         <div class="unit">
-                            ${key}年：${JSON.parse(data).data.moneyTotal[key]}元
+                            ${key}年总金额：${JSON.parse(data).data.moneyTotal[key]}元
                         </div>
                     `)
                 }
@@ -188,9 +183,11 @@ $(() => {
                 for (var i = 0; i < JSON.parse(data).data.moneys.length; i++) {
                     $('#sharelist').next().append(`
                         <div class="list rcd">
-                            <div class="unit"><span class="title">资金名称：</span><span>${JSON.parse(data).data.moneys[i].name}</span></div>
                             <div class="unit"><span class="title">发放年度：</span><span>${JSON.parse(data).data.moneys[i].year}</span></div>
-                            <div class="unit"><span class="title">发放金额：</span><span>${JSON.parse(data).data.moneys[i].money}元</span></div>
+                            <div class="unit"><span class="title">资金名称：</span><span>${JSON.parse(data).data.moneys[i].name}</span></div>
+                            <div class="unit"><span class="title">发放金额(元)：</span><span>${JSON.parse(data).data.moneys[i].money}元</span></div>
+                            <div class="unit"><span class="title">发放方式：</span><span>${JSON.parse(data).data.moneys[i].grant_form}</span></div>
+                            <div class="unit"><span class="title">备注：</span><span>${JSON.parse(data).data.moneys[i].remark}</span></div>
                         </div>
                     `)
                 }
