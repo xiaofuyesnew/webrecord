@@ -104,11 +104,11 @@ $(() => {
                 $('#name').html(JSON.parse(data).data.poor.name)
                 $('#area').html(JSON.parse(data).data.poor.townname + '&nbsp;' + JSON.parse(data).data.poor.villagename)
     
-                //产业扶贫或者政策兜底
+                //帮扶措施
                 if (JSON.parse(data).data.industrys) {
                     //dataList.push({id: '1', value: '产业扶贫-之前', mark: 1, type: 30}, {id: '2', value: '产业扶贫-现在', mark: 2, type: 30})
                 
-                    $('#method').html('产业扶贫')
+                    $('#method').html(`${JSON.parse(data).data.poor2.help_measure}`)
     
                     for (var i = 0; i < JSON.parse(data).data.industrys.length; i++) {
                         dataList.push({value: `${JSON.parse(data).data.industrys[i].industry.type_name}-之前`, mark: 1, type: 30, indId: `${JSON.parse(data).data.industrys[i].id}`}, {value: `${JSON.parse(data).data.industrys[i].industry.type_name}-之后`, mark: 2, type: 30, indId: `${JSON.parse(data).data.industrys[i].id}`})
@@ -303,6 +303,9 @@ $(() => {
                     }
                 }
                 
+                //该户享受到的扶贫政策
+                $('#polity').html(JSON.parse(data).data.poor.poor_policy)
+
                 //家庭收入清单
                 $('#wage').html(JSON.parse(data).data.poor.wageincome)
                 $('#prop').html(JSON.parse(data).data.poor.propertyincome)
