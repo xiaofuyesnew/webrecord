@@ -114,12 +114,42 @@ $(() => {
                     $('#industry').next().append(`
                         <div class="list listcont">
                             <div class="unit">
+                                <span>年份：</span><span class="right">${JSON.parse(data).data.industrys[i].year}</span>
+                            </div>
+                        </div>
+                        <div class="list listcont">
+                            <div class="unit">
+                                <span>产业类型：</span><span class="right">${`${JSON.parse(data).data.industrys[i].industry_id}` === '1' ? '养殖业' : (`${JSON.parse(data).data.industrys[i].industry_id}` === '2' ? '种植业' : '其他')}</span>
+                            </div>
+                        </div>
+                        <div class="list listcont">
+                            <div class="unit">
                                 <span>主要产业：</span><span class="right">${JSON.parse(data).data.industrys[i].industry.type_name}</span>
                             </div>
                         </div>
                         <div class="list listcont">
                             <div class="unit">
                                 <span>产业规模：</span><span class="right">${JSON.parse(data).data.industrys[i].num}${JSON.parse(data).data.industrys[i].industry.unit}</span>
+                            </div>
+                        </div>
+                        <div class="list listcont">
+                            <div class="unit">
+                                <span>产业发展成本：</span><span class="right">${JSON.parse(data).data.industrys[i].develop_cost}元</span>
+                            </div>
+                            <div class="unit">
+                                <span>政府补贴产业发展资金：</span><span class="right">${JSON.parse(data).data.industrys[i].develop_fund}元</span>
+                            </div>
+                            <div class="unit">
+                                <span>预计产生效益：</span><span class="right">${JSON.parse(data).data.industrys[i].estimate_gross_income}元</span>
+                            </div>
+                            <div class="unit">
+                                <span>实际产生效益：</span><span class="right">${JSON.parse(data).data.industrys[i].actual_gross_income}元</span>
+                            </div>
+                            <div class="unit">
+                                <span>发展是否遇到困难：</span><span class="right">${JSON.parse(data).data.industrys[i].is_difficult}</span>
+                            </div>
+                            <div class="unit">
+                                <span>主要困难为：</span><span class="right">${JSON.parse(data).data.industrys[i].main_difficult}</span>
                             </div>
                         </div>
                     `)
