@@ -11,7 +11,7 @@ $(() => {
                     oldPassword = `old_password=${$('#oldPassword').val()}`,
                     newPassword = `new_password=${$('#newPassword').val()}`,
                     conPassword = `con_password=${$('#conPassword').val()}`,
-                    code = `code=${$('#code').val()}&PHPSESSID=code`,
+                    code = `code=${$('#code').val()}&PHPSESSID=${$('.u-check img').attr('data-phpsessid')}`,
                     prama = `${username}&${oldPassword}&${newPassword}&${conPassword}&${code}`
                 
                 if ($('#username').val() === '' || $('#oldPassword').val() === '' || $('#newPassword').val() === '' || $('#conPassword').val() === '' || $('#code').val() === '') {
@@ -37,8 +37,14 @@ $(() => {
             })
         },
         checkCode: () => {
-            $('.u-check img').click(function () {
-                    $('.u-check img').attr('src', 'http://120.76.203.56:8002/api.php/Login/get_codes?PHPSESSID=code')
+            $.ajax({
+                url: 'http://120.76.203.56:8002/api.php/Login/get_code',
+                type: 'GET',
+                success: (data) => {
+                    console.log(JSON.parse(data))
+                    $('.u-check img').attr('src', JSON.parse(data).img)
+                    $('.u-check img').attr('data-phpsessid', JSON.parse(data).PHPSESSID)
+                }
             })
         },
         showMsg: (msg) => {
@@ -53,8 +59,14 @@ $(() => {
             })
         }
     }
-
     app.setScreen()
+    //注入验证码
     app.checkCode()
+
+    //刷新验证码
+    $('.u-check img').click(() => {
+        app.checkCode()
+    })
+    
     app.loadBtn()
 })
