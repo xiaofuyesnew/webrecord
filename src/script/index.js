@@ -26,7 +26,15 @@ $(() => {
             app.el.css({"height": `${window.innerHeight - 20}px`})
         },
         checkCode: () => {
-            $('.u-check img').attr('src', 'http://120.76.203.56:8002/api.php/Login/get_codes?PHPSESSID=code')
+            $.ajax({
+                url: 'http://120.76.203.56:8002/api.php/Login/get_code',
+                type: 'GET',
+                success: (data) => {
+                    console.log(JSON.parse(data))
+                    $('.u-check img').attr('src', JSON.parse(data).img)
+                    $('.u-check img').attr('data-phpsessid', JSON.parse(data).PHPSESSID)
+                }
+            })
         },
         lastLogin: () => {
             var mytime = new Date(),
@@ -43,7 +51,7 @@ $(() => {
             var username = `username=${$('#username').val()}`,
                 password = `password=${$('#password').val()}`,
                 code = `code=${$('#code').val()}`,
-                key = 'PHPSESSID=code',
+                key = `PHPSESSID=${$('.u-check img').attr('data-phpsessid')}`,
                 prama = `${username}&${password}&${code}&${key}`
 
             $.ajax({
@@ -51,6 +59,7 @@ $(() => {
                 type: "post",
                 data: prama,
                 success: (data) => {
+                    console.log(JSON.parse(data))
                     if (JSON.parse(data).status === 1) {
                         localStorage.setItem('uid', JSON.parse(data).uid)
                         localStorage.setItem('username', $('#username').val())
@@ -116,6 +125,9 @@ $(() => {
 
     //自动登录
     app.autoLogin()
+
+    //验证码注入
+    app.checkCode()
 
     //刷新验证码
     $('.u-check img').click(function () {
