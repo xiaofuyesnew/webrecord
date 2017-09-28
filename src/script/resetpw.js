@@ -41,9 +41,12 @@ $(() => {
                 url: 'http://120.76.203.56:8002/api.php/Login/get_code',
                 type: 'GET',
                 success: (data) => {
-                    console.log(JSON.parse(data))
+                    //console.log(JSON.parse(data))
                     $('.u-check img').attr('src', JSON.parse(data).img)
                     $('.u-check img').attr('data-phpsessid', JSON.parse(data).PHPSESSID)
+                },
+                error: () => {
+                    alert('获取验证码失败，请点击验证码刷新或检查网络...')
                 }
             })
         },
