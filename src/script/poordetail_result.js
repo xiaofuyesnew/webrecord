@@ -112,9 +112,8 @@ $(() => {
     
                 // 政策性资金清单
                     //dataList.push({id: '1', value: '产业扶贫-之前', mark: 1, type: 30}, {id: '2', value: '产业扶贫-现在', mark: 2, type: 30})
-                
-                    $('#method').html(`${JSON.parse(data).data.poor2.help_measure}`)
-    
+                    $('#method').html(`${JSON.parse(data).data.poor2?JSON.parse(data).data.poor2.help_measure:''}`)
+                    
                     for (var i = 0; i < JSON.parse(data).data.industrys.length; i++) {
                         dataList.push({value: `${JSON.parse(data).data.industrys[i].industry.type_name}-之前`, mark: 1, type: 30, indId: `${JSON.parse(data).data.industrys[i].id}`}, {value: `${JSON.parse(data).data.industrys[i].industry.type_name}-之后`, mark: 2, type: 30, indId: `${JSON.parse(data).data.industrys[i].id}`})
                         $('#industry').next().append(`
