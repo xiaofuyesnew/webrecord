@@ -54,7 +54,10 @@ $(() => {
 
     //侧边搜索框弹出
     $('.m-dropdown .u-show').click(function () {
-        $('.u-hide').addClass('animOut')
+        $('.u-hide').animate({
+            left:'0'
+        },300)
+        //$('.u-hide').addClass('animOut')
         $('.u-mask').show()
     })
 
@@ -64,11 +67,14 @@ $(() => {
 
     //侧边栏回收函数
     function getBack() {
-        $('.u-hide').removeClass('animOut')
-        $('.u-hide').addClass('animIn')
-        setTimeout(function () {
-            $('.u-hide').removeClass('animIn')
-        }, 350)
+        $('.u-hide').animate({
+            left:'-80vw'
+        },300)
+        //$('.u-hide').removeClass('animOut')
+        //$('.u-hide').addClass('animIn')
+        //setTimeout(function () {
+        //    $('.u-hide').removeClass('animIn')
+        //}, 350)
         $('.u-mask').hide()
     }
 

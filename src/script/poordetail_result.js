@@ -62,24 +62,30 @@ $(() => {
         $('#sharelist').attr('href', `sharelist.html?table_id=${app.getUrlPrama('table_id')}`)
     
         //侧边搜索框弹出
-        $('.m-dropdown .u-show').click(function () {
-            $('.u-hide').addClass('animOut')
-            $('.u-mask').show()
-        })
-    
-        $('.u-mask').click(function () {
-            getBack()
-        })
-    
-        //侧边栏回收函数
-        function getBack() {
-            $('.u-hide').removeClass('animOut')
-            $('.u-hide').addClass('animIn')
-            setTimeout(function () {
-                $('.u-hide').removeClass('animIn')
-            }, 350)
-            $('.u-mask').hide()
-        }
+    $('.m-dropdown .u-show').click(function () {
+        $('.u-hide').animate({
+            left:'0'
+        },300)
+        //$('.u-hide').addClass('animOut')
+        $('.u-mask').show()
+    })
+
+    $('.u-mask').click(function () {
+        getBack()
+    })
+
+    //侧边栏回收函数
+    function getBack() {
+        $('.u-hide').animate({
+            left:'-80vw'
+        },300)
+        //$('.u-hide').removeClass('animOut')
+        //$('.u-hide').addClass('animIn')
+        //setTimeout(function () {
+        //    $('.u-hide').removeClass('animIn')
+        //}, 350)
+        $('.u-mask').hide()
+    }
     
         $('.arrow').click(function () {
             if ($(this).hasClass('up')) {

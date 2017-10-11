@@ -35,7 +35,9 @@ $(() => {
                     $('.u-check img').attr('data-phpsessid', JSON.parse(data).PHPSESSID)
                 },
                 error: () => {
-                    alert('获取验证码失败，请点击验证码刷新或检查网络...')
+                    if (localStorage.logout === '1') {
+                        alert('获取验证码失败，请点击验证码刷新或检查网络...')
+                    }
                 }
             })
         },
