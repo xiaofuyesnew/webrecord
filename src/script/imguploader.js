@@ -57,26 +57,19 @@ var popupBtn = () => {
 
 //弹出框弹出
 var showBtn = () => {
+    $('.popupBtn').animate({
+        bottom: '0'
+    }, 300)
 
-    if ($('.popupBtn').hasClass('animOut')) {
-
-        $('.popupBtn').removeClass('animOut')
-
-    }
-
-    $('.popupBtn').addClass('animIn')
     $('.iu-mask').show()
 }
 
 //弹出框收回
 var hideBtn = () => {
-
-    if ($('.popupBtn').hasClass('animIn')) {
-        
-        $('.popupBtn').removeClass('animIn')
-        
-    }
-    $('.popupBtn').addClass('animOut')
+    $('.popupBtn').animate({
+        bottom: '-160px'
+    }, 300)
+    
     $('.iu-mask').hide()
 }
 
