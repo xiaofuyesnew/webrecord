@@ -68,6 +68,7 @@ $(() => {
         geocoder.getAddress(posXY, function (status, result) {
             if (status === 'complete' && result.info === 'OK') {
                 $('#address').val(result.regeocode.formattedAddress)
+                app.showMsg('定位成功，可以签到')
             }else{
                 app.showMsg('获取地址失败')
             }
@@ -82,17 +83,21 @@ $(() => {
 
     //签到
     $('.btn').click(function () {
-        $.ajax({
-            url: 'http://120.76.203.56:8002/api.php/Duty/sign',
-            type: 'POST',
-            data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&uid=${localStorage.uid}&familyid=${app.getUrlPrama('familyid')}&address=${$('#address').val()}`,
-            success: (data) => {
-                console.log(JSON.parse(data))
-                app.showMsg(JSON.parse(data).info)
-                setTimeout(() => {
-                    window.location = 'poorlist.html'
-                }, 2000)
-            }
-        })
+        if ($('#address').val()) {
+            $.ajax({
+                url: 'http://120.76.203.56:8002/api.php/Duty/sign',
+                type: 'POST',
+                data: `uid=${localStorage.uid}&username=${localStorage.username}&password=${localStorage.password}&uid=${localStorage.uid}&familyid=${app.getUrlPrama('familyid')}&address=${$('#address').val()}`,
+                success: (data) => {
+                    console.log(JSON.parse(data))
+                    app.showMsg(JSON.parse(data).info)
+                    setTimeout(() => {
+                        window.location = 'poorlist.html'
+                    }, 2000)
+                }
+            })
+        } else {
+            app.showMsg('定位未成功，无法签到')
+        }
     })
 })
