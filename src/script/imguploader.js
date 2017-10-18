@@ -105,9 +105,13 @@ var getpicture = (source) => {
 
 //获取照片后的回调函数
 var onPhotoSuccess = (imgData) => {
-    files.push(imgData)
-    previewImg(imgData)
-    
+    window.FilePath.resolveNativePath(imgData, function (r) {
+        files.push(r)
+        previewImg(r)  
+    }, function (err) {
+        files.push(imgData)
+        previewImg(imgData)
+    })
 }
 
 //图片预览功能
@@ -154,6 +158,8 @@ var uploadImg = (files) => {
         params.password = localStorage.password
         options.params = params
         
+        //alert(files[i])
+
         var ft = new FileTransfer()
         ft.upload(files[i], encodeURI(`http://120.76.203.56:8002/api.php/Duty/uploadImg`), win, fail, options)
     
@@ -184,10 +190,12 @@ var onDeviceReady = () => {
     })
 }
 
+//popupBtn()
+//设备准备
+document.addEventListener("deviceready", onDeviceReady, false)
+
 $(() => { 
-    //popupBtn()
-    //设备准备
-    document.addEventListener("deviceready", onDeviceReady, false)
+    
 
     //取消按钮点击绑定
     $(document).on('click', '#iu-cancle', () => {
