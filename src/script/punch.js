@@ -28,7 +28,7 @@ $(() => {
             var r = window.location.search.substr(1).match(reg)
             if (r != null) {
                 return unescape(r[2])
-            } 
+            }
             return null
         }
     }
@@ -68,6 +68,7 @@ $(() => {
         geocoder.getAddress(posXY, function (status, result) {
             if (status === 'complete' && result.info === 'OK') {
                 $('#address').val(result.regeocode.formattedAddress)
+                alert(result.regeocode.formattedAddress)
                 app.showMsg('定位成功，可以签到')
             }else{
                 app.showMsg('获取地址失败')
