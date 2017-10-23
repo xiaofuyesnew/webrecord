@@ -8,6 +8,7 @@ $(() => {
             })
             localStorage.uid = ''
         }
+        navigator.geolocation.getCurrentPosition(function(position){}, function(error){})
     }
 
     document.addEventListener("deviceready", onDeviceReady, false)
