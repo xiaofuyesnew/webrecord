@@ -83,7 +83,8 @@ var getpicture = (source) => {
             function (error) {
                 console.log("照片获取失败！")
             }, 
-            { 
+            {
+                quality: 20,
                 destinationType: Camera.DestinationType.FILE_URI, 
                 sourceType: Camera.PictureSourceType.PHOTOLIBRARY 
             }
@@ -96,7 +97,8 @@ var getpicture = (source) => {
             function (error) {
                 console.log("照片获取失败！")
             }, 
-            { 
+            {
+                quality: 20,
                 destinationType: Camera.DestinationType.FILE_URI
             }
         )

@@ -39,24 +39,29 @@ $(() => {
     var map, geolocation, geocoder;
     //加载地图，调用浏览器定位服务
     map = new AMap.Map('container', {
-        resizeEnable: true
+        resizeEnable: true,
+        zoom: 10,
+        center: [111.640645,31.061092]
     });
 
     AMap.service('AMap.Geocoder',function(){//回调函数
         //实例化Geocoder
-        geocoder = new AMap.Geocoder();
+        geocoder = new AMap.Geocoder({
+            city: '0717'
+        });
     //TODO: 使用geocoder 对象完成相关功能
     })
-
+    
     map.plugin('AMap.Geolocation', function() {
-        if (localStorage === 'Android') {
+       /* if (localStorage.platform === 'Android') {*/
             geolocation = new AMap.Geolocation({
                 enableHighAccuracy: false,//是否使用高精度定位，默认:true
                 timeout: 5000,          //超过10秒后停止定位，默认：无穷大
                 buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
                 zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
                 buttonPosition:'RB'
-            });
+            })
+            /*
         } else {
             geolocation = new AMap.Geolocation({
                 enableHighAccuracy: true,//是否使用高精度定位，默认:true
@@ -64,16 +69,51 @@ $(() => {
                 buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
                 zoomToAccuracy: true,      //定位成功后调整地图视野范围使定位位置及精度范围视野内可见，默认：false
                 buttonPosition:'RB'
-            });
-        }
-        map.addControl(geolocation);
-        geolocation.getCurrentPosition();
-        AMap.event.addListener(geolocation, 'complete', onComplete);//返回定位信息
-        AMap.event.addListener(geolocation, 'error', onError);      //返回定位出错信息
-    });
+            })
+        }*/
+        map.addControl(geolocation)
+        geolocation.getCurrentPosition()
+        AMap.event.addListener(geolocation, 'complete', onComplete)//返回定位信息
+        AMap.event.addListener(geolocation, 'error', onError);    //返回定位出错信息
+    })
     //解析定位结果
     /**/ 
+    var selfLoc,
+        marker,
+        markers = []
+    function addL () {
+        selfLoc = AMap.event.addListener(map, "click", function(e){
+            //alert(JSON.stringify(e.lnglat))
+            if (marker) {
+                map.remove(markers)
+            }
+            marker = new AMap.Marker({
+                map:map,
+                bubble: true
+            })
+            marker.setPosition(e.lnglat);
+            markers.push(marker)
+            geocoder.getAddress(e.lnglat,function(status,result){
+                //console.log(result.regeocode.formattedAddress)
+                $('#address').val(result.regeocode.formattedAddress)
+                $('#maddress').val(result.regeocode.formattedAddress)
+                app.showMsg('定位成功，可以签到')
+            })
+        })
+    }
+
+    function removeL () {
+        if (selfLoc) {
+            AMap.event.removeListener(selfLoc)
+        }
+        map.remove(markers)
+    }
+
     function onComplete(data) {
+        if ($('#maddress').length > 0) {
+            $('#maddress').remove()
+            removeL()
+        }
         var posXY = [data.position.getLng(), data.position.getLat()]
         geocoder.getAddress(posXY, function (status, result) {
             if (status === 'complete' && result.info === 'OK') {
@@ -84,10 +124,17 @@ $(() => {
             }
         })
     }
-
     //解析定位错误信息
     function onError(data) {
-        app.showMsg('定位失败')
+        app.showMsg('定位失败,开启手动定位')
+        //alert(JSON.stringify(data))
+        if ($('#maddress').length > 0) {
+            $('#maddress').val('')
+            removeL()
+        } else {
+            $('#container').after('<input id="maddress" type="text" disabled>')
+        }
+        AMap.plugin('AMap.Geocoder', addL())
     }
 
     //签到
